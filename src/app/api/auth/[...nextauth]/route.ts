@@ -13,7 +13,6 @@ export const handler = NextAuth({
       },
     }),
   ],
-  callbacks: {},
 });
 
 export { handler as GET, handler as POST };
