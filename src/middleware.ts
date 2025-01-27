@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import HTTPError from "@/apis/error/HTTPError";
-import handleAPIError from "@/apis/utils/handleAPIError";
 
 export const config = {
   matcher: [

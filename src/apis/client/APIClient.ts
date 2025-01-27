@@ -10,12 +10,6 @@ interface APIResponse<T = unknown> {
   status: number;
 }
 
-// API 에러 타입
-interface APIError {
-  status: number;
-  message: string;
-}
-
 // 요청 설정 타입
 interface RequestConfig extends RequestInit {
   params?: Record<string, string>;
