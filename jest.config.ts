@@ -8,7 +8,7 @@ const createJestConfig = nextJest({
 
 const config: Config = {
   clearMocks: true,
-  collectCoverage: false,
+  collectCoverage: true,
   coverageDirectory: "coverage",
   coverageProvider: "v8",
 

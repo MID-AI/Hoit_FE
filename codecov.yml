@@ -1,0 +1,15 @@
+coverage:
+  status:
+    project:
+      default:
+        # 기본 설정
+        target: auto # 기본값: 'auto'
+        threshold: 0% # 임계값 설정 (변경 없음 허용)
+        base: auto # 기본값: 'auto'
+  comment:
+    layout: "diff flags files" # 커버리지 보고서 표시 형식
+    behavior: default # 기본 동작 유지
+    require_changes: false # 변경이 없어도 댓글을 남김
+    require_base: false # 기준 리포트가 없어도 댓글을 남김
+    require_head: true # 헤드 리포트가 있어야 댓글 생성
+    hide_project_coverage: false # 전체 프로젝트 커버리지를 숨기지 않음
