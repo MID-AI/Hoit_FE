@@ -17,12 +17,9 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
     "plugin:prettier/recommended",
-    "plugin:storybook/recommended",
-    "google"
+    "plugin:storybook/recommended"
   ],
   "rules": {
-    "quotes": ["error", "double"],
-    "object-curly-spacing": ["error", "always"],
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": [
       "warn",
