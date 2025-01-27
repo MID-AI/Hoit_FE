@@ -1,10 +1,9 @@
 ---
 name: "Issue: \U0001F41BBUG"
 about: Bug 발생 시 작성해주세요.
-title: ''
-labels: ''
-assignees: ''
-
+title: ""
+labels: ""
+assignees: ""
 ---
 
 ## ✍ Description
