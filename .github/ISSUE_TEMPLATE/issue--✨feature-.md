@@ -1,10 +1,9 @@
 ---
-name: 'Issue: ✨Feature '
+name: "Issue: ✨Feature "
 about: refactor, perf, testCode 리팩토링 등 변경 및 개선 사항이 있는 경우 사용
-title: ''
-labels: ''
-assignees: ''
-
+title: ""
+labels: ""
+assignees: ""
 ---
 
 ## ✍ Description

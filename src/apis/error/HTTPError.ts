@@ -8,15 +8,32 @@ export interface HTTPErrorInfo {
 }
 
 class HTTPError extends Error {
-  statusCode: number;
-  information: HTTPErrorInfo;
+  readonly statusCode: number;
+  readonly information: HTTPErrorInfo;
 
   constructor(statusCode: number, errorInfo: HTTPErrorInfo) {
     super(errorInfo.message ?? errorInfo.payload.HEADING);
 
-    this.name = "HTTPError";
+    Object.setPrototypeOf(this, new.target.prototype);
+
+    this.name = this.constructor.name;
     this.statusCode = statusCode;
     this.information = errorInfo;
+
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, this.constructor);
+    }
+  }
+  toString(): string {
+    return `[${this.name}] ${this.statusCode}: ${this.message}`;
+  }
+  toJSON(): Record<string, unknown> {
+    return {
+      name: this.name,
+      statusCode: this.statusCode,
+      message: this.message,
+      information: this.information,
+    };
   }
 }
 

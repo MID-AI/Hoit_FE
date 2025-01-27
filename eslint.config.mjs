@@ -1,31 +1,58 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
+import js from "@eslint/js";
 import { FlatCompat } from "@eslint/eslintrc";
+import path from "path";
+import { fileURLToPath } from "url";
 
-// ES 모듈 환경에서 현재 파일명과 디렉토리명 추출
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const __dirname = path.dirname(__filename);
 
-// FlatCompat를 사용하여 기존 ESLint 설정 확장
 const compat = new FlatCompat({
   baseDirectory: __dirname,
+  recommendedConfig: js.configs.recommended,
 });
 
 export default [
-  // 기본 ESLint 설정 확장
+  // JavaScript/TypeScript 기본 설정
+  js.configs.recommended,
   ...compat.extends(
     "next/core-web-vitals",
-    "next/typescript",
-    "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
     "plugin:prettier/recommended",
     "plugin:storybook/recommended",
-    "plugin:@tanstack/eslint-plugin-query/recommended",
-    "google",
   ),
+
+  // 플러그인 설정
+  ...compat.plugins(
+    "import",
+    "@typescript-eslint",
+    "react",
+    "prettier",
+    "tailwindcss",
+  ),
+
+  // 글로벌 설정
   {
-    // 사용자 정의 규칙
+    languageOptions: {
+      ecmaVersion: "latest",
+      sourceType: "module",
+      parser: (await import("@typescript-eslint/parser")).default,
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
+        project: "./tsconfig.json",
+      },
+      globals: {
+        ...compat.env.browser,
+        ...compat.env.node,
+        ...compat.env.es6,
+      },
+    },
+  },
+
+  // 규칙 설정
+  {
     rules: {
       "react/react-in-jsx-scope": "off",
       "react/jsx-filename-extension": [
@@ -34,7 +61,8 @@ export default [
           extensions: [".ts", ".tsx", ".jsx", ".js"],
         },
       ],
-      "no-plusplus": "off",
+      "react/require-default-props": "off",
+      "no-plusplus": "warn",
       "react/function-component-definition": "off",
       "@typescript-eslint/camelcase": "off",
       "@typescript-eslint/no-explicit-any": "off",
@@ -44,6 +72,7 @@ export default [
           endOfLine: "auto",
         },
       ],
+      "arrow-body-style": "off",
       "import/extensions": [
         "error",
         "ignorePackages",
@@ -53,6 +82,7 @@ export default [
         },
       ],
       "import/prefer-default-export": "off",
+      "import/no-cycle": "off",
       "no-console": ["error", { allow: ["warn", "error"] }],
       "import/no-extraneous-dependencies": [
         "error",
@@ -66,6 +96,12 @@ export default [
           assert: "htmlFor",
         },
       ],
+      "require-jsdoc": "off",
     },
+  },
+
+  // 파일 무시 설정
+  {
+    ignores: ["build/**", "dist/**", "public/**"],
   },
 ];

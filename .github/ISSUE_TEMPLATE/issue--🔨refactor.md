@@ -1,10 +1,9 @@
 ---
 name: "Issue: \U0001F528Refactor"
 about: Refactor 작업 사항을 입력해주세요.
-title: ''
-labels: ''
-assignees: ''
-
+title: ""
+labels: ""
+assignees: ""
 ---
 
 ## ✍ Description
