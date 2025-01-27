@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import "./globals.css";
+import Provider from "./provider";
 
 export const metadata: Metadata = {
   title: "AI App",
@@ -14,7 +15,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body>{children}</body>
+      <body>
+        <Provider>{children}</Provider>
+      </body>
     </html>
   );
 }
