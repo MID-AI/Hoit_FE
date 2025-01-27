@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import HTTPError from "@/apis/error/HTTPError";
 
+const PUBLIC_PATHS = ["/login", "/"];
+
 export const config = {
   matcher: [
     "/img",
@@ -11,8 +13,9 @@ export const config = {
 };
 export function middleware(request: NextRequest) {
   try {
-    if (request.nextUrl.pathname === "/login") {
-      return NextResponse.next(); // 로그인 페이지는 인증 없이 접근 가능
+    // 공개 경로 체크
+    if (PUBLIC_PATHS.includes(request.nextUrl.pathname)) {
+      return NextResponse.next();
     }
 
     const token = request.cookies.get("_hoauth");
