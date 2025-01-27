@@ -1,24 +1,32 @@
-"use client";
-
-import { Modal } from "@/components/common/modal/Modal";
-import { useModalStore } from "../store/useModalStore";
-import { AuthButtons } from "@/components/auth/AuthButtons";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 export default function Home() {
-  const { openModal } = useModalStore();
-
   return (
     <div className="flex min-h-screen items-center justify-center">
-      <button
-        onClick={openModal}
-        className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
-      >
-        모달 열기
-      </button>
-      <Modal>
-        <h2 className="mb-4 text-xl font-bold">모달 제목</h2>
-        <AuthButtons />
-      </Modal>
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button variant="outline">Edit Profile</Button>
+        </DialogTrigger>
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle>로그인</DialogTitle>
+          </DialogHeader>
+          <div className="grid gap-4 py-4">
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Button variant="outline">구글 로그인</Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

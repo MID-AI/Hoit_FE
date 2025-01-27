@@ -1,64 +1,41 @@
 import BASE_URL from "./baseUrl";
 
-const baseHeader = {
-  "Content-Type": "application/json",
-};
-
 type HTTPMethod = "GET" | "POST" | "PATCH" | "DELETE";
 
-interface RequestConfig {
+type RequestConfig = {
   method: HTTPMethod;
-  headers?: Record<string, string>;
   body?: any;
-}
+  headers?: Record<string, string>;
+};
 
-async function apiRequest<T = any>(
-  path: string,
-  config: RequestConfig,
+async function fetcher<T>(
+  url: string,
+  { method, body, headers }: RequestConfig,
 ): Promise<T> {
-  const url = `${BASE_URL}/${path}`;
-  const response = await fetch(url, {
-    method: config.method,
-    headers: config.headers,
-    body:
-      config.body instanceof FormData
-        ? config.body
-        : config.body
-          ? JSON.stringify(config.body)
-          : undefined,
+  const response = await fetch(`${BASE_URL}/${url}`, {
+    method,
+    headers: {
+      "Content-Type": "application/json",
+      ...headers,
+    },
+    body: body ? JSON.stringify(body) : undefined,
   });
 
   if (!response.ok) {
-    throw new Error(
-      `${config.method} 요청에서 에러가 발생했습니다. (url: ${url})`,
-    );
+    const error = new Error(`HTTP Error: ${response.status}`);
+    throw error;
   }
 
   return response.json();
 }
 
-export const apiClient = {
-  get: <T>(path: string) => apiRequest<T>(path, { method: "GET" }),
+export const get = <T>(url: string) => fetcher<T>(url, { method: "GET" });
 
-  post: <T>(path: string, body: any) => {
-    const headers = body instanceof FormData ? undefined : baseHeader;
-    return apiRequest<T>(path, {
-      method: "POST",
-      headers,
-      body,
-    });
-  },
+export const post = <T>(url: string, body: any) =>
+  fetcher<T>(url, { method: "POST", body });
 
-  patch: <T>(path: string, body?: any) => {
-    return apiRequest<T>(path, {
-      method: "PATCH",
-      body,
-    });
-  },
+export const patch = <T>(url: string, body: any) =>
+  fetcher<T>(url, { method: "PATCH", body });
 
-  delete: <T>(path: string, body?: any) =>
-    apiRequest<T>(path, {
-      method: "DELETE",
-      body,
-    }),
-};
+export const del = <T>(url: string, body?: any) =>
+  fetcher<T>(url, { method: "DELETE", body });

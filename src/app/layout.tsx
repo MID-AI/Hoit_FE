@@ -1,12 +1,19 @@
 import type { Metadata } from "next";
-
+import localFont from "next/font/local";
 import "./globals.css";
-import { Providers } from "./providers";
 
 export const metadata: Metadata = {
-  title: "AI App",
-  description: "AI App",
+  title: "Hoit",
+  description:
+    "hoit과 함께 ai이미지를 생성해봐요. 쉽게 내가 원하는대로 디자인할 수 있어요.",
 };
+
+// const SpoqaHanSansNeo = localFont({
+//   src: "",
+//   display: "swap",
+//   weight: "45 920",
+//   variable: "--font-SpoqaHanSansNeo",
+// });
 
 export default function RootLayout({
   children,
@@ -15,9 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body>
-        <Providers>{children}</Providers>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
