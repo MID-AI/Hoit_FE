@@ -21,6 +21,8 @@
     "google"
   ],
   "rules": {
+    "quotes": ["error", "double"],
+    "object-curly-spacing": ["error", "always"],
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": [
       "warn",
@@ -62,7 +64,8 @@
       {
         "assert": "htmlFor"
       }
-    ]
+    ],
+    "require-jsdoc": "off"
   },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
