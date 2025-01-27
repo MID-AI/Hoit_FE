@@ -9,6 +9,7 @@ const __dirname = dirname(__filename);
 // FlatCompat를 사용하여 기존 ESLint 설정 확장
 const compat = new FlatCompat({
   baseDirectory: __dirname,
+  recommendedConfig: js.configs.recommended,
 });
 
 export default [
