@@ -36,7 +36,7 @@ export default [
           extensions: [".ts", ".tsx", ".jsx", ".js"],
         },
       ],
-      "no-plusplus": "off",
+      "no-plusplus": "error",
       "react/function-component-definition": "off",
       "@typescript-eslint/camelcase": "off",
       "@typescript-eslint/no-explicit-any": "off",
@@ -66,6 +66,22 @@ export default [
         "error",
         {
           assert: "htmlFor",
+        },
+      ],
+      // Google 스타일 가이드의 JSDoc 관련 규칙 비활성화
+      "valid-jsdoc": "off",
+      "require-jsdoc": "off",
+
+      // React Hooks 규칙
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn",
+
+      // 추가 규칙
+      "no-unused-vars": [
+        "error",
+        {
+          varsIgnorePattern: "^_",
+          argsIgnorePattern: "^_",
         },
       ],
     },
