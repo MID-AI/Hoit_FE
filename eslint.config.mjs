@@ -1,6 +1,7 @@
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { FlatCompat } from "@eslint/eslintrc";
+import * as typeScriptEsLintPlugin from "@typescript-eslint/eslint-plugin";
 
 // ES 모듈 환경에서 현재 파일명과 디렉토리명 추출
 const __filename = fileURLToPath(import.meta.url);
@@ -9,7 +10,7 @@ const __dirname = dirname(__filename);
 // FlatCompat를 사용하여 기존 ESLint 설정 확장
 const compat = new FlatCompat({
   baseDirectory: __dirname,
-  recommendedConfig: typeScriptEsLintPlugin.configs["recommended"],
+  recommendedConfig: typeScriptEsLintPlugin.configs.recommended,
 });
 
 export default [
