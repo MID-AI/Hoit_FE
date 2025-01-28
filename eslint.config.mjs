@@ -11,7 +11,7 @@ const compat = new FlatCompat({
   recommendedConfig: js.configs.recommended,
 });
 
-export default [
+const eslintConfig = [
   // JavaScript/TypeScript 기본 설정
   js.configs.recommended,
   ...compat.extends(
@@ -31,8 +31,9 @@ export default [
     "tailwindcss",
   ),
 
-  // 글로벌 설정
+  // TypeScript 파일에만 project 설정 적용
   {
+    files: ["**/*.ts", "**/*.tsx"],
     languageOptions: {
       ecmaVersion: "latest",
       sourceType: "module",
@@ -84,12 +85,7 @@ export default [
       "import/prefer-default-export": "off",
       "import/no-cycle": "off",
       "no-console": ["error", { allow: ["warn", "error"] }],
-      "import/no-extraneous-dependencies": [
-        "error",
-        {
-          devDependencies: true,
-        },
-      ],
+      "import/no-extraneous-dependencies": "off",
       "jsx-a11y/label-has-associated-control": [
         "error",
         {
@@ -105,3 +101,5 @@ export default [
     ignores: ["build/**", "dist/**", "public/**"],
   },
 ];
+
+export default eslintConfig;

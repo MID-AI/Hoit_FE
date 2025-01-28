@@ -1,9 +1,7 @@
 const API_ROUTES = {
-  test: "/test",
-} as const;
+  TEST: "/test",
 
-export const pathGenerator = {
-  test: (url: string) => `${API_ROUTES.test}/${url}`,
-};
+  USER: "/user",
+} as const;
 
 export default API_ROUTES;
