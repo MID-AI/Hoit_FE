@@ -6,8 +6,6 @@ export const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 // API 응답 타입
 interface APIResponse<T = unknown> {
   data: T;
-  message?: string;
-  status: number;
 }
 
 // 요청 설정 타입
@@ -96,13 +94,7 @@ class APIClient {
         handleAPIError(response.status);
       }
 
-      const data = await response.json();
-
-      return {
-        data,
-        status: response.status,
-        message: response.statusText,
-      };
+      return await response.json();
     } catch (error) {
       if (error instanceof Error) {
         throw handleAPIError(500, error.message);
