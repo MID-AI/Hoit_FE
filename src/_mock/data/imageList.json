@@ -1,0 +1,61 @@
+{
+  "hasNext": false,
+  "currentPage": 1,
+  "content": [
+    {
+      "imgId": "1",
+      "taskId": "https://picsum.photos/500/500",
+      "imageUrl": "https://picsum.photos/500/500"
+    },
+    {
+      "imgId": "2",
+      "taskId": "https://picsum.photos/600/800",
+      "imageUrl": "https://picsum.photos/600/800"
+    },
+    {
+      "imgId": "3",
+      "taskId": "https://picsum.photos/800/500",
+      "imageUrl": "https://picsum.photos/800/500"
+    },
+    {
+      "imgId": "4",
+      "taskId": "https://picsum.photos/300/300",
+      "imageUrl": "https://picsum.photos/300/300"
+    },
+    {
+      "imgId": "5",
+      "taskId": "https://picsum.photos/480/320",
+      "imageUrl": "https://picsum.photos/480/320"
+    },
+    {
+      "imgId": "6",
+      "taskId": "https://picsum.photos/1600/1000",
+      "imageUrl": "https://picsum.photos/1600/1000"
+    },
+    {
+      "imgId": "7",
+      "taskId": "https://picsum.photos/400/400",
+      "imageUrl": "https://picsum.photos/400/400"
+    },
+    {
+      "imgId": "8",
+      "taskId": "https://picsum.photos/750/500",
+      "imageUrl": "https://picsum.photos/750/500"
+    },
+    {
+      "imgId": "9",
+      "taskId": "https://picsum.photos/1280/800",
+      "imageUrl": "https://picsum.photos/1280/800"
+    },
+    {
+      "imgId": "10",
+      "taskId": "https://picsum.photos/200/200",
+      "imageUrl": "https://picsum.photos/200/200"
+    },
+    {
+      "imgId": "11",
+      "taskId": "https://picsum.photos/600/400",
+      "imageUrl": "https://picsum.photos/600/400"
+    }
+  ]
+}
