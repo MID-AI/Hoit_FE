@@ -1,4 +1,4 @@
-import * as Sentry from "@sentry/node";
+import * as Sentry from "@sentry/nextjs";
 import { HTTP_STATUS_CODE, HTTP_ERROR_MESSAGE } from "../constants/https";
 import HTTPError, { type HTTPErrorInfo } from "../error/HTTPError";
 
@@ -78,7 +78,7 @@ const createAndLogError = (
 ): HTTPError => {
   const error = new HTTPError(statusCode, errorInfo);
 
-  // 개발 환경에서는 콘솔에도 출력
+  // 개발 환경에서만 콘솔에 출력
   if (process.env.NODE_ENV === "development") {
     console.error("[API Error]", {
       statusCode,
@@ -87,13 +87,16 @@ const createAndLogError = (
     });
   }
 
-  Sentry.captureException(error, {
-    level: statusCode >= 500 ? "error" : "warning",
-    tags: {
-      statusCode,
-      errorType: "API",
-    },
-  });
+  // 프로덕션 환경에서만 Sentry에 로깅
+  if (process.env.NODE_ENV === "production") {
+    Sentry.captureException(error, {
+      level: statusCode >= 500 ? "error" : "warning",
+      tags: {
+        statusCode,
+        errorType: "API",
+      },
+    });
+  }
 
   return error;
 };
