@@ -1,7 +1,9 @@
 const API_ROUTES = {
-  TEST: "/test",
+  TEST: "test",
 
-  USER: "/user",
+  USER: "user",
+
+  EXAMPLE_IMAGE_LIST: "home/img",
 } as const;
 
 export default API_ROUTES;
