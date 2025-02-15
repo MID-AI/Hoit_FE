@@ -5,11 +5,8 @@ import HTTPError from "@/apis/error/HTTPError";
 const PUBLIC_PATHS = ["/login", "/"];
 
 export const config = {
-  matcher: [
-    "/img",
-    "/mood",
-    "/((?!api|_next/static|_next/image|favicon.ico).*)",
-  ],
+  matcher: [],
+  // matcher: ["/img", "/mood"],
 };
 export function middleware(request: NextRequest) {
   try {

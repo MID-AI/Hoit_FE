@@ -1,6 +1,6 @@
-const BASE_URL =
-  process.env.NEXT_PUBLIC_API_MOCKING === "enabled"
+const SERVER_URL =
+  process.env.NEXT_PUBLIC_MODE === "mock"
     ? "http://localhost:9090"
-    : "";
+    : "https://api.hoit.my";
 
-export default BASE_URL;
+export default SERVER_URL;

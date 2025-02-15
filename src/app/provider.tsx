@@ -12,7 +12,7 @@ export default function Provider({ children }: Props) {
   if (typeof window === "undefined") {
     return <>{children}</>;
   }
-
+  return <>{children}</>;
   return (
     <Sentry.ErrorBoundary fallback={<Error />}>{children}</Sentry.ErrorBoundary>
   );

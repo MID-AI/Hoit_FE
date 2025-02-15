@@ -9,12 +9,13 @@ import { cn } from "@/lib/utils";
 import SidebarItem from "./sidebar-item";
 import SidebarItemIcon from "./sidebar-item-icon";
 import SidebarUser from "./sidebar-user";
+import PAGE_ROUTES from "@/constants/page-routes";
 
 export const menuItems = [
   { icon: Home, label: "홈", href: "/" },
-  { icon: Image, label: "생성하기", href: "/image" },
+  { icon: Image, label: "생성하기", href: `${PAGE_ROUTES.IMAGE_CREATE}` },
   { icon: Pencil, label: "편집하기", href: "/edit" },
-  { icon: History, label: "히스토리", href: "/history" },
+  { icon: History, label: "히스토리", href: `${PAGE_ROUTES.HISTORY}` },
 ];
 
 export function Sidebar() {
@@ -23,11 +24,11 @@ export function Sidebar() {
   return (
     <>
       {/* Desktop sidebar */}
-      <div className="fixed hidden h-screen w-[200px] flex-col justify-between bg-[#EDEDED] lg:flex">
+      <div className="fixed hidden h-screen w-[200px] flex-col justify-between lg:flex">
         <div className="py-4">
           <div className="px-3 py-2">
             <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
-              로고
+              Hoit
             </h2>
             <div className="space-y-1">
               {menuItems.map((item) => (
@@ -42,11 +43,11 @@ export function Sidebar() {
       </div>
 
       {/* Tablet sidebar */}
-      <div className="fixed hidden h-screen w-16 flex-col justify-between bg-[#EDEDED] md:flex lg:hidden">
+      <div className="fixed hidden h-screen w-16 flex-col justify-between md:flex lg:hidden">
         <div className="py-4">
           <div className="px-3 py-2">
             <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
-              로고
+              H
             </h2>
             <div className="space-y-1">
               {menuItems.map((item) => (
@@ -65,7 +66,7 @@ export function Sidebar() {
       </div>
 
       {/* Mobile footer menu */}
-      <div className="fixed bottom-0 left-0 right-0 border-t bg-[#EDEDED] bg-background md:hidden">
+      <div className="fixed bottom-0 left-0 right-0 z-50 border-t bg-[#EDEDED] bg-background md:hidden">
         <nav className="flex h-16 items-center justify-around">
           {[...menuItems].map((item) => (
             <Link
