@@ -12,8 +12,7 @@
     "build-storybook": "storybook build",
     "test": "jest",
     "lint": "next lint",
-    "type-check": "tsc --noEmit",
-    "deploy": "vercel --prod"
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.5",
