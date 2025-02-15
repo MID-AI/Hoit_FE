@@ -1,7 +1,6 @@
 import CardHorizontal from "@/components/common/card/card-horizontal";
-
 import Header from "@/components/home/header";
-import ImageList from "@/components/home/image-list";
+import ImageListFetcher from "@/components/home/image-list-fetcher";
 import TagCarousel from "@/components/home/tag-carousel";
 import PAGE_ROUTES from "@/constants/page-routes";
 
@@ -24,7 +23,7 @@ export default function Home() {
         />
       </div>
       <TagCarousel />
-      <ImageList />
+      <ImageListFetcher />
     </div>
   );
 }

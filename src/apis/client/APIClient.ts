@@ -1,16 +1,12 @@
 import { SWRConfiguration } from "swr";
 import handleAPIError from "../utils/handleAPIError";
+import SERVER_URL from "./baseUrl";
 
-export const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
-
-// API 응답 타입
-interface APIResponse<T = unknown> {
-  data: T;
-}
+export const BASE_URL = SERVER_URL;
 
 // 요청 설정 타입
 interface RequestConfig extends RequestInit {
-  params?: Record<string, string>;
+  params?: Record<string, string | number>;
   withCredentials?: boolean;
 }
 
@@ -34,12 +30,15 @@ class APIClient {
   /**
    * URL 생성 메서드
    */
-  private createURL(path: string, params?: Record<string, string>): string {
+  private createURL(
+    path: string,
+    params?: Record<string, string | number>,
+  ): string {
     const url = new URL(`${this.baseURL}/${path}`);
 
     if (params) {
       Object.entries(params).forEach(([key, value]) => {
-        url.searchParams.append(key, value);
+        url.searchParams.append(key, String(value));
       });
     }
 
@@ -70,10 +69,7 @@ class APIClient {
   /**
    * API 요청 메서드
    */
-  private async request<T>(
-    path: string,
-    config?: RequestConfig,
-  ): Promise<APIResponse<T>> {
+  private async request<T>(path: string, config?: RequestConfig): Promise<T> {
     try {
       const url = this.createURL(path, config?.params);
       const headers = this.createHeaders(config);
