@@ -31,13 +31,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={`${notoSansKr.className} bg-default`}>
+      <body
+        className={`${notoSansKr.className} overflow-x-hidden overflow-y-scroll bg-default`}
+      >
         <MswComponent />
         <Provider>
           <QueryProviders>
             <JotaiProvider>
               <Sidebar />
-              <main className="mx-auto mb-5 ml-64 flex justify-center lg:ml-140">
+              <main className="ml-64 flex items-start justify-center lg:ml-140">
                 {children}
               </main>
             </JotaiProvider>

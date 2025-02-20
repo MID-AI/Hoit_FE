@@ -13,7 +13,7 @@ function StyleTag({
   return (
     <button
       className={cn(
-        "flex h-46 items-center gap-10 rounded-20 bg-white py-8 pl-8 pr-10 shadow-[0_2px_9px_0_rgba(0,0,0,0.10)]",
+        "flex h-46 items-center gap-10 rounded-20 border border-white bg-white py-8 pl-8 pr-10 shadow-[0_2px_9px_0_rgba(0,0,0,0.10)]",
         isSelected && "border border-cBlue-300 bg-cBlue-100",
       )}
     >

@@ -17,7 +17,7 @@ export default function useGetImageList({
       getExampleImages(pageParam, sort, maintag, subtag),
     initialPageParam: 0,
     getNextPageParam: (lastPage, pages) => {
-      return lastPage.data.last ? pages.length : undefined;
+      return !lastPage.data.last ? pages.length : undefined;
     },
   });
 }
