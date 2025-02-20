@@ -1,11 +1,44 @@
-export interface ImageList<T> {
-  hasNext: boolean;
-  currentPage: number;
+export interface APIResponse<T> {
+  timestamp: string;
+  statusCode: number;
+  message: string;
+  data: T;
+}
+
+export interface PageNation<T> {
   content: T[];
+  pageable: {
+    pageNumber: number;
+    pageSize: number;
+    sort: {
+      empty: boolean;
+      sorted: boolean;
+      unsorted: boolean;
+    };
+    offset: number;
+    unpaged: boolean;
+    paged: boolean;
+  };
+  totalPages: number;
+  totalElements: number;
+  first: boolean;
+  last: boolean;
+  size: number;
+  number: number;
+  sort: {
+    empty: boolean;
+    sorted: boolean;
+    unsorted: boolean;
+  };
+  numberOfElements: number;
+  empty: boolean;
 }
 
 export interface Image {
-  imgId: string;
-  taskId: string;
-  imageUrl: string;
+  id: number;
+  url: string;
+  prompt: string;
+  mainCategoryId: number;
+  subCategoryId: number;
+  hashtags: string[];
 }
