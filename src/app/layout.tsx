@@ -4,6 +4,8 @@ import { Noto_Sans_KR } from "next/font/google";
 import Provider from "./provider";
 import { Sidebar } from "@/components/sidebar/sidebar";
 import { MswComponent } from "@/mocks/msw.component";
+import QueryProviders from "@/providers/query-provider";
+import JotaiProvider from "@/providers/jotai-provider";
 
 export const metadata: Metadata = {
   title: "Hoit",
@@ -12,28 +14,34 @@ export const metadata: Metadata = {
 
 const notoSansKr = Noto_Sans_KR({
   subsets: ["latin"],
-  weight: ["300", "400", "700"],
+  weight: ["300", "400", "500", "700"],
 });
 
-if (typeof window === "undefined") {
-  const { server } = await import("@/mocks/server");
-  server.listen();
-}
+// if (typeof window === "undefined") {
+//   (async () => {
+//     const { server } = await import("@/mocks/server");
+//     server.listen();
+//   })();
+// }
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
     <html lang="ko">
-      <body className={`${notoSansKr.className} bg-[#F8F8F8]`}>
+      <body className={`${notoSansKr.className} bg-default`}>
         <MswComponent />
         <Provider>
-          <Sidebar />
-          <main className="mx-auto mb-5 flex justify-center md:ml-16 lg:ml-[200px]">
-            {children}
-          </main>
+          <QueryProviders>
+            <JotaiProvider>
+              <Sidebar />
+              <main className="mx-auto mb-5 ml-64 flex justify-center lg:ml-140">
+                {children}
+              </main>
+            </JotaiProvider>
+          </QueryProviders>
         </Provider>
       </body>
     </html>
