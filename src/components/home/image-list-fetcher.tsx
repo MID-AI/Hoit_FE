@@ -1,14 +1,23 @@
 import { getExampleImages } from "@/apis/service";
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from "@tanstack/react-query";
 import ImageList from "./image-list";
 
 async function ImageListFetcher() {
-  const initialData = await getExampleImages(1, 10);
+  const queryClient = new QueryClient();
+  await queryClient.prefetchInfiniteQuery({
+    queryKey: ["imageList", null, null, null],
+    queryFn: ({ pageParam = 0 }) => getExampleImages(pageParam),
+    initialPageParam: 0,
+  });
 
   return (
-    <div>
-      <div>test</div>
-      <ImageList initialData={initialData} />
-    </div>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <ImageList />
+    </HydrationBoundary>
   );
 }
 

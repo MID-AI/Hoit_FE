@@ -1,7 +1,11 @@
+import { generateFontSizes } from "./src/style/typography";
+import { coolGray, cBlue } from "./src/style/colors";
 import type { Config } from "tailwindcss";
 import tailwindcssAnimate from "tailwindcss-animate";
+import pxToRem from "tailwindcss-preset-px-to-rem";
 
 export default {
+  presets: [pxToRem],
   darkMode: ["class"],
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -11,6 +15,8 @@ export default {
   theme: {
     extend: {
       colors: {
+        coolGray,
+        cBlue,
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
@@ -52,10 +58,15 @@ export default {
           "5": "hsl(var(--chart-5))",
         },
       },
+      backgroundColor: { default: "#F8F8F8" },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      fontSize: generateFontSizes(),
+      boxShadow: {
+        tag: "0 2px 9px 0 rgba(0, 0, 0, 0.10)",
       },
     },
   },

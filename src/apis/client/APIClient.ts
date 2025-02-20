@@ -1,4 +1,3 @@
-import { SWRConfiguration } from "swr";
 import handleAPIError from "../utils/handleAPIError";
 import SERVER_URL from "./baseUrl";
 
@@ -9,13 +8,6 @@ interface RequestConfig extends RequestInit {
   params?: Record<string, string | number>;
   withCredentials?: boolean;
 }
-
-// SWR 기본 설정
-export const swrConfig: SWRConfiguration = {
-  revalidateOnFocus: false,
-  revalidateOnReconnect: false,
-  shouldRetryOnError: false,
-};
 
 /**
  * API 클라이언트 클래스

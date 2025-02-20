@@ -3,7 +3,7 @@ const API_ROUTES = {
 
   USER: "user",
 
-  EXAMPLE_IMAGE_LIST: "home/img",
+  EXAMPLE_IMAGE_LIST: "home",
 } as const;
 
 export default API_ROUTES;

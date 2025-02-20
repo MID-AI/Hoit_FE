@@ -13,13 +13,15 @@ export default function SidebarItem({
     <Link
       href={item.href}
       className={cn(
-        "flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-[#CBF3D9] hover:text-accent-foreground",
+        "box-border flex h-48 w-full items-center gap-8 rounded-71 px-12 py-12 font-medium text-coolGray-500",
         pathname === item.href
-          ? "bg-[#CBF3D9] text-accent-foreground"
+          ? "border border-cBlue-400 text-cBlue-400 shadow-[0px_2px_4px_1px_rgba(20,120,194,0.15)]"
           : "transparent",
       )}
     >
-      <item.icon className="mr-2 h-4 w-4" />
+      <item.icon
+        className={cn("text-cool", pathname === item.href && "text-cBlue-400")}
+      />
       {item.label}
     </Link>
   );

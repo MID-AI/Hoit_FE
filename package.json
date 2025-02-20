@@ -16,9 +16,12 @@
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.5",
+    "@radix-ui/react-select": "^2.1.6",
     "@radix-ui/react-slot": "^1.1.1",
     "@sentry/nextjs": "^8.51.0",
     "@sentry/node": "^8.51.0",
+    "@tanstack/react-query": "^5.66.5",
+    "@tanstack/react-query-devtools": "^5.66.5",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "embla-carousel-react": "^8.5.2",
@@ -33,9 +36,9 @@
     "react-intersection-observer": "^9.15.1",
     "react-masonry-css": "^1.0.16",
     "rimraf": "^6.0.1",
-    "swr": "^2.3.0",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
+    "tailwindcss-preset-px-to-rem": "^1.2.1",
     "whatwg-fetch": "^3.6.20"
   },
   "devDependencies": {
@@ -52,6 +55,8 @@
     "@storybook/nextjs": "^8.4.7",
     "@storybook/react": "^8.4.7",
     "@storybook/test": "^8.4.7",
+    "@svgr/webpack": "^8.1.0",
+    "@tanstack/eslint-plugin-query": "^5.66.1",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.1.0",

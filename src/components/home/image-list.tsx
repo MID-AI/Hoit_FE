@@ -2,36 +2,29 @@
 
 import Card from "../common/card/card";
 import Masonry from "react-masonry-css";
-
-import type { Image, ImageList } from "@/@types/images";
-import useSWRInfinite from "swr/infinite";
-import API_ROUTES from "@/apis/constants/routes";
-import { getExampleImages } from "@/apis/service";
 import { useInView } from "react-intersection-observer";
 
-function ImageList({ initialData }: { initialData: ImageList<Image> }) {
-  const { ref, inView } = useInView({
-    threshold: 0.1, // 10%가 보였을 때 트리거
-  });
+import useGetImageList from "@/hooks/use-get-image-list";
+import { useEffect } from "react";
+import { useAtom } from "jotai";
+import {
+  selectedTagAtom,
+  selectedSubTagAtom,
+  sortAtom,
+} from "@/stores/tags-atom";
 
-  const getKey = (
-    pageIndex: number,
-    previousPageData: ImageList<Image> | null,
-  ) => {
-    if (previousPageData && !previousPageData.content.length) return null;
-    return `${API_ROUTES.EXAMPLE_IMAGE_LIST}?page=${pageIndex + 1}&limit=10`;
-  };
+function ImageList() {
+  const [maintag] = useAtom(selectedTagAtom);
+  const [subtag] = useAtom(selectedSubTagAtom);
+  const [sort] = useAtom(sortAtom);
+  const { ref, inView } = useInView();
 
-  const { data, size, setSize, isLoading } = useSWRInfinite(
-    getKey,
-    (url) =>
-      getExampleImages(Number(new URL(url).searchParams.get("page")), 10),
-    {
-      fallbackData: [initialData],
-      revalidateOnFocus: false,
-      revalidateOnReconnect: false,
-      dedupingInterval: 5000,
-    },
+  const { data, isLoading, fetchNextPage, hasNextPage } = useGetImageList(
+    Object.fromEntries(
+      Object.entries({ sort, maintag, subtag }).filter(
+        ([, value]) => value !== null || value !== 0,
+      ),
+    ),
   );
 
   const breakpoints = {
@@ -41,27 +34,38 @@ function ImageList({ initialData }: { initialData: ImageList<Image> }) {
     540: 1,
   };
 
-  // const images = mockData.content;
-  const images = data?.flatMap((page) => page.content) || [];
-  const isEmpty = data?.[0]?.content?.length === 0;
-  const isReachingEnd =
-    isEmpty || (data && data[data.length - 1]?.content?.length < 10);
+  useEffect(() => {
+    if (inView && hasNextPage) {
+      fetchNextPage();
+    }
+  }, [inView, hasNextPage, fetchNextPage]);
 
-  if (inView && !isReachingEnd && !isLoading) {
-    setSize(size + 1);
-  }
+  if (isLoading)
+    return (
+      <div aria-label="이미지 목록 불러오는 중" className="w-full">
+        로딩중
+      </div>
+    );
 
   return (
     <>
       <Masonry
         breakpointCols={breakpoints}
-        className="flex justify-center gap-1 overflow-hidden rounded-t-lg md:pl-0 lg:px-0"
+        className="flex justify-start gap-17 md:pl-0 lg:px-0"
       >
-        {images.map((img) => (
-          <Card key={img.imgId} img={img.imageUrl} />
-        ))}
+        {data?.pages.map((page) =>
+          page.data.content.map((img) => (
+            <Card key={img.id} id={img.id} img={img.url} />
+          )),
+        )}
       </Masonry>
-      {!isReachingEnd && <div ref={ref} />}
+      {hasNextPage ? (
+        <div ref={ref} aria-label="다음 페이지를 불러오고 있습니다">
+          로딩중
+        </div>
+      ) : (
+        <div aria-label="마지막 페이지입니다" />
+      )}
     </>
   );
 }
