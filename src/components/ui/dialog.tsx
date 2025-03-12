@@ -35,12 +35,13 @@ const DialogContent = React.forwardRef<
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
-        "data-[state=open]:animate-scale-in data-[state=closed]:animate-scale-out fixed left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2 rounded-22 bg-white shadow-xl transition-transform",
+        "data-[state=open]:animate-scale-in data-[state=closed]:animate-scale-out fixed left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2 rounded-22 bg-white transition-transform",
         className,
       )}
       {...props}
     >
       {children}
+
       <DialogPrimitive.Close className="absolute left-38 top-38 rounded-6 text-gray-600 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-gray-300">
         <XIcon />
         <span className="sr-only">닫기</span>
@@ -62,6 +63,14 @@ const DialogTitle = React.forwardRef<
 ));
 DialogTitle.displayName = DialogPrimitive.Title.displayName;
 
+const DialogDescription = React.forwardRef<
+  React.ElementRef<typeof DialogPrimitive.Description>,
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>
+>(({ className, ...props }, ref) => (
+  <DialogPrimitive.Description ref={ref} className={className} {...props} />
+));
+DialogDescription.displayName = DialogPrimitive.Description.displayName;
+
 export {
   Dialog,
   DialogPortal,
@@ -70,4 +79,5 @@ export {
   DialogClose,
   DialogContent,
   DialogTitle,
+  DialogDescription,
 };
