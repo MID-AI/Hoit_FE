@@ -27,7 +27,7 @@ const SelectTrigger = React.forwardRef<
   >
     {children}
     <SelectPrimitive.Icon asChild>
-      <ArrowIcon />
+      <ArrowIcon className="rotate-180 transition-transform duration-300" />
     </SelectPrimitive.Icon>
   </SelectPrimitive.Trigger>
 ));

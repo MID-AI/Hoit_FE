@@ -22,7 +22,7 @@ function CardHorizontal({ img, title, content, tag, link }: Props) {
           alt={title}
           width={1000}
           height={236}
-          className="h-full w-full scale-125 object-cover"
+          className="h-full w-full object-cover"
         />
       </div>
       <div className="absolute top-0 flex h-full w-full flex-col justify-between bg-black bg-opacity-60 pb-24 pl-25 pr-24 pt-12 text-white">
