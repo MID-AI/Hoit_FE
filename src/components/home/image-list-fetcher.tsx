@@ -9,7 +9,7 @@ import ImageList from "./image-list";
 async function ImageListFetcher() {
   const queryClient = new QueryClient();
   await queryClient.prefetchInfiniteQuery({
-    queryKey: ["imageList", null, null, null],
+    queryKey: ["imageList"],
     queryFn: ({ pageParam = 0 }) => getExampleImages(pageParam),
     initialPageParam: 0,
   });

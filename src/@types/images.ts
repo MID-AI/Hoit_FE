@@ -34,11 +34,11 @@ export interface PageNation<T> {
   empty: boolean;
 }
 
-export interface Image {
+export interface ImageType {
   id: number;
   url: string;
   prompt: string;
-  mainCategoryId: number;
-  subCategoryId: number;
-  hashtags: string[];
+  nickname: string;
+  likes: number;
+  isLike: boolean;
 }
