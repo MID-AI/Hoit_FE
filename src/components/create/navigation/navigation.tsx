@@ -1,5 +1,3 @@
-"use client";
-
 import ResetIcon from "@/assets/create/reset.svg";
 import { ReactNode } from "react";
 
