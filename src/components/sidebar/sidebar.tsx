@@ -13,6 +13,7 @@ import SidebarItem from "./sidebar-item";
 import SidebarItemIcon from "./sidebar-item-icon";
 import SidebarUser from "./sidebar-user";
 import PAGE_ROUTES from "@/constants/page-routes";
+import Link from "next/link";
 
 export const menuItems = [
   { icon: HomeIcon, label: "홈", href: "/" },
@@ -42,7 +43,10 @@ export function Sidebar() {
       {/* Desktop sidebar */}
       <div className="fixed z-50 hidden h-screen w-140 flex-col justify-between bg-default px-7 pb-24 pt-21 lg:flex">
         <div className="flex flex-col items-center justify-center gap-49">
-          <Logo />
+          <Link href="/">
+            <Logo />
+          </Link>
+
           <div className="flex w-full flex-col gap-12">
             {menuItems.map((item) => (
               <SidebarItem key={item.label} item={item} pathname={pathname} />
@@ -59,7 +63,10 @@ export function Sidebar() {
       {/* Tablet sidebar */}
       <div className="fixed z-50 flex h-screen w-64 flex-col items-center justify-between bg-default py-8 pb-32 pt-21 lg:hidden">
         <div className="flex flex-col items-center gap-49">
-          <LogoSm />
+          <Link href="/">
+            <LogoSm />
+          </Link>
+
           <div className="flex flex-col gap-12">
             {menuItems.map((item) => (
               <SidebarItemIcon

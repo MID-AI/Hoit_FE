@@ -1,6 +1,6 @@
 import clsx from "clsx";
 
-function NavigationSelectItem({
+function ImageCreateNavigationSelectItem({
   content,
   width,
 }: {
@@ -22,4 +22,4 @@ function NavigationSelectItem({
   );
 }
 
-export default NavigationSelectItem;
+export default ImageCreateNavigationSelectItem;

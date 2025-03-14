@@ -1,5 +1,5 @@
 export const generateFontSizes = () => {
-  const sizes = [12, 14, 16, 20, 24, 28, 32];
+  const sizes = [12, 14, 16, 18, 20, 24, 28, 32];
   const weights = {
     light: 300,
     regular: 400,
