@@ -28,7 +28,15 @@ function Login() {
             구글로 로그인하기
           </Button>
         </span>
-        <span className="h-347 w-261 rounded-20 bg-gray-300">이미지 자리</span>
+        <span className="h-347 w-261">
+          <Image
+            src="/login/login.png"
+            width={261}
+            height={347}
+            alt="아름다운 풍경 일러스트 이미지"
+            className="rounded-20"
+          />
+        </span>
       </DialogDescription>
     </DialogContent>
   );

@@ -17,6 +17,7 @@ export default {
       colors: {
         coolGray,
         cBlue,
+        cBlack: "#151820",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
@@ -66,7 +67,7 @@ export default {
       },
       fontSize: generateFontSizes(),
       boxShadow: {
-        tag: "0 2px 9px 0 rgba(0, 0, 0, 0.10)",
+        custom: "0 2px 9px 0 rgba(0, 0, 0, 0.10)",
       },
     },
   },

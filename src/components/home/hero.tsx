@@ -9,7 +9,7 @@ function Hero() {
       </div>
       <div className="relative h-335 w-full">
         <Image
-          src="/main/hero1.webp"
+          src="/main/hero1.png"
           fill
           alt="밤의 도시와 그 풍경을 보는 캐릭터들 일러스트"
           priority
