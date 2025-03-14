@@ -1,3 +1,5 @@
+"use client";
+
 import ImageInput from "@/components/common/card/image-input";
 import Navigation from "@/components/create/navigation/navigation";
 import NavigationSection from "@/components/create/navigation/navigation-section";
