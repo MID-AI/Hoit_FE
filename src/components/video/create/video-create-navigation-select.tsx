@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Select,
   SelectContent,
@@ -8,27 +6,22 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import NavigationSelectItem from "./navigation-select-item";
+import { CREATE_VIDEO_SELECT_MENU } from "@/constants/select-menu";
 import cn from "@/utils/cn";
+import VideoCreateNavigationSelectItem from "./video-create-navigation-select-item";
 
-export const selectMenu = {
-  "1": { content: "1:1", width: "w-14" },
-  "2": { content: "3:4", width: "w-15" },
-  "3": { content: "16:9", width: "w-19" },
-} as const;
-
-function NavigationSelect({
+function VideoCreateNavigationSelect({
   selectedValue,
   setSelectedValue,
 }: {
-  selectedValue: keyof typeof selectMenu;
-  setSelectedValue: (value: keyof typeof selectMenu) => void;
+  selectedValue: keyof typeof CREATE_VIDEO_SELECT_MENU;
+  setSelectedValue: (value: keyof typeof CREATE_VIDEO_SELECT_MENU) => void;
 }) {
   return (
     <Select
       value={selectedValue}
       onValueChange={(value) =>
-        setSelectedValue(value as keyof typeof selectMenu)
+        setSelectedValue(value as keyof typeof CREATE_VIDEO_SELECT_MENU)
       }
     >
       <SelectTrigger
@@ -38,27 +31,31 @@ function NavigationSelect({
         )}
       >
         <SelectValue>
-          <NavigationSelectItem
-            content={selectMenu[selectedValue].content}
-            width={selectMenu[selectedValue].width}
+          <VideoCreateNavigationSelectItem
+            content={CREATE_VIDEO_SELECT_MENU[selectedValue].content}
+            describe={CREATE_VIDEO_SELECT_MENU[selectedValue].describe}
+            className="w-200 overflow-hidden text-ellipsis whitespace-nowrap"
           />
         </SelectValue>
       </SelectTrigger>
 
       <SelectContent className="mt-9 w-254 rounded-20 border-coolGray-400 bg-white p-4">
         <SelectGroup>
-          {Object.entries(selectMenu).map(([key, menu]) => (
+          {Object.entries(CREATE_VIDEO_SELECT_MENU).map(([key, menu]) => (
             <SelectItem
               key={key}
               value={key}
               className={cn(
-                "h-30 w-246 rounded-20 border-none p-8",
+                "h-fit w-246 rounded-20 border-none p-8",
                 selectedValue === key
                   ? "bg-coolGray-200"
                   : "hover:bg-coolGray-50",
               )}
             >
-              <NavigationSelectItem content={menu.content} width={menu.width} />
+              <VideoCreateNavigationSelectItem
+                content={menu.content}
+                describe={menu.describe}
+              />
             </SelectItem>
           ))}
         </SelectGroup>
@@ -67,4 +64,4 @@ function NavigationSelect({
   );
 }
 
-export default NavigationSelect;
+export default VideoCreateNavigationSelect;

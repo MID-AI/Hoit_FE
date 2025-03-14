@@ -15,7 +15,7 @@ function HeroSub() {
         img="/main/card2.png"
         title="AI영상 만들기"
         content="나만의 애니메이션을 제작해보세요!"
-        tag="무드 찾아보기"
+        tag="생성하러 가기"
         link={PAGE_ROUTES.VIDEO_CREATE}
       />
     </div>

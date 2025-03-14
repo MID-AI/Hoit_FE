@@ -1,14 +1,17 @@
-import Navigation from "@/components/image/create/navigation/navigation";
+import Display from "@/components/create/display/display";
+import ImageList from "@/components/create/image-list/image-list";
+import Prompt from "@/components/create/prompt/prompt";
+import ImageCreateNavigation from "@/components/image/create/image-create-navigation";
 
 function ImageCreation() {
   return (
-    <main className="p-24">
-      <div>
-        <Navigation />
-        <div>이미지 본문</div>
-        <div>이미지 히스토리 리스트</div>
-      </div>
-      <div>프롬프트 창</div>
+    <main className="flex h-screen w-full flex-col justify-between gap-24 p-24">
+      <section className="flex h-full w-full justify-between">
+        <ImageCreateNavigation />
+        <Display />
+        <ImageList />
+      </section>
+      <Prompt placeholder="나만의 상상의 세계를 펼쳐보세요!" />
     </main>
   );
 }
