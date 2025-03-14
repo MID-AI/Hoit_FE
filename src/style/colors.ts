@@ -1,8 +1,8 @@
 export const coolGray = {
-  50: "#F7F8F9",
-  100: "#E6F0F6",
-  200: "#D7E5ED",
-  300: "#C1D1DB",
+  50: "#F8F8F8",
+  100: "#EAEEF1",
+  200: "#DCE4E8",
+  300: "#CDD5DB",
   400: "#A3B5C0",
   500: "#7B8D99",
   600: "#5A6971",
@@ -11,6 +11,7 @@ export const coolGray = {
 } as const;
 
 export const cBlue = {
+  50: "#E6F4FF",
   100: "#C7E7FF",
   200: "#95D1FF",
   300: "#65BBFC",

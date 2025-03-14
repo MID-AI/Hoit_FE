@@ -3,10 +3,12 @@
 import { usePathname } from "next/navigation";
 import HomeIcon from "@/assets/icon/home.svg";
 import CreateIcon from "@/assets/icon/create.svg";
-import EditIcon from "@/assets/icon/edit.svg";
+import CreateVideoIcon from "@/assets/icon/create video.svg";
 import HistoryIcon from "@/assets/icon/history.svg";
-import Logo from "@/assets/logo.svg";
-import LogoSm from "@/assets/logo_sm.svg";
+import MyActiveIcon from "@/assets/icon/folder.svg";
+import SocialIcon from "@/assets/icon/activity.svg";
+import Logo from "@/assets/logo/logo.svg";
+import LogoSm from "@/assets/logo/logo_sm.svg";
 import SidebarItem from "./sidebar-item";
 import SidebarItemIcon from "./sidebar-item-icon";
 import SidebarUser from "./sidebar-user";
@@ -14,9 +16,22 @@ import PAGE_ROUTES from "@/constants/page-routes";
 
 export const menuItems = [
   { icon: HomeIcon, label: "홈", href: "/" },
-  { icon: CreateIcon, label: "생성하기", href: `${PAGE_ROUTES.IMAGE_CREATE}` },
-  { icon: EditIcon, label: "편집하기", href: "/edit" },
+  {
+    icon: CreateIcon,
+    label: "이미지 생성",
+    href: `${PAGE_ROUTES.IMAGE_CREATE}`,
+  },
+  {
+    icon: CreateVideoIcon,
+    label: "영상 생성",
+    href: `${PAGE_ROUTES.VIDEO_CREATE}`,
+  },
   { icon: HistoryIcon, label: "히스토리", href: `${PAGE_ROUTES.HISTORY}` },
+];
+
+const myMenuItems = [
+  { icon: MyActiveIcon, label: "내 활동", href: `${PAGE_ROUTES.MY_ACTIVITY}` },
+  { icon: SocialIcon, label: "소셜활동", href: `${PAGE_ROUTES.MY_SOCIAL}` },
 ];
 
 export function Sidebar() {
@@ -25,11 +40,15 @@ export function Sidebar() {
   return (
     <>
       {/* Desktop sidebar */}
-      <div className="fixed z-50 hidden h-screen w-140 flex-col justify-between bg-default px-8 pb-24 pt-21 lg:flex">
-        <div className="flex flex-col items-center justify-center gap-38">
-          <Logo className="h-51" />
+      <div className="fixed z-50 hidden h-screen w-140 flex-col justify-between bg-default px-7 pb-24 pt-21 lg:flex">
+        <div className="flex flex-col items-center justify-center gap-49">
+          <Logo />
           <div className="flex w-full flex-col gap-12">
             {menuItems.map((item) => (
+              <SidebarItem key={item.label} item={item} pathname={pathname} />
+            ))}
+            <div className="mx-8 h-1 w-full bg-coolGray-200" />
+            {myMenuItems.map((item) => (
               <SidebarItem key={item.label} item={item} pathname={pathname} />
             ))}
           </div>
@@ -39,10 +58,18 @@ export function Sidebar() {
 
       {/* Tablet sidebar */}
       <div className="fixed z-50 flex h-screen w-64 flex-col items-center justify-between bg-default py-8 pb-32 pt-21 lg:hidden">
-        <div className="flex flex-col items-center gap-38">
-          <LogoSm className="h-51" />
+        <div className="flex flex-col items-center gap-49">
+          <LogoSm />
           <div className="flex flex-col gap-12">
             {menuItems.map((item) => (
+              <SidebarItemIcon
+                key={item.label}
+                item={item}
+                pathname={pathname}
+              />
+            ))}
+            <div className="mx-8 h-1 w-full bg-coolGray-200" />
+            {myMenuItems.map((item) => (
               <SidebarItemIcon
                 key={item.label}
                 item={item}
