@@ -11,7 +11,7 @@ function ImageCreation() {
         <Display />
         <ImageList />
       </section>
-      <Prompt placeholder="나만의 상상의 세계를 펼쳐보세요!" />
+      <Prompt placeholder="프롬프트 예시: 푸른 언덕 위에 있는 오두막, 그림책, 아크릴 물감 느낌, 화려한 색깔" />
     </main>
   );
 }

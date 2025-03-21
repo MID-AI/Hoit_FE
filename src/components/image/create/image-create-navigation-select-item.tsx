@@ -8,7 +8,7 @@ function ImageCreateNavigationSelectItem({
   width: string;
 }) {
   return (
-    <div className="flex items-center gap-7 text-Type-14-regular">
+    <div className="flex items-center gap-7 text-Type-12-regular">
       <span className="h-14 w-19">
         <span
           className={clsx(
