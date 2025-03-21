@@ -42,7 +42,7 @@ const DialogContent = React.forwardRef<
     >
       {children}
 
-      <DialogPrimitive.Close className="absolute left-38 top-38 rounded-6 text-gray-600 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-gray-300">
+      <DialogPrimitive.Close className="absolute right-38 top-38 rounded-6 text-gray-600 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-gray-300">
         <XIcon />
         <span className="sr-only">닫기</span>
       </DialogPrimitive.Close>
@@ -55,11 +55,7 @@ const DialogTitle = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Title>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>
 >(({ className, ...props }, ref) => (
-  <DialogPrimitive.Title
-    ref={ref}
-    className={cn("sr-only", className)}
-    {...props}
-  />
+  <DialogPrimitive.Title ref={ref} className={className} {...props} />
 ));
 DialogTitle.displayName = DialogPrimitive.Title.displayName;
 
