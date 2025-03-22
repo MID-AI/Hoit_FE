@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import {
   DialogContent,
   DialogDescription,
@@ -6,7 +5,8 @@ import {
 } from "@/components/ui/dialog";
 import GoogleLogo from "@/assets/logo/googleLogo.svg";
 import Image from "next/image";
-import { login } from "@/apis/client/auth/auth";
+import { BASE_URL } from "@/apis/client/APIClient";
+import API_ROUTES from "@/apis/constants/routes";
 
 function Login() {
   return (
@@ -33,13 +33,15 @@ function Login() {
           <span className="mb-24 shrink-0 text-nowrap text-Type-20-medium text-coolGray-500">
             로그인 후 나만의 이미지를 만들어 보세요!
           </span>
-          <Button
-            onClick={login}
-            className="flex items-center gap-33 rounded-50 border border-coolGray-300 bg-coolGray-50 py-15 pl-94 pr-103 text-Type-20-medium hover:border-blue-400 hover:bg-blue-50"
+          <a
+            href={`${BASE_URL}/${API_ROUTES.LOGIN}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex w-414 items-center gap-33 rounded-50 border border-coolGray-300 bg-coolGray-50 px-92 py-15 hover:border-blue-400 hover:bg-blue-50"
           >
             <GoogleLogo />
-            구글로 로그인하기
-          </Button>
+            <span className="text-Type-20-medium">구글로 로그인하기</span>
+          </a>
         </span>
       </DialogDescription>
     </DialogContent>
