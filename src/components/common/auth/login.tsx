@@ -35,7 +35,6 @@ function Login() {
           </span>
           <a
             href={`${BASE_URL}/${API_ROUTES.LOGIN}`}
-            target="_blank"
             rel="noopener noreferrer"
             className="flex w-414 items-center gap-33 rounded-50 border border-coolGray-300 bg-coolGray-50 px-92 py-15 hover:border-blue-400 hover:bg-blue-50"
           >
