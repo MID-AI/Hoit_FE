@@ -2,17 +2,18 @@
 
 import Card from "../common/card/card";
 import Masonry from "react-masonry-css";
-// import { useInView } from "react-intersection-observer";
-// import useGetImageList from "@/hooks/use-get-image-list";
-// import { useEffect } from "react";
-import ImageListData from "@/mocks/data/imageList.json";
+import { useInView } from "react-intersection-observer";
+
+import { useEffect } from "react";
+import useGetImageList from "@/hooks/home/use-get-image-list";
+// import ImageListData from "@/mocks/data/imageList.json";
 
 function ImageList() {
-  // const { ref, inView } = useInView();
+  const { ref, inView } = useInView();
 
-  // const { data, isLoading, fetchNextPage, hasNextPage } = useGetImageList();
-  const data = ImageListData;
-  const isLoading = false;
+  const { data, isLoading, fetchNextPage, hasNextPage } = useGetImageList();
+  // const data = ImageListData;
+  // const isLoading = false;
 
   const breakpoints = {
     default: 4,
@@ -21,11 +22,11 @@ function ImageList() {
     540: 1,
   };
 
-  // useEffect(() => {
-  //   if (inView && hasNextPage) {
-  //     fetchNextPage();
-  //   }
-  // }, [inView, hasNextPage, fetchNextPage]);
+  useEffect(() => {
+    if (inView && hasNextPage) {
+      fetchNextPage();
+    }
+  }, [inView, hasNextPage, fetchNextPage]);
 
   if (isLoading)
     return (
@@ -42,7 +43,7 @@ function ImageList() {
         className="flex justify-start gap-20 md:pl-0 lg:px-0"
       >
         {data?.pages.map((page) =>
-          page.data.content.map((img) => (
+          page.content.map((img) => (
             <Card
               key={img.id}
               id={img.id}
@@ -54,13 +55,13 @@ function ImageList() {
           )),
         )}
       </Masonry>
-      {/* {hasNextPage ? (
+      {hasNextPage ? (
         <div ref={ref} aria-label="다음 페이지를 불러오고 있습니다">
           로딩중
         </div>
       ) : (
         <div aria-label="마지막 페이지입니다" />
-      )} */}
+      )}
     </>
   );
 }

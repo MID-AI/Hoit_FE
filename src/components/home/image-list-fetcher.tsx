@@ -1,16 +1,16 @@
-import { getExampleImages } from "@/apis/service";
 import {
   dehydrate,
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
 import ImageList from "./image-list";
+import { getSharedImages } from "@/apis/services/images";
 
 async function ImageListFetcher() {
   const queryClient = new QueryClient();
   await queryClient.prefetchInfiniteQuery({
     queryKey: ["imageList"],
-    queryFn: ({ pageParam = 0 }) => getExampleImages(pageParam),
+    queryFn: ({ pageParam = 0 }) => getSharedImages(pageParam),
     initialPageParam: 0,
   });
 
