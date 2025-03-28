@@ -4,7 +4,7 @@ import mockData from "@/mocks/data/imageList.json";
 import { http, HttpResponse } from "msw";
 
 export const mockHomeImage = http.get(
-  `${BASE_URL + "/" + API_ROUTES.EXAMPLE_IMAGE_LIST}`,
+  `${BASE_URL + "/" + API_ROUTES.SHARED_IMAGES}`,
   () => {
     // const url = new URL(request.url);
     // const page = url.searchParams.get("page") || "1";
