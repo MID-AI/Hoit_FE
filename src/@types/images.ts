@@ -7,38 +7,42 @@ export interface APIResponse<T> {
 
 export interface PageNation<T> {
   content: T[];
+  empty: boolean;
+  first: boolean;
+  last: boolean;
+  number: number;
+  numberOfElements: number;
   pageable: {
+    offset: number;
+
     pageNumber: number;
     pageSize: number;
+    paged: boolean;
     sort: {
       empty: boolean;
       sorted: boolean;
       unsorted: boolean;
     };
-    offset: number;
+
     unpaged: boolean;
-    paged: boolean;
   };
-  totalPages: number;
-  totalElements: number;
-  first: boolean;
-  last: boolean;
   size: number;
-  number: number;
   sort: {
     empty: boolean;
     sorted: boolean;
     unsorted: boolean;
   };
-  numberOfElements: number;
-  empty: boolean;
+  totalPages: number;
+  totalElements: number;
 }
 
 export interface ImageType {
   id: number;
   url: string;
   prompt: string;
-  nickname: string;
-  likes: number;
-  isLike: boolean;
+  nickname?: string;
+  ratio: string;
+  createdAt: string;
+  likeCount: number;
+  isLiked?: boolean;
 }

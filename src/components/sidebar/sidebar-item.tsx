@@ -20,7 +20,10 @@ export default function SidebarItem({
       )}
     >
       <item.icon
-        className={cn("text-cool", pathname === item.href && "text-cBlue-400")}
+        className={cn(
+          "text-cool shrink-0",
+          pathname === item.href && "text-cBlue-400",
+        )}
       />
       <span className="shrink-0 text-Type-16-medium">{item.label}</span>
     </Link>

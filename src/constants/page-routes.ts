@@ -3,10 +3,10 @@ const PAGE_ROUTES = {
   USER: "/user",
   IMAGE_CREATE: "/image/create",
   VIDEO_CREATE: "/video/create",
-  HISTORY: "/image/history",
 
   MY_ACTIVITY: "/my/activity",
-  MY_SOCIAL: "/my/social",
+  MY_PROJECT: "/my/project",
+  MY_PROJECT_FOLDER: (id: number) => `/my/project/folder/${id}`,
 };
 
 export default PAGE_ROUTES;

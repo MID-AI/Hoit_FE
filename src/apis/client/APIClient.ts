@@ -41,9 +41,9 @@ class APIClient {
   /**
    * 요청 헤더 생성 메서드
    */
-  private createHeaders(config?: RequestConfig): Headers {
+  private async createHeaders(config?: RequestConfig): Promise<Headers> {
     const accessToken =
-      typeof window === "undefined" ? getAccessTokenFromCookies() : undefined;
+      typeof window === "undefined" ? await getAccessTokenFromCookies() : "";
 
     const headers = new Headers({
       Accept: "application/json",
@@ -69,7 +69,7 @@ class APIClient {
   private async request<T>(path: string, config?: RequestConfig): Promise<T> {
     try {
       const url = this.createURL(path, config?.params);
-      const headers = this.createHeaders(config);
+      const headers = await this.createHeaders(config);
 
       const response = await fetch(url, {
         ...config,
