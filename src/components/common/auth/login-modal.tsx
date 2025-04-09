@@ -1,3 +1,5 @@
+"use client";
+
 import {
   DialogContent,
   DialogDescription,
@@ -8,7 +10,7 @@ import Image from "next/image";
 import { BASE_URL } from "@/apis/client/APIClient";
 import API_ROUTES from "@/apis/constants/routes";
 
-function Login() {
+function LoginModal() {
   return (
     <DialogContent className="px-38 py-44">
       <DialogTitle className="sr-only">구글 로그인</DialogTitle>
@@ -47,4 +49,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default LoginModal;
