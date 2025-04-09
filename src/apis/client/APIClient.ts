@@ -1,3 +1,4 @@
+import { getAccessTokenFromCookies } from "@/utils/cookies-server";
 import handleAPIError from "../utils/handleAPIError";
 import SERVER_URL from "./baseUrl";
 
@@ -40,12 +41,16 @@ class APIClient {
   /**
    * 요청 헤더 생성 메서드
    */
-  private createHeaders(config?: RequestConfig): Headers {
+  private async createHeaders(config?: RequestConfig): Promise<Headers> {
+    const accessToken =
+      typeof window === "undefined" ? await getAccessTokenFromCookies() : "";
+
     const headers = new Headers({
       Accept: "application/json",
       ...(!config?.body || !(config.body instanceof FormData)
         ? { "Content-Type": "application/json" }
         : {}),
+      ...(accessToken ? { Cookie: `_hoauth=${accessToken}` } : {}),
     });
 
     // 추가 헤더
@@ -64,12 +69,12 @@ class APIClient {
   private async request<T>(path: string, config?: RequestConfig): Promise<T> {
     try {
       const url = this.createURL(path, config?.params);
-      const headers = this.createHeaders(config);
+      const headers = await this.createHeaders(config);
 
       const response = await fetch(url, {
         ...config,
         headers,
-        credentials: config?.withCredentials ? "include" : "same-origin",
+        credentials: "include",
         body:
           config?.body instanceof FormData
             ? config.body

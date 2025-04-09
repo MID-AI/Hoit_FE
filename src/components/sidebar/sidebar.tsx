@@ -4,7 +4,6 @@ import { usePathname } from "next/navigation";
 import HomeIcon from "@/assets/icon/home.svg";
 import CreateIcon from "@/assets/icon/create.svg";
 import CreateVideoIcon from "@/assets/icon/create video.svg";
-import HistoryIcon from "@/assets/icon/history.svg";
 import MyActiveIcon from "@/assets/icon/folder.svg";
 import SocialIcon from "@/assets/icon/activity.svg";
 import Logo from "@/assets/logo/logo.svg";
@@ -27,12 +26,15 @@ export const menuItems = [
     label: "영상 생성",
     href: `${PAGE_ROUTES.VIDEO_CREATE}`,
   },
-  { icon: HistoryIcon, label: "히스토리", href: `${PAGE_ROUTES.HISTORY}` },
 ];
 
 const myMenuItems = [
-  { icon: MyActiveIcon, label: "내 활동", href: `${PAGE_ROUTES.MY_ACTIVITY}` },
-  { icon: SocialIcon, label: "소셜활동", href: `${PAGE_ROUTES.MY_SOCIAL}` },
+  { icon: SocialIcon, label: "내 활동", href: `${PAGE_ROUTES.MY_ACTIVITY}` },
+  {
+    icon: MyActiveIcon,
+    label: "내 프로젝트",
+    href: `${PAGE_ROUTES.MY_PROJECT}`,
+  },
 ];
 
 export function Sidebar() {

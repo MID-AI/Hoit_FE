@@ -8,7 +8,13 @@ import { useState } from "react";
 import HeartWhiteIcon from "@/assets/icon/heart_white.svg";
 import HeartBlueIcon from "@/assets/icon/heart_blue.svg";
 
-function Card({ id, url, nickname, likes, isLike }: Omit<ImageType, "prompt">) {
+function Card({
+  id,
+  url,
+  nickname,
+  likeCount,
+  isLiked,
+}: Omit<ImageType, "ratio" | "prompt" | "createdAt">) {
   const [isLoading, setIsLoading] = useState(true);
   const [imageDimensions, setImageDimensions] = useState<{
     height: number;
@@ -47,9 +53,9 @@ function Card({ id, url, nickname, likes, isLike }: Omit<ImageType, "prompt">) {
         <div>{nickname}</div>
         <div className="flex items-center gap-6">
           <span onClick={onClickLike}>
-            {isLike ? <HeartBlueIcon /> : <HeartWhiteIcon />}
+            {isLiked ? <HeartBlueIcon /> : <HeartWhiteIcon />}
           </span>
-          <span>{likes}</span>
+          <span>{likeCount}</span>
         </div>
       </div>
     </Link>

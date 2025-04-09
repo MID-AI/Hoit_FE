@@ -1,23 +1,18 @@
-import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
-} from "@tanstack/react-query";
-import ImageList from "./image-list";
-import { getSharedImages } from "@/apis/services/images";
+"use client";
 
-async function ImageListFetcher() {
-  const queryClient = new QueryClient();
-  await queryClient.prefetchInfiniteQuery({
-    queryKey: ["imageList"],
-    queryFn: ({ pageParam = 0 }) => getSharedImages(pageParam),
-    initialPageParam: 0,
-  });
+import useGetImageList from "@/hooks/home/use-get-image-list";
+import ImageList from "../image/list/image-list";
+
+function ImageListFetcher() {
+  const { data, isLoading, fetchNextPage, hasNextPage } = useGetImageList();
 
   return (
-    <HydrationBoundary state={dehydrate(queryClient)}>
-      <ImageList />
-    </HydrationBoundary>
+    <ImageList
+      data={data}
+      isLoading={isLoading}
+      fetchNextPage={fetchNextPage}
+      hasNextPage={hasNextPage}
+    />
   );
 }
 

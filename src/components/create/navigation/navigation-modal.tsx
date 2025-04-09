@@ -150,15 +150,10 @@ function NavigationModal({
             />
           </span>
           <span className="mt-26 flex items-center justify-end gap-34 text-Type-28-bold">
-            <DialogClose
-              id="closeModal"
-              className="cursor-pointer rounded-22 border border-coolGray-500 bg-coolGray-100 px-56 py-23"
-            >
-              취소
+            <DialogClose id="closeModal">
+              <Button variant="secondary">취소</Button>
             </DialogClose>
-            <Button className="cursor-pointer rounded-22 border border-cBlue-400 bg-cBlue-50 px-56 py-23">
-              확인
-            </Button>
+            <Button>확인</Button>
           </span>
         </span>
       </DialogDescription>
