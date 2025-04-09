@@ -5,15 +5,18 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-4 whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center gap-4 whitespace-nowrap rounded-22 px-56 py-23 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        default: "",
+        primary:
+          "border border-cBlue-400 hover:bg-cBlue-200 bg-cBlue-50 text-cBlue-900",
+        secondary:
+          "border border-coolGray-500 hover:bg-coolGray-300 bg-coolGray-100 text-coolGray-700",
       },
     },
     defaultVariants: {
-      variant: "default",
+      variant: "primary",
     },
   },
 );
