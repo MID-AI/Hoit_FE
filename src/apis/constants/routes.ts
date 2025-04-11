@@ -11,6 +11,9 @@ const API_ROUTES = {
   // 홈
   SHARED_IMAGES: "api/shared-images",
 
+  // 이미지 생성
+  CREATE_IMAGE: "api/images/create",
+
   // 내 활동
   MY_ACTIVITY_POSTS: "api/mypage/shared-images",
   MY_ACTIVITY_LIKES: "api/mypage/like",

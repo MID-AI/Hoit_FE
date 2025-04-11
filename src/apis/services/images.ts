@@ -15,3 +15,8 @@ export async function getSharedImages(page: number) {
 
   return response;
 }
+
+// 이미지 생성
+export async function createImage(formData: FormData) {
+  return await apiClient.post(API_ROUTES.CREATE_IMAGE, formData);
+}

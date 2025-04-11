@@ -15,7 +15,7 @@ function MyProject() {
         </TabsList>
         <TabsContent value="all">
           <InfinitePrefetch
-            queryKey={QUERY_KEY.MY.PROJECT}
+            queryKey={QUERY_KEY.MY.PROJECT()}
             queryFn={({ pageParam = 0 }) => getMyImageList(pageParam)}
           >
             <TabAll />

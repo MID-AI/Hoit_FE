@@ -1,11 +1,13 @@
 import Display from "@/components/create/display/display";
 import ImageList from "@/components/create/image-list/image-list";
+import CreateImageStateCleanup from "@/components/image/create/create-image-state-cleanup";
 import Prompt from "@/components/create/prompt/prompt";
 import ImageCreateNavigation from "@/components/image/create/image-create-navigation";
 
 function ImageCreation() {
   return (
     <main className="flex h-screen w-full flex-col justify-between gap-24 p-24">
+      <CreateImageStateCleanup />
       <section className="flex h-full w-full justify-between">
         <ImageCreateNavigation />
         <Display />

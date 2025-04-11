@@ -6,7 +6,7 @@ import {
 
 interface Props<T> {
   children: React.ReactNode;
-  queryKey: readonly string[];
+  queryKey: readonly (string | number | undefined)[];
   queryFn: ({ pageParam }: { pageParam?: number }) => Promise<T>;
   initialPageParam?: number;
 }

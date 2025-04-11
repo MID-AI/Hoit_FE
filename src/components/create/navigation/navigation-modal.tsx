@@ -43,7 +43,7 @@ function NavigationModal({
 
   return (
     <DialogContent className="flex h-640 w-1244 flex-col items-center gap-40 px-38 pb-44 pt-26 text-coolGray-800">
-      <DialogTitle className="text-Type-28-bold">레퍼런스 업로드</DialogTitle>
+      <DialogTitle>레퍼런스 업로드</DialogTitle>
       <DialogDescription className="flex gap-36">
         <span className="flex flex-col gap-12">
           <Button className="rounded-22 border border-coolGray-500 bg-coolGray-200 px-20 py-17 text-Type-20-bold">
@@ -149,8 +149,8 @@ function NavigationModal({
               className="h-205 w-150 rounded-20"
             />
           </span>
-          <span className="mt-26 flex items-center justify-end gap-34 text-Type-28-bold">
-            <DialogClose id="closeModal">
+          <span className="mt-26 flex items-center justify-end gap-14">
+            <DialogClose id="closeModal" asChild>
               <Button variant="secondary">취소</Button>
             </DialogClose>
             <Button>확인</Button>

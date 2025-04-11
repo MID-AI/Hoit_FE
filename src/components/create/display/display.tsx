@@ -1,5 +1,6 @@
 import ArrowIcon from "@/assets/icon/arrow_left.svg";
 import Image from "next/image";
+import ScreenStarIcon from "@/assets/create/screen_star.svg";
 
 function Display({ image }: { image?: string[] }) {
   return (
@@ -12,7 +13,9 @@ function Display({ image }: { image?: string[] }) {
           ))}
         </div>
       ) : (
-        <div className="h-full w-full max-w-786 bg-coolGray-100" />
+        <div className="flex h-full w-full max-w-786 items-center justify-center bg-coolGray-100 text-white">
+          <ScreenStarIcon />
+        </div>
       )}
 
       <ArrowIcon className="rotate-180 cursor-pointer text-coolGray-300" />

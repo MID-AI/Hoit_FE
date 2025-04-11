@@ -4,10 +4,11 @@ import type { FolderType } from "@/@types/folder";
 import API_ROUTES from "../constants/routes";
 
 // 내 프로젝트 - 전체
-export async function getMyImageList(page: number) {
+export async function getMyImageList(page: number, size?: number) {
   return await apiClient.get<PageNation<ImageType>>(API_ROUTES.MY_IMAGES, {
     params: {
       page,
+      ...(size && { size }),
     },
   });
 }
