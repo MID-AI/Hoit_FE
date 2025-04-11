@@ -4,7 +4,7 @@ import Navigation from "@/components/create/navigation/navigation";
 import {
   selectedAiModelAtom,
   selectedRefImageAtom,
-} from "@/stores/create-video";
+} from "@/stores/create-video-atom";
 import { useAtom } from "jotai";
 import VideoCreateNavigationSelect from "./video-create-navigation-select";
 import NavigationSection from "@/components/create/navigation/navigation-section";

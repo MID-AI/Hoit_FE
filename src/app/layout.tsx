@@ -6,10 +6,14 @@ import { Sidebar } from "@/components/sidebar/sidebar";
 import { MswComponent } from "@/mocks/msw.component";
 import QueryProviders from "@/providers/query-provider";
 import JotaiProvider from "@/providers/jotai-provider";
+import ErrorDialog from "@/components/common/dialog/error-dialog";
 
 export const metadata: Metadata = {
   title: "Hoit",
-  description: "AI App",
+  description: "자유롭게 이미지를 생성하고 비디오를 만들어 보세요.",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 const notoSansKr = Noto_Sans_KR({
@@ -41,6 +45,7 @@ export default function RootLayout({
               <Sidebar />
               <main className="ml-64 flex items-start justify-center lg:ml-140">
                 {children}
+                <ErrorDialog />
               </main>
             </JotaiProvider>
           </QueryProviders>

@@ -1,6 +1,7 @@
 import { getAccessTokenFromCookies } from "@/utils/cookies-server";
 import handleAPIError from "../utils/handleAPIError";
 import SERVER_URL from "./baseUrl";
+import HTTPError from "../error/HTTPError";
 
 export const BASE_URL = SERVER_URL;
 
@@ -84,15 +85,17 @@ class APIClient {
       });
 
       if (!response.ok) {
-        handleAPIError(response.status);
+        const errorJson = await response.json();
+        handleAPIError(response.status, errorJson.message, errorJson.error);
       }
 
       return await response.json();
-    } catch (error) {
-      if (error instanceof Error) {
-        throw handleAPIError(500, error.message);
+    } catch (error: any) {
+      if (error instanceof HTTPError) {
+        throw error;
       }
-      throw error;
+
+      throw handleAPIError(500, error.message);
     }
   }
 

@@ -7,7 +7,7 @@ import {
   selectedCharacterAtom,
   selectedRatioAtom,
   selectedStyleAtom,
-} from "@/stores/create-image";
+} from "@/stores/create-image-atom";
 import { useAtom } from "jotai";
 import ImageCreateNavigationSelect from "./image-create-navigation-select";
 
