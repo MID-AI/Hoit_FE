@@ -1,10 +1,10 @@
 "use client";
 
 import useGetMyProjectFolder from "@/hooks/user/use-get-my-project-folder";
-import FolderItem from "./folder-item";
-import NewFolder from "./new-folder";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
+import FolderItem from "./folder/folder-item";
+import NewFolder from "./folder/new-folder";
 
 function TabFolder() {
   const { data, isLoading, fetchNextPage, hasNextPage } =
@@ -29,12 +29,12 @@ function TabFolder() {
         page.content.map((folder, idx) => (
           <FolderItem
             key={idx}
-            folderId={0}
-            image="https://picsum.photos/500/500"
-            imageCount={1}
-            videoCount={1}
-            lastUpdated={10}
-            title={folder.name}
+            id={folder.id}
+            name={folder.name}
+            imageCount={folder.imageCount}
+            videoCount={folder.videoCount}
+            coverImage={folder.coverImage}
+            modifiedAt={folder.modifiedAt}
           />
         )),
       )}
