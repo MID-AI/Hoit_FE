@@ -1,12 +1,4 @@
-export interface HTTPErrorInfo {
-  statusCode: number;
-  payload: {
-    SERVER_MESSAGE: string;
-    BODY: string;
-    BUTTON: string;
-    REDIRECT_URL?: string;
-  };
-}
+import type { HTTPErrorInfo } from "@/@types/error";
 
 class HTTPError extends Error {
   readonly information: HTTPErrorInfo;

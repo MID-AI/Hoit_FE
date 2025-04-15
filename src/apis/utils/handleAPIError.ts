@@ -1,6 +1,7 @@
 import * as Sentry from "@sentry/nextjs";
-import HTTPError, { type HTTPErrorInfo } from "../error/HTTPError";
+import HTTPError from "../error/HTTPError";
 import { HTTP_ERROR_MESSAGE } from "../constants/https";
+import type { HTTPErrorInfo } from "@/@types/error";
 
 /**
  * API 에러를 처리하는 함수
