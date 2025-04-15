@@ -1,6 +1,12 @@
 import type { ErrorDialogType, HTTPErrorInfo } from "@/@types/error";
 import { SetStateAction } from "jotai";
 
+/**
+ * API 에러를 모달로 반영하기 위한 함수
+ * @param error
+ * @param setErrorDialog 전역 에러 setter 함수
+ * @throws 에러 모달
+ */
 export default function handleErrorDialog(
   error: HTTPErrorInfo,
   setErrorDialog: (value: SetStateAction<ErrorDialogType | null>) => void,

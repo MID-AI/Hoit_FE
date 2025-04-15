@@ -7,7 +7,7 @@ import {
   DialogDescription,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { errorDialogAtom } from "@/stores/common-atom";
+import { errorDialogAtom } from "@/stores/error-atom";
 import { useAtom } from "jotai";
 import { useRouter } from "next/navigation";
 
