@@ -23,6 +23,11 @@ export const HTTP_ERROR_MESSAGE = {
     BUTTON: "로그인하기",
     REDIRECT_URL: `${SERVER_URL}/${API_ROUTES.LOGIN}`,
   },
+  FAILED_IN_AUTHENTICATION: {
+    BODY: "다시 로그인 해주세요.",
+    BUTTON: "로그인하기",
+    REDIRECT_URL: `${SERVER_URL}/${API_ROUTES.LOGIN}`,
+  },
   PAYMENT_REQUIRED: {
     HEADING: "크레딧 부족",
     BODY: "이미지를 생성하려면 크레딧을 충전해야 해요.",
