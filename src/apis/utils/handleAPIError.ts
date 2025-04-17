@@ -14,15 +14,14 @@ const handleAPIError = (
   message?: string,
   errorCode?: keyof typeof HTTP_ERROR_MESSAGE,
 ): never => {
-  const fallback = {
-    BODY: "오류가 발생했습니다.",
-    BUTTON: "확인",
-    REDIRECT_URL: "/",
-  };
-
   const uiPayload = errorCode
-    ? (HTTP_ERROR_MESSAGE[errorCode] ?? fallback)
-    : fallback;
+    ? HTTP_ERROR_MESSAGE[errorCode]
+    : {
+        BODY: message ?? "알 수 없는 오류가 발생했습니다.",
+        BUTTON: "확인",
+        REDIRECT_URL: "/",
+        SERVER_MESSAGE: message ?? "오류",
+      };
 
   // 기본 에러 처리
   throw createAndLogError({
