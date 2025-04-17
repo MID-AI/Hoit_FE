@@ -31,3 +31,13 @@ export async function createFolder(folderName: string) {
     name: folderName,
   });
 }
+// 내 프로젝트 - 폴더 이름 수정
+export async function editFolderName(folderId: number, newFolderName: string) {
+  return await apiClient.put(API_ROUTES.MY_PROJECT_FOLDER_EDIT_NAME(folderId), {
+    name: newFolderName,
+  });
+}
+// 내 프로젝트 - 폴더 삭제
+export async function deleteFolder(folderId: number) {
+  return await apiClient.delete(API_ROUTES.DELETE_MY_PROJECT_FOLDER(folderId));
+}

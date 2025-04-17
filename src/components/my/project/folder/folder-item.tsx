@@ -4,7 +4,7 @@ import Link from "next/link";
 import PAGE_ROUTES from "@/constants/page-routes";
 import type { FolderType } from "@/@types/folder";
 import formatTimeAgo from "@/utils/formatTimeAgo";
-import FolderEditButton from "./folder-edit-button";
+import FolderEdit from "./folder-edit";
 
 function FolderItem({
   id,
@@ -43,7 +43,7 @@ function FolderItem({
           >
             {name}
           </Link>
-          <FolderEditButton folderId={id} folderName={name} />
+          <FolderEdit folderId={id} folderName={name} />
         </div>
 
         <div className="flex items-center text-Type-14-regular text-coolGray-600">

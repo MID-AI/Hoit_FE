@@ -112,6 +112,10 @@ class APIClient {
     return this.request<T>(path, { ...config, body, method: "PATCH" });
   }
 
+  async put<T>(path: string, body?: any, config?: RequestConfig) {
+    return this.request<T>(path, { ...config, body, method: "PUT" });
+  }
+
   async delete<T>(path: string, body?: any, config?: RequestConfig) {
     return this.request<T>(path, { ...config, body, method: "DELETE" });
   }

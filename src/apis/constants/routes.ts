@@ -25,6 +25,7 @@ const API_ROUTES = {
   // 내 프로젝트(폴더)
   MY_PROJECT_FOLDER: "api/folder",
   DELETE_MY_PROJECT_FOLDER: (id: number) => `api/folder/${id}`,
+  MY_PROJECT_FOLDER_EDIT_NAME: (id: number) => `api/folder/${id}`,
   MY_PROJECT_FOLDER_EDIT_IMAGE: (id: number) => `api/folder/${id}/images`,
 
   // 좋아요

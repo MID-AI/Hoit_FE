@@ -1,6 +1,8 @@
-import type { ImageType } from "./images";
-
 export interface FolderType {
+  id: number;
   name: string;
-  coverImage: ImageType;
+  imageCount: number;
+  videoCount: number;
+  coverImage: string;
+  modifiedAt: string;
 }
