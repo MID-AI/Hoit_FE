@@ -1,8 +1,9 @@
 import { getMyImageList } from "@/apis/services/project";
-import TabAll from "@/components/my/project/tab-all";
-import TabFolder from "@/components/my/project/tab-folder";
+
 import InfinitePrefetch from "@/components/query/infinite-prefetch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import TabAll from "@/components/user/project/tab-all";
+import TabFolder from "@/components/user/project/tab-folder";
 import { QUERY_KEY } from "@/constants/query-key";
 
 function MyProject() {
