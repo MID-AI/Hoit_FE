@@ -15,8 +15,8 @@ export default function useGetUser() {
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
     retry: (failureCount, error) => {
-      // 상태 코드가 400이면 재시도하지 않음
-      if ((error as any)?.status === 400) {
+      // 상태 코드가 401이면 재시도하지 않음
+      if ((error as any)?.information.statusCode === 401) {
         return false;
       }
       return failureCount < 3;

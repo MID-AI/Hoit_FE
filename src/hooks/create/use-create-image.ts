@@ -1,6 +1,6 @@
 import { createImage } from "@/apis/services/images";
 import { CREATE_IMAGE_SELECT_MENU } from "@/constants/select-menu";
-import { errorDialogAtom } from "@/stores/common-atom";
+import { errorDialogAtom } from "@/stores/error-atom";
 import {
   createImageErrorAtom,
   isCreateImageOptionLockedAtom,
