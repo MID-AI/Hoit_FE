@@ -1,6 +1,6 @@
 import PAGE_ROUTES from "@/constants/page-routes";
 import API_ROUTES from "./routes";
-import SERVER_URL from "../client/baseUrl";
+import { SERVER_URL } from "../client/baseUrl";
 
 export const HTTP_ERROR_MESSAGE = {
   BAD_REQUEST: {

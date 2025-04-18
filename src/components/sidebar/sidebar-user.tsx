@@ -5,13 +5,8 @@ import LoginModal from "../common/auth/login-modal";
 import { Dialog, DialogTrigger } from "../ui/dialog";
 import { cn } from "@/lib/utils";
 import useGetUser from "@/hooks/user/use-get-user-profile";
-import { useAtom, useSetAtom } from "jotai";
-import {
-  isAuthenticatedAtom,
-  userCreditAtom,
-  userNickNameAtom,
-} from "@/stores/user-atom";
-import { useEffect } from "react";
+import { useAtom } from "jotai";
+import { isAuthenticatedAtom } from "@/stores/user-atom";
 
 export default function SidebarUser({
   icon,
@@ -20,21 +15,8 @@ export default function SidebarUser({
   icon?: boolean;
   mobile?: boolean;
 }) {
-  const { data, isLoading, error } = useGetUser();
-  const setNickName = useSetAtom(userNickNameAtom);
-  const setCredit = useSetAtom(userCreditAtom);
+  const { data, error } = useGetUser();
   const [isModalOpen, setModalOpen] = useAtom(isAuthenticatedAtom);
-
-  useEffect(() => {
-    if (data) {
-      setNickName(data.nickname);
-      setCredit(data.credit);
-    }
-  }, [data, setCredit, setNickName]);
-
-  if (isLoading) {
-    return <div>로딩중</div>;
-  }
 
   if (error) {
     console.error(error);

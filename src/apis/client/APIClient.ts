@@ -1,6 +1,6 @@
 import { getAccessTokenFromCookies } from "@/utils/cookies-server";
 import handleAPIError from "../utils/handleAPIError";
-import SERVER_URL from "./baseUrl";
+import { SERVER_URL } from "./baseUrl";
 import HTTPError from "../error/HTTPError";
 
 export const BASE_URL = SERVER_URL;

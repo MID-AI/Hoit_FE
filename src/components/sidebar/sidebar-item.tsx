@@ -1,14 +1,12 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { menuItems } from "./sidebar";
+import { usePathname } from "next/navigation";
 
-export default function SidebarItem({
-  item,
-  pathname,
-}: {
-  item: (typeof menuItems)[0];
-  pathname: string;
-}) {
+export default function SidebarItem({ item }: { item: (typeof menuItems)[0] }) {
+  const pathname = usePathname();
   return (
     <Link
       href={item.href}
@@ -19,12 +17,14 @@ export default function SidebarItem({
           : "transparent",
       )}
     >
-      <item.icon
+      <div
         className={cn(
           "text-cool shrink-0",
           pathname === item.href && "text-cBlue-400",
         )}
-      />
+      >
+        {item.icon}
+      </div>
       <span className="shrink-0 text-Type-16-medium">{item.label}</span>
     </Link>
   );

@@ -1,6 +1,3 @@
-"use client";
-
-import { usePathname } from "next/navigation";
 import HomeIcon from "@/assets/icon/home.svg";
 import CreateIcon from "@/assets/icon/create.svg";
 import CreateVideoIcon from "@/assets/icon/create video.svg";
@@ -13,33 +10,36 @@ import SidebarItemIcon from "./sidebar-item-icon";
 import SidebarUser from "./sidebar-user";
 import PAGE_ROUTES from "@/constants/page-routes";
 import Link from "next/link";
+import UserProfileFetcher from "../common/auth/user-profile-fetcher";
 
 export const menuItems = [
-  { icon: HomeIcon, label: "홈", href: "/" },
+  { icon: <HomeIcon />, label: "홈", href: "/" },
   {
-    icon: CreateIcon,
+    icon: <CreateIcon />,
     label: "이미지 생성",
     href: `${PAGE_ROUTES.IMAGE_CREATE}`,
   },
   {
-    icon: CreateVideoIcon,
+    icon: <CreateVideoIcon />,
     label: "영상 생성",
     href: `${PAGE_ROUTES.VIDEO_CREATE}`,
   },
 ];
 
 const myMenuItems = [
-  { icon: SocialIcon, label: "내 활동", href: `${PAGE_ROUTES.MY_ACTIVITY}` },
   {
-    icon: MyActiveIcon,
+    icon: <SocialIcon />,
+    label: "내 활동",
+    href: `${PAGE_ROUTES.MY_ACTIVITY}`,
+  },
+  {
+    icon: <MyActiveIcon />,
     label: "내 프로젝트",
     href: `${PAGE_ROUTES.MY_PROJECT}`,
   },
 ];
 
 export function Sidebar() {
-  const pathname = usePathname();
-
   return (
     <>
       {/* Desktop sidebar */}
@@ -51,15 +51,17 @@ export function Sidebar() {
 
           <div className="flex w-full flex-col gap-12">
             {menuItems.map((item) => (
-              <SidebarItem key={item.label} item={item} pathname={pathname} />
+              <SidebarItem key={item.label} item={item} />
             ))}
             <div className="mx-8 h-1 w-full bg-coolGray-200" />
             {myMenuItems.map((item) => (
-              <SidebarItem key={item.label} item={item} pathname={pathname} />
+              <SidebarItem key={item.label} item={item} />
             ))}
           </div>
         </div>
-        <SidebarUser />
+        <UserProfileFetcher>
+          <SidebarUser />
+        </UserProfileFetcher>
       </div>
 
       {/* Tablet sidebar */}
@@ -71,23 +73,17 @@ export function Sidebar() {
 
           <div className="flex flex-col gap-12">
             {menuItems.map((item) => (
-              <SidebarItemIcon
-                key={item.label}
-                item={item}
-                pathname={pathname}
-              />
+              <SidebarItemIcon key={item.label} item={item} />
             ))}
             <div className="mx-8 h-1 w-full bg-coolGray-200" />
             {myMenuItems.map((item) => (
-              <SidebarItemIcon
-                key={item.label}
-                item={item}
-                pathname={pathname}
-              />
+              <SidebarItemIcon key={item.label} item={item} />
             ))}
           </div>
         </div>
-        <SidebarUser icon />
+        <UserProfileFetcher>
+          <SidebarUser icon />
+        </UserProfileFetcher>
       </div>
 
       {/* Mobile footer menu */}
