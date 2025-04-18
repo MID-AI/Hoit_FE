@@ -7,7 +7,7 @@ import FolderImageListEdit from "./folder-image-list-edit";
 import { useAtom, useAtomValue } from "jotai";
 import { editModeAtom, selectedCardsAtom } from "@/stores/edit-folder-atom";
 
-function TestList() {
+function TestFolderImages() {
   const [selectedCards, setSelectedCards] = useAtom(selectedCardsAtom);
   const editMode = useAtomValue(editModeAtom);
 
@@ -59,4 +59,4 @@ function TestList() {
   );
 }
 
-export default TestList;
+export default TestFolderImages;

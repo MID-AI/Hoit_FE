@@ -2,7 +2,7 @@ import { getFolderImages } from "@/apis/services/project";
 import InfinitePrefetch from "@/components/query/infinite-prefetch";
 import FolderHeader from "@/components/user/project/folder-images/folder-header";
 import FolderImages from "@/components/user/project/folder-images/images/folder-images";
-import TestList from "@/components/user/project/folder-images/test";
+import TestFolderImages from "@/components/user/project/folder-images/test-folder-images";
 import { QUERY_KEY } from "@/constants/query-key";
 
 async function ProjectFolder({ params }: { params: Promise<{ id: string }> }) {
@@ -12,7 +12,7 @@ async function ProjectFolder({ params }: { params: Promise<{ id: string }> }) {
     <main className="w-full px-24">
       <FolderHeader folderName="캐릭터" />
       <div>임시</div>
-      <TestList />
+      <TestFolderImages />
 
       <div>아래가 실제 반영</div>
       <InfinitePrefetch
