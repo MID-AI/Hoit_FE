@@ -1,6 +1,9 @@
-const SERVER_URL =
+export const SERVER_URL =
   process.env.NEXT_PUBLIC_MODE === "mock"
     ? "http://localhost:9090"
     : "https://api.hoit.my";
 
-export default SERVER_URL;
+export const CLIENT_URL =
+  process.env.NEXT_PUBLIC_MODE === "development"
+    ? "https://front.hoit.my:3000"
+    : "https://www.hoit.my";

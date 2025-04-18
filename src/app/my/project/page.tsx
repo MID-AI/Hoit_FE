@@ -1,30 +1,13 @@
-import { getMyImageList } from "@/apis/services/project";
-import TabAll from "@/components/my/project/tab-all";
-import TabFolder from "@/components/my/project/tab-folder";
-import InfinitePrefetch from "@/components/query/infinite-prefetch";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { QUERY_KEY } from "@/constants/query-key";
+import TabAllWrapper from "@/components/user/project/tab/tab-all-wrapper";
+import TabWrapper from "@/components/user/project/tab/tab-wrapper";
+import { Suspense } from "react";
 
 function MyProject() {
   return (
     <div className="w-full px-23 py-64">
-      <Tabs defaultValue="all" className="w-full">
-        <TabsList className="h-44">
-          <TabsTrigger value="all">전체</TabsTrigger>
-          <TabsTrigger value="folder">폴더</TabsTrigger>
-        </TabsList>
-        <TabsContent value="all">
-          <InfinitePrefetch
-            queryKey={QUERY_KEY.MY.PROJECT()}
-            queryFn={({ pageParam = 0 }) => getMyImageList(pageParam)}
-          >
-            <TabAll />
-          </InfinitePrefetch>
-        </TabsContent>
-        <TabsContent value="folder">
-          <TabFolder />
-        </TabsContent>
-      </Tabs>
+      <Suspense fallback="로딩중(MyProject 컴포넌트)">
+        <TabWrapper tabAll={<TabAllWrapper />} />
+      </Suspense>
     </div>
   );
 }

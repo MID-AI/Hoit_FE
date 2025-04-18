@@ -1,8 +1,9 @@
 import { getMyActivityPost } from "@/apis/services/activity";
-import TabLikes from "@/components/my/activity/tab-likes";
-import TabPost from "@/components/my/activity/tab-post";
+
 import InfinitePrefetch from "@/components/query/infinite-prefetch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import TabLikes from "@/components/user/activity/tab-likes";
+import TabPost from "@/components/user/activity/tab-post";
 import { QUERY_KEY } from "@/constants/query-key";
 
 function MyActivity() {

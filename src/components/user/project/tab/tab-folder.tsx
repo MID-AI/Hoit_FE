@@ -3,8 +3,8 @@
 import useGetMyProjectFolder from "@/hooks/user/use-get-my-project-folder";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
-import FolderItem from "./folder/folder-item";
-import NewFolder from "./folder/new-folder";
+import NewFolder from "../folder/new-folder";
+import FolderItem from "../folder/folder-item";
 
 function TabFolder() {
   const { data, isLoading, fetchNextPage, hasNextPage } =

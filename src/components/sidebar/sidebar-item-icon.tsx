@@ -1,14 +1,16 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { menuItems } from "./sidebar";
+import { usePathname } from "next/navigation";
 
 export default function SidebarItemIcon({
   item,
-  pathname,
 }: {
   item: (typeof menuItems)[0];
-  pathname: string;
 }) {
+  const pathname = usePathname();
   return (
     <Link
       href={item.href}
@@ -18,7 +20,7 @@ export default function SidebarItemIcon({
           "border border-cBlue-400 text-cBlue-400 shadow-[0px_2px_4px_1px_rgba(20,120,194,0.15)]",
       )}
     >
-      <item.icon />
+      {item.icon}
     </Link>
   );
 }

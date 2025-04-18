@@ -55,8 +55,8 @@ function ImageList({ data, isLoading, fetchNextPage, hasNextPage }: Props) {
                   id={img.id}
                   url={img.url}
                   nickname={img.nickname}
-                  likeCount={img.likes}
-                  isLiked={img?.isLike}
+                  likeCount={img.likeCount}
+                  isLiked={img?.isLiked}
                 />
               )),
             )}

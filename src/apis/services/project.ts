@@ -41,3 +41,20 @@ export async function editFolderName(folderId: number, newFolderName: string) {
 export async function deleteFolder(folderId: number) {
   return await apiClient.delete(API_ROUTES.DELETE_MY_PROJECT_FOLDER(folderId));
 }
+// 내 프로젝트 - 폴더 이미지 리스트
+export async function getFolderImages(page: number, folderId: number) {
+  return await apiClient.get<PageNation<ImageType>>(
+    API_ROUTES.MY_PROJECT_FOLDER_IMAGES(folderId),
+    {
+      params: {
+        page,
+      },
+    },
+  );
+}
+// 내 프로젝트 - 폴더 - 이미지삭제
+export async function deleteFolderImages(folderId: number, imageIds: number[]) {
+  return await apiClient.delete(API_ROUTES.MY_PROJECT_FOLDER_IMAGES(folderId), {
+    imageIds,
+  });
+}
