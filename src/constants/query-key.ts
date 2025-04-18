@@ -14,6 +14,7 @@ export const QUERY_KEY = {
     PROJECT: (pageSize?: number) =>
       ["myProject", "imageList", pageSize] as const,
     PROJECT_FOLDER: ["myProject", "folderList"] as const,
+    PROJECT_FOLDER_IMAGES: (id: number) => ["myProject", "folder", id] as const,
     ACTIVITY_POST: ["myActivity", "post"] as const,
     ACTIVITY_LIKES: ["myActivity", "likes"] as const,
   },

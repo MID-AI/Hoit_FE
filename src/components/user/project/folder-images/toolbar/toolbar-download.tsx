@@ -2,7 +2,7 @@
 
 import { useParams } from "next/navigation";
 import ToolbarEditButton from "../toolbar-edit-button";
-import DownLoadIcon from "@/assets/my/download_gray.svg";
+import DownLoadIcon from "@/assets/create/download.svg";
 import { type InfiniteData, useQueryClient } from "@tanstack/react-query";
 import { useAtomValue } from "jotai";
 import { selectedCardsAtom } from "@/stores/edit-folder-atom";
@@ -32,7 +32,7 @@ function ToolbarDownload() {
 
   return (
     <ToolbarEditButton
-      icon={<DownLoadIcon />}
+      icon={<DownLoadIcon className="h-18 w-18 text-coolGray-500" />}
       text="다운로드"
       onClick={handleClick}
     />

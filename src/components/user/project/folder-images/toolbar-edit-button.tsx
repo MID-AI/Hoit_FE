@@ -12,9 +12,10 @@ function ToolbarEditButton({
   return (
     <button
       onClick={onClick}
-      className="ml-18 flex items-center gap-12 text-coolGray-500"
+      className="ml-18 flex shrink items-center gap-12 text-coolGray-500"
     >
-      {icon}
+      <span className="flex w-fit shrink-0">{icon}</span>
+
       {text}
     </button>
   );

@@ -4,9 +4,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-
-import HeartWhiteIcon from "@/assets/icon/heart_white.svg";
-import HeartBlueIcon from "@/assets/icon/heart_blue.svg";
+import CardInfo from "./card-info";
+import cn from "@/utils/cn";
 
 function Card({
   id,
@@ -14,7 +13,10 @@ function Card({
   nickname,
   likeCount,
   isLiked,
-}: Omit<ImageType, "ratio" | "prompt" | "createdAt">) {
+  className,
+}: Omit<ImageType, "ratio" | "prompt" | "createdAt"> & {
+  className?: string;
+}) {
   const [isLoading, setIsLoading] = useState(true);
   const [imageDimensions, setImageDimensions] = useState<{
     height: number;
@@ -26,14 +28,13 @@ function Card({
     setIsLoading(false);
   };
 
-  const onClickLike = () => {
-    // 좋아요 기능
-  };
-
   return (
     <Link
       href={`image/${id}`}
-      className="group relative mb-24 flex w-full break-inside-avoid overflow-hidden rounded-20 bg-white text-Type-14-regular"
+      className={cn(
+        "group relative mb-24 flex w-full break-inside-avoid overflow-hidden rounded-20 bg-white text-Type-14-regular",
+        className,
+      )}
     >
       {isLoading && (
         <Skeleton
@@ -49,15 +50,7 @@ function Card({
         className={`h-auto w-full transition-opacity duration-300 ${isLoading ? "opacity-0" : "opacity-100"}`}
         onLoad={handleImageLoad}
       />
-      <div className="absolute bottom-0 hidden w-full items-center justify-between bg-[linear-gradient(0deg,_rgba(0,0,0,0.8)_0%,_rgba(0,0,0,0)_94.05%)] p-16 text-white group-hover:flex">
-        <div>{nickname}</div>
-        <div className="flex items-center gap-6">
-          <span onClick={onClickLike}>
-            {isLiked ? <HeartBlueIcon /> : <HeartWhiteIcon />}
-          </span>
-          <span>{likeCount}</span>
-        </div>
-      </div>
+      <CardInfo nickname={nickname} isLiked={isLiked} likeCount={likeCount} />
     </Link>
   );
 }

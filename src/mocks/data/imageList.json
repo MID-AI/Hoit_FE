@@ -1,126 +1,83 @@
 {
-  "timestamp": "2025-02-19T12:00:00Z",
-  "statusCode": 200,
-  "message": "Success",
-  "pages": [
+  "totalPages": 0,
+  "totalElements": 0,
+  "first": true,
+  "last": true,
+  "size": 0,
+  "content": [
     {
-      "data": {
-        "content": [
-          {
-            "id": 1,
-            "url": "https://picsum.photos/500/500",
-            "prompt": "",
-            "nickname": "닉네임 이름",
-            "likes": 177,
-            "isLike": false
-          },
-          {
-            "id": 2,
-            "url": "https://picsum.photos/600/800",
-            "prompt": "",
-            "nickname": "닉네임 이름",
-            "likes": 177,
-            "isLike": true
-          },
-          {
-            "id": 3,
-            "url": "https://picsum.photos/800/500",
-            "prompt": "",
-            "nickname": "닉네임 이름",
-            "likes": 177,
-            "isLike": false
-          },
-          {
-            "id": 4,
-            "url": "https://picsum.photos/300/300",
-            "prompt": "",
-            "nickname": "닉네임 이름",
-            "likes": 177,
-            "isLike": true
-          },
-          {
-            "id": 5,
-            "url": "https://picsum.photos/480/320",
-            "prompt": "",
-            "nickname": "닉네임 이름",
-            "likes": 177,
-            "isLike": false
-          },
-          {
-            "id": 6,
-            "url": "https://picsum.photos/1600/1000",
-            "prompt": "",
-            "nickname": "닉네임 이름",
-            "likes": 177,
-            "isLike": true
-          },
-          {
-            "id": 7,
-            "url": "https://picsum.photos/400/400",
-            "prompt": "",
-            "nickname": "닉네임 이름",
-            "likes": 177,
-            "isLike": false
-          },
-          {
-            "id": 8,
-            "url": "https://picsum.photos/750/500",
-            "prompt": "",
-            "nickname": "닉네임 이름",
-            "likes": 177,
-            "isLike": true
-          },
-          {
-            "id": 9,
-            "url": "https://picsum.photos/1280/800",
-            "prompt": "",
-            "nickname": "닉네임 이름",
-            "likes": 177,
-            "isLike": false
-          },
-          {
-            "id": 10,
-            "url": "https://picsum.photos/200/200",
-            "prompt": "",
-            "nickname": "닉네임 이름",
-            "likes": 177,
-            "isLike": true
-          },
-          {
-            "id": 11,
-            "url": "https://picsum.photos/600/400",
-            "prompt": "",
-            "nickname": "닉네임 이름",
-            "likes": 177,
-            "isLike": false
-          }
-        ],
-        "pageable": {
-          "pageNumber": 1,
-          "pageSize": 11,
-          "sort": {
-            "empty": true,
-            "sorted": false,
-            "unsorted": true
-          },
-          "offset": 0,
-          "unpaged": false,
-          "paged": true
-        },
-        "last": true,
-        "totalPages": 1,
-        "totalElements": 11,
-        "first": true,
-        "size": 11,
-        "number": 1,
-        "sort": {
-          "empty": true,
-          "sorted": false,
-          "unsorted": true
-        },
-        "numberOfElements": 11,
-        "empty": false
-      }
+      "id": 0,
+      "url": "https://picsum.photos/750/500",
+      "prompt": "string",
+      "ratio": "string",
+      "likeCount": 0,
+      "isLiked": true,
+      "createdAt": "2025-04-17T17:45:42.377Z"
+    },
+    {
+      "id": 1,
+      "url": "https://picsum.photos/400/500",
+      "prompt": "string",
+      "ratio": "string",
+      "likeCount": 0,
+      "isLiked": true,
+      "createdAt": "2025-04-17T17:45:42.377Z"
+    },
+    {
+      "id": 2,
+      "url": "https://picsum.photos/200/500",
+      "prompt": "string",
+      "ratio": "string",
+      "likeCount": 0,
+      "isLiked": false,
+      "createdAt": "2025-04-17T17:45:42.377Z"
+    },
+    {
+      "id": 3,
+      "url": "https://picsum.photos/750/500",
+      "prompt": "string",
+      "ratio": "string",
+      "likeCount": 0,
+      "isLiked": false,
+      "createdAt": "2025-04-17T17:45:42.377Z"
+    },
+    {
+      "id": 4,
+      "url": "https://picsum.photos/750/500",
+      "prompt": "string",
+      "ratio": "string",
+      "likeCount": 0,
+      "isLiked": false,
+      "createdAt": "2025-04-17T17:45:42.377Z"
+    },
+    {
+      "id": 5,
+      "url": "https://picsum.photos/500/500",
+      "prompt": "string",
+      "ratio": "string",
+      "likeCount": 0,
+      "isLiked": false,
+      "createdAt": "2025-04-17T17:45:42.377Z"
     }
-  ]
+  ],
+  "number": 0,
+  "sort": {
+    "empty": true,
+    "sorted": true,
+    "unsorted": true
+  },
+  "numberOfElements": 0,
+  "pageable": {
+    "offset": 0,
+    "sort": {
+      "empty": true,
+      "sorted": true,
+      "unsorted": true
+    },
+    "pageNumber": 0,
+    "pageSize": 0,
+    "unpaged": true,
+    "paged": true
+  },
+  "empty": true
 }
