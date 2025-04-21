@@ -2,7 +2,7 @@ import cn from "@/utils/cn";
 import CheckboxCheckedIcon from "@/assets/my/checkbox_checked.svg";
 import CheckboxIcon from "@/assets/my/checkbox.svg";
 
-function FolderImageListEdit({
+function EditImageWrapper({
   editMode,
   isChecked,
   onClick,
@@ -31,4 +31,4 @@ function FolderImageListEdit({
   );
 }
 
-export default FolderImageListEdit;
+export default EditImageWrapper;

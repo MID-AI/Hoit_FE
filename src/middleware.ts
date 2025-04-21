@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-const PUBLIC_PATHS = ["/"];
+const PUBLIC_PATHS = ["/", "/create/image", "/create/video", "/login"];
 
 export const config = {
   matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
@@ -14,28 +14,22 @@ const isAuthenticated = (request: NextRequest) => {
 };
 
 export async function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
+  // 공개 경로는 인증 없이 접근 허용
   if (
-    request.nextUrl.pathname.startsWith("/_next") ||
-    request.nextUrl.pathname.includes("/api/") ||
-    request.nextUrl.pathname.match(/\.(ico|png|svg|jpg|jpeg|gif)$/)
+    pathname === "/" ||
+    PUBLIC_PATHS.some((path) => path !== "/" && pathname.startsWith(path))
   ) {
     return NextResponse.next();
   }
 
-  const { pathname } = request.nextUrl;
-
-  // 공개된 경로는 인증 없이 접근 가능
-  if (PUBLIC_PATHS.includes(pathname)) {
-    return NextResponse.next();
-  }
-  const response = NextResponse.next();
-
-  // 로그인 검증
+  // 인증되지 않은 경우 로그인 페이지로 리디렉트
   if (!isAuthenticated(request)) {
-    response.headers.set("X-Auth-Required", "true");
-  } else {
-    response.headers.set("X-Auth-Required", "false");
+    const redirectUrl = new URL("/login", request.url);
+    redirectUrl.searchParams.set("redirect", pathname);
+    return NextResponse.redirect(redirectUrl);
   }
 
-  return response;
+  return NextResponse.next();
 }

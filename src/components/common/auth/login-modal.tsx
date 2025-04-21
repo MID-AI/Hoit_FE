@@ -14,7 +14,7 @@ import { CLIENT_URL } from "@/apis/client/baseUrl";
 
 function LoginModal() {
   const pathname = usePathname();
-  const uri = `?redirect_uri=${CLIENT_URL}${pathname}`;
+  const uri = pathname === "/" ? "" : `?redirect_uri=${CLIENT_URL}${pathname}`;
 
   return (
     <DialogContent className="px-38 py-44">
@@ -41,7 +41,7 @@ function LoginModal() {
             로그인 후 나만의 이미지를 만들어 보세요!
           </span>
           <a
-            href={`${BASE_URL}/${API_ROUTES.LOGIN}${pathname !== "/" && uri}`}
+            href={`${BASE_URL}/${API_ROUTES.LOGIN}${uri}`}
             rel="noopener noreferrer"
             className="flex w-414 items-center gap-33 rounded-50 border border-coolGray-300 bg-coolGray-50 px-92 py-15 hover:border-blue-400 hover:bg-blue-50"
           >

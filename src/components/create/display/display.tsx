@@ -14,7 +14,7 @@ function Display({ image }: { image?: string[] }) {
         </div>
       ) : (
         <div className="flex h-full w-full max-w-786 items-center justify-center bg-coolGray-100 text-white">
-          <ScreenStarIcon />
+          <ScreenStarIcon className="h-355 w-353" />
         </div>
       )}
 

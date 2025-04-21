@@ -3,13 +3,16 @@
 import Card from "@/components/common/card/card";
 import MockData from "@/mocks/data/imageList.json";
 import Masonry from "react-masonry-css";
-import FolderImageListEdit from "./folder-image-list-edit";
 import { useAtom, useAtomValue } from "jotai";
-import { editModeAtom, selectedCardsAtom } from "@/stores/edit-folder-atom";
+import {
+  editModeFolderAtom,
+  selectedFolderCardsAtom,
+} from "@/stores/project-atom";
+import EditImageWrapper from "../edit/edit-image-wrapper";
 
 function TestFolderImages() {
-  const [selectedCards, setSelectedCards] = useAtom(selectedCardsAtom);
-  const editMode = useAtomValue(editModeAtom);
+  const [selectedCards, setSelectedCards] = useAtom(selectedFolderCardsAtom);
+  const editMode = useAtomValue(editModeFolderAtom);
 
   const breakpoints = {
     default: 4,
@@ -38,7 +41,7 @@ function TestFolderImages() {
       {MockData?.content.map((img: any) => {
         const isChecked = selectedCards.has(img.id);
         return (
-          <FolderImageListEdit
+          <EditImageWrapper
             key={img.id}
             editMode={editMode}
             isChecked={isChecked}
@@ -52,7 +55,7 @@ function TestFolderImages() {
               isLiked={img?.isLike}
               className="rounded-0 mb-0 overflow-visible"
             />
-          </FolderImageListEdit>
+          </EditImageWrapper>
         );
       })}
     </Masonry>
