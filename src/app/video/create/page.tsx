@@ -1,3 +1,4 @@
+import LoginChecker from "@/components/common/auth/login-checker";
 import Display from "@/components/create/display/display";
 import ImageList from "@/components/create/image-list/image-list";
 import Prompt from "@/components/create/prompt/prompt";
@@ -8,6 +9,7 @@ function VideoCreation() {
   return (
     <main className="flex h-screen w-full flex-col justify-between gap-24 p-24">
       <CreateVideoStateCleanup />
+      <LoginChecker />
       <section className="flex h-full w-full justify-between">
         <VideoCreateNavigation />
         <Display />

@@ -43,21 +43,25 @@ class APIClient {
    * 요청 헤더 생성 메서드
    */
   private async createHeaders(config?: RequestConfig): Promise<Headers> {
-    const accessToken =
-      typeof window === "undefined" ? await getAccessTokenFromCookies() : "";
-
     const headers = new Headers({
       Accept: "application/json",
       ...(!config?.body || !(config.body instanceof FormData)
         ? { "Content-Type": "application/json" }
         : {}),
-      ...(accessToken ? { Cookie: `_hoauth=${accessToken}` } : {}),
     });
 
-    // 추가 헤더
+    // 서버 환경일 때만 쿠키 추가
+    if (typeof window === "undefined") {
+      const serializedCookies = await getAccessTokenFromCookies();
+      if (serializedCookies) {
+        headers.append("Cookie", serializedCookies);
+      }
+    }
+
+    // 사용자 정의 헤더 덮어쓰기
     if (config?.headers) {
       Object.entries(config.headers).forEach(([key, value]) => {
-        headers.append(key, value);
+        headers.set(key, value);
       });
     }
 

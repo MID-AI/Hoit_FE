@@ -6,6 +6,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import GoogleLogo from "@/assets/logo/googleLogo.svg";
+import Logo from "@/assets/logo/logo.svg";
 import Image from "next/image";
 import { BASE_URL } from "@/apis/client/APIClient";
 import API_ROUTES from "@/apis/constants/routes";
@@ -30,13 +31,8 @@ function LoginModal() {
           />
         </span>
         <span className="mt-45 flex flex-col items-center">
-          <Image
-            src="/logo.svg"
-            width={67}
-            height={35}
-            alt="로고"
-            className="mb-43"
-          />
+          <Logo width={67} hanging={35} className="mb-43" />
+
           <span className="mb-24 shrink-0 text-nowrap text-Type-20-medium text-coolGray-500">
             로그인 후 나만의 이미지를 만들어 보세요!
           </span>
