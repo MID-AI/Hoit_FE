@@ -20,7 +20,6 @@ const API_ROUTES = {
 
   // 내 프로젝트(전체)
   MY_IMAGES: "api/images/mypage",
-  // DELETE_MY_IMAGE: "api/images/mypage", 삭제예정
 
   // 내 프로젝트(폴더)
   MY_PROJECT_FOLDER: "api/folder",
