@@ -8,5 +8,5 @@ import { cookies } from "next/headers";
  */
 export const getAccessTokenFromCookies = async (): Promise<string> => {
   const cookieStore = await cookies();
-  return cookieStore.get("_hoauth")?.value || "";
+  return cookieStore.toString();
 };

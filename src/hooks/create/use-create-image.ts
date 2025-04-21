@@ -50,10 +50,10 @@ export default function useCreateImage({ prompt }: { prompt: string }) {
 
     const formData = new FormData();
     if (characterRef) {
-      formData.append("characterRef", characterRef);
+      formData.append("crefUrl", characterRef);
     }
     if (styleRef) {
-      formData.append("styleRef", styleRef);
+      formData.append("srefUrl", styleRef);
     }
     formData.append("prompt", prompt);
     formData.append("ratio", CREATE_IMAGE_SELECT_MENU[ratio].content);

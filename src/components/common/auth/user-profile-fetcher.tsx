@@ -8,16 +8,10 @@ import {
 
 async function UserProfileFetcher({ children }: { children: React.ReactNode }) {
   const queryClient = new QueryClient();
-  try {
-    await queryClient.fetchQuery({
-      queryKey: QUERY_KEY.MY.PROFILE,
-      queryFn: getUserInfo,
-    });
-  } catch (error: any) {
-    if (error.status === 401 || error?.response?.status === 401) {
-      queryClient.setQueryData(QUERY_KEY.MY.PROFILE, null);
-    }
-  }
+  await queryClient.prefetchQuery({
+    queryKey: QUERY_KEY.MY.PROFILE,
+    queryFn: getUserInfo,
+  });
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>

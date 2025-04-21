@@ -7,19 +7,12 @@ import ArrowIcon from "@/assets/icon/arrow_small.svg";
 function ImageList() {
   const {
     data,
-    isLoading,
     fetchNextPage,
     hasNextPage,
     hasPreviousPage,
     fetchPreviousPage,
   } = useGetMyImageList(6);
 
-  if (isLoading)
-    return (
-      <div aria-label="이미지 목록 불러오는 중" className="w-full">
-        로딩중
-      </div>
-    );
   const images = data?.pages.flatMap((page) => page.content) ?? [];
   const paddedImages = Array.from({ length: 6 }, (_, i) => images[i]);
 

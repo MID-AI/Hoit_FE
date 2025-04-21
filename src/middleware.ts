@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-const PUBLIC_PATHS = ["/", "/create/image", "/create/video", "/login"];
+const PUBLIC_PATHS = ["/", "/image/create", "/video/create", "/login"];
 
 export const config = {
   matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
