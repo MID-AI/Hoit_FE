@@ -13,6 +13,13 @@ export async function getMyImageList(page: number, size?: number) {
   });
 }
 
+// 내 프로젝트 - 폴더 - 이미지삭제
+export async function deleteImages(imageIds: number[]) {
+  return await apiClient.delete(API_ROUTES.MY_IMAGES, {
+    imageIds,
+  });
+}
+
 // 내 프로젝트 - 폴더
 export async function getMyProjectFolder(page: number) {
   return await apiClient.get<PageNation<FolderType>>(

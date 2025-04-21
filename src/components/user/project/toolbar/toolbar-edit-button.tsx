@@ -1,21 +1,26 @@
+import cn from "@/utils/cn";
 import { ReactNode } from "react";
 
 function ToolbarEditButton({
   icon,
   text,
   onClick,
+  className,
 }: {
   icon: ReactNode;
   text: string;
-  onClick: () => void;
+  onClick?: () => void;
+  className?: string;
 }) {
   return (
     <button
       onClick={onClick}
-      className="ml-18 flex shrink items-center gap-12 text-coolGray-500"
+      className={cn(
+        "ml-18 flex shrink items-center gap-12 text-coolGray-500",
+        className,
+      )}
     >
-      <span className="flex w-fit shrink-0">{icon}</span>
-
+      {icon}
       {text}
     </button>
   );

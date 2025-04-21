@@ -1,11 +1,11 @@
-import ToolbarEditButton from "../toolbar-edit-button";
-import DownLoadIcon from "@/assets/my/download_gray.svg";
+import ToolbarEditButton from "../../toolbar/toolbar-edit-button";
+import MoveFolderIcon from "@/assets/my/move_folder.svg";
 
 function ToolbarFolderMove() {
   const handleClick = () => {};
   return (
     <ToolbarEditButton
-      icon={<DownLoadIcon />}
+      icon={<MoveFolderIcon />}
       text="폴더이동"
       onClick={handleClick}
     />

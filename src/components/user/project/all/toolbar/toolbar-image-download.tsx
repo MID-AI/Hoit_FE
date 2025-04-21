@@ -1,22 +1,19 @@
 "use client";
 
-import { useParams } from "next/navigation";
-import ToolbarEditButton from "../../toolbar/toolbar-edit-button";
-import DownLoadIcon from "@/assets/create/download.svg";
+import type { ImageType, PageNation } from "@/@types/images";
+import { QUERY_KEY } from "@/constants/query-key";
+import { selectedAllTabCardsAtom } from "@/stores/project-atom";
+import { downloadImage } from "@/utils/download";
 import { type InfiniteData, useQueryClient } from "@tanstack/react-query";
 import { useAtomValue } from "jotai";
-import { selectedFolderCardsAtom } from "@/stores/project-atom";
-import type { ImageType, PageNation } from "@/@types/images";
-import { downloadImage } from "@/utils/download";
-import { QUERY_KEY } from "@/constants/query-key";
+import ToolbarEditButton from "../../toolbar/toolbar-edit-button";
+import DownLoadIcon from "@/assets/create/download.svg";
 
-function ToolbarDownload() {
-  const params = useParams();
-  const folderId = Number(params.id);
-  const selectedCards = useAtomValue(selectedFolderCardsAtom);
+function ToolbarImageDownload() {
+  const selectedCards = useAtomValue(selectedAllTabCardsAtom);
   const queryClient = useQueryClient();
   const cachedData = queryClient.getQueryData(
-    QUERY_KEY.MY.PROJECT_FOLDER_IMAGES(folderId),
+    QUERY_KEY.MY.PROJECT(),
   ) as InfiniteData<PageNation<ImageType>>;
 
   const handleClick = () => {
@@ -39,4 +36,4 @@ function ToolbarDownload() {
   );
 }
 
-export default ToolbarDownload;
+export default ToolbarImageDownload;

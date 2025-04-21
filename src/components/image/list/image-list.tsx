@@ -4,6 +4,7 @@ import Masonry from "react-masonry-css";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
 import Card from "@/components/common/card/card";
+import { IMAGE_LIST_BREAKPOINTS } from "@/constants/image-list-breakpoints";
 
 interface Props {
   data: any;
@@ -15,13 +16,6 @@ interface Props {
 function ImageList({ data, isLoading, fetchNextPage, hasNextPage }: Props) {
   const { ref, inView } = useInView();
   const isAllEmpty = data?.pages[0].empty;
-
-  const breakpoints = {
-    default: 4,
-    1024: 3,
-    768: 2,
-    540: 1,
-  };
 
   useEffect(() => {
     if (inView && hasNextPage) {
@@ -45,7 +39,7 @@ function ImageList({ data, isLoading, fetchNextPage, hasNextPage }: Props) {
       ) : (
         <>
           <Masonry
-            breakpointCols={breakpoints}
+            breakpointCols={IMAGE_LIST_BREAKPOINTS}
             className="flex justify-start gap-20 md:pl-0 lg:px-0"
           >
             {data?.pages.map((page: any) =>
