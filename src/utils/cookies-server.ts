@@ -7,5 +7,6 @@ import { cookies } from "next/headers";
  * @returns string - accessToken 값
  */
 export const getAccessTokenFromCookies = async (): Promise<string> => {
-  return cookies().toString();
+  const cookieStore = await cookies();
+  return cookieStore.toString();
 };
