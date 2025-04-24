@@ -44,5 +44,5 @@ export interface ImageType {
   ratio: string;
   createdAt: string;
   likeCount: number;
-  isLiked?: boolean;
+  isLiked: boolean | null;
 }

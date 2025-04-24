@@ -1,9 +1,9 @@
-import HeartWhiteIcon from "@/assets/icon/heart_white.svg";
+import HeartWhiteIcon from "@/assets/icon/heart.svg";
 import HeartBlueIcon from "@/assets/icon/heart_blue.svg";
 
 interface Props {
   nickname?: string;
-  isLiked?: boolean;
+  isLiked?: boolean | null;
   likeCount: number;
 }
 
@@ -16,7 +16,11 @@ function CardInfo({ nickname, isLiked, likeCount }: Props) {
       <div>{nickname}</div>
       <div className="flex items-center gap-6">
         <span onClick={onClickLike}>
-          {isLiked ? <HeartBlueIcon /> : <HeartWhiteIcon />}
+          {isLiked ? (
+            <HeartBlueIcon />
+          ) : (
+            <HeartWhiteIcon className="text-white" />
+          )}
         </span>
         <span>{likeCount}</span>
       </div>

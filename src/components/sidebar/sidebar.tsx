@@ -30,12 +30,14 @@ const myMenuItems = [
   {
     icon: <SocialIcon />,
     label: "내 활동",
-    href: `${PAGE_ROUTES.MY_ACTIVITY}`,
+    href: `${PAGE_ROUTES.MY_ACTIVITY_POST}`,
+    sub_href: `${PAGE_ROUTES.MY_ACTIVITY_LIKE}`,
   },
   {
     icon: <MyActiveIcon />,
     label: "내 프로젝트",
-    href: `${PAGE_ROUTES.MY_PROJECT}`,
+    href: `${PAGE_ROUTES.MY_PROJECT_ALL}`,
+    sub_href: `${PAGE_ROUTES.MY_PROJECT_FOLDER}`,
   },
 ];
 
@@ -51,11 +53,22 @@ export function Sidebar() {
 
           <div className="flex w-full flex-col gap-12">
             {menuItems.map((item) => (
-              <SidebarItem key={item.label} item={item} />
+              <SidebarItem
+                key={item.label}
+                icon={item.icon}
+                href={item.href}
+                label={item.label}
+              />
             ))}
             <div className="mx-8 h-1 w-full bg-coolGray-200" />
             {myMenuItems.map((item) => (
-              <SidebarItem key={item.label} item={item} />
+              <SidebarItem
+                key={item.label}
+                icon={item.icon}
+                href={item.href}
+                label={item.label}
+                sub_href={item.sub_href}
+              />
             ))}
           </div>
         </div>

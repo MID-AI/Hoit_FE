@@ -10,6 +10,7 @@ const API_ROUTES = {
 
   // 홈
   SHARED_IMAGES: "api/shared-images",
+  IMAGE_DETAIL: (id: number) => `api/images/${id}`,
 
   // 이미지 생성
   CREATE_IMAGE: "api/images/create",

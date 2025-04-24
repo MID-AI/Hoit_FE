@@ -1,10 +1,10 @@
 import InfinitePrefetch from "@/components/query/infinite-prefetch";
+import TabAllCleanup from "../all/tab-all-cleanup";
 import { QUERY_KEY } from "@/constants/query-key";
+import TabAll from "../all/tab-all";
 import { getMyImageList } from "@/apis/services/project";
-import TabAll from "./tab-all";
-import TabAllCleanup from "./tab-all-cleanup";
 
-function TabAllWrapper() {
+function TabAllContainer() {
   return (
     <>
       <TabAllCleanup />
@@ -18,4 +18,4 @@ function TabAllWrapper() {
   );
 }
 
-export default TabAllWrapper;
+export default TabAllContainer;

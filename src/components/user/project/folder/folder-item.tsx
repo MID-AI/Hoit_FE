@@ -19,7 +19,7 @@ function FolderItem({
   return (
     <div className="relative h-286 w-415 overflow-hidden rounded-22 border border-coolGray-200">
       <Link
-        href={PAGE_ROUTES.MY_PROJECT_FOLDER(id)}
+        href={PAGE_ROUTES.MY_PROJECT_FOLDER_IMAGE(id)}
         className="flex h-184 w-415 items-center justify-center bg-coolGray-100"
       >
         {coverImage ? (
@@ -38,7 +38,7 @@ function FolderItem({
       <div className="pb-25 pl-14 pr-12 pt-18">
         <div className="mb-19 flex items-center justify-between">
           <Link
-            href={PAGE_ROUTES.MY_PROJECT_FOLDER(id)}
+            href={PAGE_ROUTES.MY_PROJECT_FOLDER_IMAGE(id)}
             className="text-Type-18-medium"
           >
             {name}
