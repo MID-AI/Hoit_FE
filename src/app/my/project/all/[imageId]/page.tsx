@@ -6,16 +6,12 @@ async function TabAllImageDetailPage({
   params,
 }: {
   isModal?: boolean;
-  params: { folderId: string; imageId: string };
+  params: { imageId: string };
 }) {
-  const { folderId, imageId } = await params;
+  const { imageId } = await params;
   return (
     <main>
-      <TabAllImageDetailContainer
-        isModal={isModal}
-        imageId={Number(imageId)}
-        folderId={Number(folderId)}
-      />
+      <TabAllImageDetailContainer isModal={isModal} imageId={Number(imageId)} />
     </main>
   );
 }

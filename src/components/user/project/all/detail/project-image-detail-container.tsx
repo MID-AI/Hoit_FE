@@ -1,4 +1,5 @@
 import MediaWrapper from "@/components/media/media-wrapper";
+import { QUERY_KEY } from "@/constants/query-key";
 import useGetMyImageList from "@/hooks/user/use-get-my-image-list";
 
 function ProjectImageDetailContainer({
@@ -22,7 +23,7 @@ function ProjectImageDetailContainer({
     <MediaWrapper
       isModal={isModal}
       image={currentImage}
-      context={"project"}
+      context={QUERY_KEY.MY.PROJECT()}
       prevId={prevId}
       nextId={nextId}
     />

@@ -1,6 +1,7 @@
 "use client";
 
 import MediaWrapper from "@/components/media/media-wrapper";
+import { QUERY_KEY } from "@/constants/query-key";
 import useGetFolderImages from "@/hooks/user/use-get-folder-images";
 
 function FolderImageDetailContainer({
@@ -26,7 +27,7 @@ function FolderImageDetailContainer({
     <MediaWrapper
       isModal={isModal}
       image={currentImage}
-      context={`folder/${folderId}`}
+      context={QUERY_KEY.MY.PROJECT_FOLDER_IMAGES(folderId)}
       prevId={prevId}
       nextId={nextId}
     />

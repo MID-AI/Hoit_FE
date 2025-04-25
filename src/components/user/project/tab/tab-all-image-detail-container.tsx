@@ -1,16 +1,15 @@
 "use client";
 
 import MediaWrapper from "@/components/media/media-wrapper";
+import { QUERY_KEY } from "@/constants/query-key";
 import useGetMyImageList from "@/hooks/user/use-get-my-image-list";
 
 function TabAllImageDetailContainer({
   isModal,
   imageId,
-  folderId,
 }: {
   isModal?: boolean;
   imageId: number;
-  folderId: number;
 }) {
   const { data: cachedList } = useGetMyImageList();
   const allImages = cachedList?.pages.flatMap((page) => page.content) ?? [];
@@ -26,7 +25,7 @@ function TabAllImageDetailContainer({
     <MediaWrapper
       isModal={isModal}
       image={currentImage}
-      context={`folder/${folderId}`}
+      context={QUERY_KEY.MY.PROJECT()}
       prevId={prevId}
       nextId={nextId}
     />

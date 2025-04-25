@@ -10,7 +10,7 @@ const PUBLIC_PATHS = [
 ];
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+  matcher: ["/((?!_next/|api|favicon.ico).*)"],
 };
 
 // 인증 여부 확인

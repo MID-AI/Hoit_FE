@@ -30,10 +30,8 @@ const notoSansKr = Noto_Sans_KR({
 
 export default function RootLayout({
   children,
-  modal,
 }: Readonly<{
   children: React.ReactNode;
-  modal: React.ReactNode;
 }>) {
   return (
     <html lang="ko">
@@ -47,7 +45,6 @@ export default function RootLayout({
               <Sidebar />
               <main className="ml-64 flex items-start justify-center lg:ml-140">
                 {children}
-                {modal}
                 <div id="modal-root"></div>
                 <ErrorDialog />
               </main>

@@ -9,18 +9,22 @@ async function ActivityImagePage({
   isModal?: boolean;
   params: Promise<{
     tab: string;
-    id: string;
+    imageId: string;
   }>;
 }) {
-  const { tab, id } = await params;
+  const { tab, imageId } = await params;
 
   if (!["post", "like"].includes(tab)) {
     return notFound();
   }
 
   const tabContent = {
-    post: <PostImageDetailContainer isModal={isModal} imageId={Number(id)} />,
-    like: <LikeImageDetailContainer isModal={isModal} imageId={Number(id)} />,
+    post: (
+      <PostImageDetailContainer isModal={isModal} imageId={Number(imageId)} />
+    ),
+    like: (
+      <LikeImageDetailContainer isModal={isModal} imageId={Number(imageId)} />
+    ),
   }[tab];
 
   return <main>{tabContent}</main>;

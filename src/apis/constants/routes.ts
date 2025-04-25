@@ -30,6 +30,8 @@ const API_ROUTES = {
 
   // 좋아요
   IMAGE_LIKED: (id: number) => `api/${id}/like`,
+  // 포스팅하기
+  IMAGE_POSTING: (id: number) => `api/shared-images/${id}`,
 } as const;
 
 export default API_ROUTES;

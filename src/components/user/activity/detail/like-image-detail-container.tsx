@@ -1,6 +1,7 @@
 "use client";
 
 import MediaWrapper from "@/components/media/media-wrapper";
+import { QUERY_KEY } from "@/constants/query-key";
 import useGetMyImagesLiked from "@/hooks/user/use-get-my-images-liked";
 
 function LikeImageDetailContainer({
@@ -23,7 +24,7 @@ function LikeImageDetailContainer({
     <MediaWrapper
       isModal={isModal}
       image={currentImage}
-      context={"like"}
+      context={QUERY_KEY.MY.ACTIVITY_LIKES}
       prevId={prevId}
       nextId={nextId}
     />

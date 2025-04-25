@@ -45,4 +45,5 @@ export interface ImageType {
   createdAt: string;
   likeCount: number;
   isLiked: boolean | null;
+  isPosted?: boolean;
 }

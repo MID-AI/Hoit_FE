@@ -21,6 +21,8 @@ function HomeImageDetailContainer({
   let image: ImageType | undefined;
   let prevId: number | undefined;
   let nextId: number | undefined;
+  let context: readonly unknown[] | undefined = undefined;
+  let isList: boolean = false;
 
   if (cachedList) {
     const allImages = cachedList.pages.flatMap((page) => page.content);
@@ -28,6 +30,8 @@ function HomeImageDetailContainer({
     image = allImages[currentIndex];
     prevId = allImages[currentIndex - 1]?.id;
     nextId = allImages[currentIndex + 1]?.id;
+    context = QUERY_KEY.IMAGE.LIST;
+    isList = true;
   }
 
   const {
@@ -40,6 +44,10 @@ function HomeImageDetailContainer({
   if (!image && isError) return <div>이미지를 찾을 수 없습니다</div>;
 
   const imageToUse = image ?? fetchedImage;
+  if (!image && fetchedImage) {
+    context = QUERY_KEY.IMAGE.DETAIL(imageId);
+    isList = false;
+  }
   if (!imageToUse) return <div>이미지를 찾을 수 없습니다</div>;
 
   return (
@@ -48,6 +56,8 @@ function HomeImageDetailContainer({
       image={imageToUse as ImageType}
       prevId={image ? prevId : undefined}
       nextId={image ? nextId : undefined}
+      context={context}
+      isList={isList}
     />
   );
 }

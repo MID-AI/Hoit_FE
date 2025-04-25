@@ -1,6 +1,7 @@
 "use client";
 
 import MediaWrapper from "@/components/media/media-wrapper";
+import { QUERY_KEY } from "@/constants/query-key";
 import useGetMyActivityPosts from "@/hooks/user/use-get-my-activity-posts";
 
 function PostImageDetailContainer({
@@ -24,7 +25,7 @@ function PostImageDetailContainer({
     <MediaWrapper
       isModal={isModal}
       image={currentImage}
-      context={"post"}
+      context={QUERY_KEY.MY.ACTIVITY_POST}
       prevId={prevId}
       nextId={nextId}
     />
