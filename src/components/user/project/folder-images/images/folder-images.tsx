@@ -10,15 +10,15 @@ import {
 } from "@/stores/project-atom";
 import Card from "@/components/common/card/card";
 import useGetFolderImages from "@/hooks/user/use-get-folder-images";
-import { useParams } from "next/navigation";
+
 import EditImageWrapper from "../../edit/edit-image-wrapper";
 import { IMAGE_LIST_BREAKPOINTS } from "@/constants/image-list-breakpoints";
 import NoItems from "@/components/common/card/no-items";
+import FolderHeader from "../folder-header";
 
-function FolderImages() {
-  const id = Number(useParams().id);
+function FolderImages({ folderId }: { folderId: number }) {
   const { data, isLoading, fetchNextPage, hasNextPage } =
-    useGetFolderImages(id);
+    useGetFolderImages(folderId);
   const [selectedCards, setSelectedCards] = useAtom(selectedFolderCardsAtom);
   const editMode = useAtomValue(editModeFolderAtom);
   const { ref, inView } = useInView();
@@ -52,11 +52,17 @@ function FolderImages() {
   }
 
   if (isAllEmpty) {
-    return <NoItems text="이미지와 영상을 생성해 보세요!" />;
+    return (
+      <>
+        <FolderHeader folderName="제목 데이터 확인하기" isEmpty={isAllEmpty} />
+        <NoItems text="이미지와 영상을 폴더에 추가해보세요!" />;
+      </>
+    );
   }
 
   return (
     <>
+      <FolderHeader folderName="제목 데이터 확인하기" />
       <Masonry
         breakpointCols={IMAGE_LIST_BREAKPOINTS}
         className="flex justify-start gap-20 md:pl-0 lg:px-0"

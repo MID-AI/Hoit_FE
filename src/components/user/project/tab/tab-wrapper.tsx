@@ -1,40 +1,27 @@
 "use client";
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import TabFolder from "../folder/tab-folder";
-import { useRouter, useSearchParams } from "next/navigation";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Link from "next/link";
+import PAGE_ROUTES from "@/constants/page-routes";
 
 function TabWrapper({
-  tabAll,
-  editToolbar,
+  activeTab,
+  children,
 }: {
-  tabAll: React.ReactNode;
-  editToolbar: React.ReactNode;
+  activeTab?: string;
+  children: React.ReactNode;
 }) {
-  const searchParams = useSearchParams();
-  const router = useRouter();
-  const tab = searchParams.get("tab") ?? "all";
-
-  const handleTabChange = (value: string) => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.set("tab", value);
-    router.replace(`?${params.toString()}`);
-  };
-
   return (
-    <Tabs value={tab} onValueChange={handleTabChange} className="w-full">
-      <span className="flex items-start justify-between">
-        <TabsList className="h-44">
+    <Tabs value={activeTab} className="w-full">
+      <TabsList className="h-44">
+        <Link href={`${PAGE_ROUTES.MY_PROJECT_ALL}`}>
           <TabsTrigger value="all">전체</TabsTrigger>
+        </Link>
+        <Link href={`${PAGE_ROUTES.MY_PROJECT_FOLDER}`}>
           <TabsTrigger value="folder">폴더</TabsTrigger>
-        </TabsList>
-        {tab === "all" && editToolbar}
-      </span>
-
-      <TabsContent value="all">{tabAll}</TabsContent>
-      <TabsContent value="folder">
-        <TabFolder />
-      </TabsContent>
+        </Link>
+      </TabsList>
+      {children}
     </Tabs>
   );
 }

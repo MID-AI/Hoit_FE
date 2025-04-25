@@ -4,7 +4,13 @@ import ArrowIcon from "@/assets/my/arrow_header.svg";
 import { useRouter } from "next/navigation";
 import FolderImagesToolbar from "./toolbar/folder-images-toolbar";
 
-function FolderHeader({ folderName }: { folderName: string }) {
+function FolderHeader({
+  folderName,
+  isEmpty,
+}: {
+  folderName: string;
+  isEmpty?: boolean;
+}) {
   const router = useRouter();
 
   return (
@@ -16,7 +22,7 @@ function FolderHeader({ folderName }: { folderName: string }) {
         <ArrowIcon />
         <header className="text-Type-28-bold">{folderName}</header>
       </button>
-      <FolderImagesToolbar />
+      {!isEmpty && <FolderImagesToolbar />}
     </div>
   );
 }
