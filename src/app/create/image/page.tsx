@@ -1,9 +1,8 @@
-import Display from "@/components/create/display/display";
 import ImageList from "@/components/create/image-list/image-list";
 import CreateImageStateCleanup from "@/components/image/create/create-image-state-cleanup";
-import Prompt from "@/components/create/prompt/prompt";
-import ImageCreateNavigation from "@/components/image/create/image-create-navigation";
 import LoginChecker from "@/components/common/auth/login-checker";
+import CreateImageContainer from "@/components/image/create/create-image-container";
+import CreateImagePrompt from "@/components/image/create/create-image-prompt";
 
 function ImageCreation() {
   return (
@@ -11,11 +10,10 @@ function ImageCreation() {
       <CreateImageStateCleanup />
       <LoginChecker />
       <section className="flex h-full w-full justify-between">
-        <ImageCreateNavigation />
-        <Display />
+        <CreateImageContainer />
         <ImageList />
       </section>
-      <Prompt placeholder="프롬프트 예시: 푸른 언덕 위에 있는 오두막, 그림책, 아크릴 물감 느낌, 화려한 색깔" />
+      <CreateImagePrompt />
     </main>
   );
 }

@@ -1,8 +1,15 @@
 import ArrowIcon from "@/assets/icon/arrow_left.svg";
 import Image from "next/image";
 import ScreenStarIcon from "@/assets/create/screen_star.svg";
+import cn from "@/utils/cn";
 
-function Display({ image }: { image?: string[] }) {
+function Display({
+  isLoading,
+  image,
+}: {
+  isLoading: boolean;
+  image?: string[];
+}) {
   return (
     <div className="flex h-full max-h-786 w-full items-center justify-center gap-44">
       <ArrowIcon className="cursor-pointer text-coolGray-300" />
@@ -14,7 +21,9 @@ function Display({ image }: { image?: string[] }) {
         </div>
       ) : (
         <div className="flex h-full w-full max-w-786 items-center justify-center bg-coolGray-100 text-white">
-          <ScreenStarIcon className="h-355 w-353" />
+          <ScreenStarIcon
+            className={cn("h-355 w-353", isLoading && "animate-spin")}
+          />
         </div>
       )}
 

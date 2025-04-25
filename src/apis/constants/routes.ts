@@ -14,6 +14,11 @@ const API_ROUTES = {
 
   // 이미지 생성
   CREATE_IMAGE: "api/images/create",
+  IMAGE_REFERENCE: "api/reference/images",
+
+  // 비디오 생성
+  CREATE_VIDEO: "api/videos/create",
+  VIDEO_REFERENCE: "api/reference/videos",
 
   // 내 활동
   MY_ACTIVITY_POSTS: "api/mypage/shared-images",

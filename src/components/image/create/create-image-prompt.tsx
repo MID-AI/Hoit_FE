@@ -1,0 +1,40 @@
+"use client";
+
+import Prompt from "@/components/create/prompt/prompt";
+import useCreateImage from "@/hooks/create/use-create-image";
+import usePostImageRef from "@/hooks/create/use-post-image-ref";
+import { isCreateImageOptionLockedAtom } from "@/stores/create-image-atom";
+import { useAtomValue } from "jotai";
+import { useState } from "react";
+
+function CreateImagePrompt() {
+  const [prompt, setPrompt] = useState("");
+  const postRefImages = usePostImageRef();
+  const createImage = useCreateImage({ prompt });
+  const isLoading = useAtomValue(isCreateImageOptionLockedAtom);
+
+  const handleSubmit = async () => {
+    try {
+      await postRefImages.postRefImages();
+      await createImage.handleCreateImage();
+    } catch (error) {
+      console.error("레퍼런스 업로드 혹은 이미지 생성 중 오류 발생", error);
+    }
+  };
+
+  return (
+    <Prompt
+      prompt={prompt}
+      setPrompt={setPrompt}
+      placeholder={
+        isLoading
+          ? "이미지를 만들고 있어요! 잠시만 기다려주세요..."
+          : "프롬프트 예시: 푸른 언덕 위에 있는 오두막, 그림책, 아크릴 물감 느낌, 화려한 색깔"
+      }
+      onClick={handleSubmit}
+      isLoading={isLoading}
+    />
+  );
+}
+
+export default CreateImagePrompt;

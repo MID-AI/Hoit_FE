@@ -11,7 +11,7 @@ import {
 import { useAtom } from "jotai";
 import ImageCreateNavigationSelect from "./image-create-navigation-select";
 
-function ImageCreateNavigation() {
+function ImageCreateNavigation({ isLoading }: { isLoading: boolean }) {
   const [ratio, setRatio] = useAtom(selectedRatioAtom);
   const [character, setCharacter] = useAtom(selectedCharacterAtom);
   const [style, setStyle] = useAtom(selectedStyleAtom);
@@ -23,13 +23,14 @@ function ImageCreateNavigation() {
   };
 
   return (
-    <Navigation onClickReset={onClickReset}>
+    <Navigation onClickReset={onClickReset} disabled={isLoading}>
       <NavigationSection
         title="이미지 비율"
         content={
           <ImageCreateNavigationSelect
             selectedValue={ratio}
             setSelectedValue={setRatio}
+            disabled={isLoading}
           />
         }
       />
@@ -40,12 +41,20 @@ function ImageCreateNavigation() {
             type="character"
             image={character}
             setImage={setCharacter}
+            disabled={isLoading}
           />
         }
       />
       <NavigationSection
         title="스타일"
-        content={<ImageInput type="style" image={style} setImage={setStyle} />}
+        content={
+          <ImageInput
+            type="style"
+            image={style}
+            setImage={setStyle}
+            disabled={isLoading}
+          />
+        }
       />
     </Navigation>
   );

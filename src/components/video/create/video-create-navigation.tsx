@@ -10,7 +10,7 @@ import VideoCreateNavigationSelect from "./video-create-navigation-select";
 import NavigationSection from "@/components/create/navigation/navigation-section";
 import ImageInput from "@/components/common/card/image-input";
 
-function VideoCreateNavigation() {
+function VideoCreateNavigation({ isLoading }: { isLoading: boolean }) {
   const [aiModel, setAiModel] = useAtom(selectedAiModelAtom);
   const [refImage, setRefImage] = useAtom(selectedRefImageAtom);
 
@@ -20,20 +20,26 @@ function VideoCreateNavigation() {
   };
 
   return (
-    <Navigation onClickReset={onClickReset}>
+    <Navigation onClickReset={onClickReset} disabled={isLoading}>
       <NavigationSection
         title="모델"
         content={
           <VideoCreateNavigationSelect
             selectedValue={aiModel}
             setSelectedValue={setAiModel}
+            disabled={isLoading}
           />
         }
       />
       <NavigationSection
         title="참고 이미지 업로드"
         content={
-          <ImageInput type="imageRef" image={refImage} setImage={setRefImage} />
+          <ImageInput
+            type="imageRef"
+            image={refImage}
+            setImage={setRefImage}
+            disabled={isLoading}
+          />
         }
       />
     </Navigation>

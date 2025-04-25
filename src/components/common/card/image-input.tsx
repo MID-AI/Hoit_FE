@@ -12,17 +12,24 @@ function ImageInput({
   type,
   image,
   setImage,
+  disabled,
 }: {
   type: string;
   image: File | null;
   setImage: (file: File | null) => void;
+  disabled: boolean;
 }) {
   const onClickDelete = () => {
     setImage(null);
   };
 
   return (
-    <div className="flex h-148 w-full shrink-0 items-center justify-center gap-12 rounded-20 border border-coolGray-100 bg-coolGray-100 p-12">
+    <div
+      className={cn(
+        "flex h-148 w-full shrink-0 items-center justify-center gap-12 rounded-20 border border-coolGray-100 bg-coolGray-100 p-12",
+        disabled && "cursor-not-allowed",
+      )}
+    >
       <div
         className={cn(
           "relative flex h-124 w-124 items-center gap-8 overflow-hidden rounded-11 px-22 py-20",
@@ -37,12 +44,13 @@ function ImageInput({
               fill
               className="object-cover"
             />
-            <div
+            <button
               className="absolute right-8 top-8 cursor-pointer"
               onClick={onClickDelete}
+              disabled={disabled}
             >
               <DeleteButtonIcon />
-            </div>
+            </button>
           </>
         ) : (
           <>
@@ -53,7 +61,14 @@ function ImageInput({
       </div>
       <Dialog>
         <DialogTrigger asChild>
-          <div className="flex h-64 w-90 cursor-pointer items-center justify-center gap-8 rounded-8 bg-white text-Type-12-regular">
+          <div
+            className={cn(
+              "flex h-64 w-90 items-center justify-center gap-8 rounded-8 text-Type-12-regular",
+              disabled
+                ? "pointer-events-none cursor-not-allowed bg-gray-100 opacity-50"
+                : "cursor-pointer bg-white",
+            )}
+          >
             <InputImageIcon />
             업로드
           </div>

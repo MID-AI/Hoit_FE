@@ -1,9 +1,8 @@
 import LoginChecker from "@/components/common/auth/login-checker";
-import Display from "@/components/create/display/display";
 import ImageList from "@/components/create/image-list/image-list";
-import Prompt from "@/components/create/prompt/prompt";
+import CreateVideoContainer from "@/components/video/create/create-video-container";
+import CreateVideoPrompt from "@/components/video/create/create-video-prompt";
 import CreateVideoStateCleanup from "@/components/video/create/create-video-state-cleanup";
-import VideoCreateNavigation from "@/components/video/create/video-create-navigation";
 
 function VideoCreation() {
   return (
@@ -11,11 +10,10 @@ function VideoCreation() {
       <CreateVideoStateCleanup />
       <LoginChecker />
       <section className="flex h-full w-full justify-between">
-        <VideoCreateNavigation />
-        <Display />
+        <CreateVideoContainer />
         <ImageList />
       </section>
-      <Prompt placeholder="나만의 상상의 세계를 펼쳐보세요!" />
+      <CreateVideoPrompt />
     </main>
   );
 }
