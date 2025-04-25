@@ -13,12 +13,15 @@ import VideoCreateNavigationSelectItem from "./video-create-navigation-select-it
 function VideoCreateNavigationSelect({
   selectedValue,
   setSelectedValue,
+  disabled,
 }: {
   selectedValue: keyof typeof CREATE_VIDEO_SELECT_MENU;
   setSelectedValue: (value: keyof typeof CREATE_VIDEO_SELECT_MENU) => void;
+  disabled: boolean;
 }) {
   return (
     <Select
+      disabled={disabled}
       value={selectedValue}
       onValueChange={(value) =>
         setSelectedValue(value as keyof typeof CREATE_VIDEO_SELECT_MENU)

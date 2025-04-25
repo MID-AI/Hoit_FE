@@ -1,8 +1,8 @@
 const PAGE_ROUTES = {
   HOME: "/",
   USER: "/user",
-  IMAGE_CREATE: "/image/create",
-  VIDEO_CREATE: "/video/create",
+  IMAGE_CREATE: "/create/image",
+  VIDEO_CREATE: "/create/video",
   MEDIA_ID: (id: number) => `/media/${id}`,
 
   MY_ACTIVITY_POST: "/my/activity/post",

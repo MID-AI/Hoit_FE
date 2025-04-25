@@ -47,3 +47,8 @@ export interface ImageType {
   isLiked: boolean | null;
   isPosted?: boolean;
 }
+
+export interface ReferenceType {
+  crefImage: string;
+  srefImage: string;
+}

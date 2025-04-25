@@ -1,4 +1,4 @@
-import type { ImageType, PageNation } from "@/@types/images";
+import type { ImageType, PageNation, ReferenceType } from "@/@types/images";
 import { apiClient } from "../client/APIClient";
 import API_ROUTES from "../constants/routes";
 
@@ -22,6 +22,19 @@ export async function getImageDetail(imageId: number) {
 }
 
 // 이미지 생성
-export async function createImage(formData: FormData) {
-  return await apiClient.post(API_ROUTES.CREATE_IMAGE, formData);
+export async function createImage(data: {
+  prompt: string;
+  ratio: string;
+  crefUrl?: string;
+  srefUrl?: string;
+}) {
+  return await apiClient.post(API_ROUTES.CREATE_IMAGE, data);
+}
+
+// 이미지 레퍼런스
+export async function postImageReference(formData: FormData) {
+  return await apiClient.post<ReferenceType>(
+    API_ROUTES.IMAGE_REFERENCE,
+    formData,
+  );
 }

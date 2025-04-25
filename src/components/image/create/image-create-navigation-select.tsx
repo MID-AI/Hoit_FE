@@ -14,12 +14,15 @@ import ImageCreateNavigationSelectItem from "./image-create-navigation-select-it
 function ImageCreateNavigationSelect({
   selectedValue,
   setSelectedValue,
+  disabled,
 }: {
   selectedValue: keyof typeof CREATE_IMAGE_SELECT_MENU;
   setSelectedValue: (value: keyof typeof CREATE_IMAGE_SELECT_MENU) => void;
+  disabled: boolean;
 }) {
   return (
     <Select
+      disabled={disabled}
       value={selectedValue}
       onValueChange={(value) =>
         setSelectedValue(value as keyof typeof CREATE_IMAGE_SELECT_MENU)
