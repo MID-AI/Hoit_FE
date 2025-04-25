@@ -2,14 +2,14 @@ import HomeImageDetailContainer from "@/components/home/home-image-detail-contai
 
 async function ImageDetailPage({
   isModal = false,
-  searchParams,
+  params,
 }: {
   isModal?: boolean;
-  searchParams: Promise<{
+  params: Promise<{
     imageId: string;
   }>;
 }) {
-  const { imageId } = await searchParams;
+  const { imageId } = await params;
 
   return (
     <HomeImageDetailContainer isModal={isModal} imageId={Number(imageId)} />
