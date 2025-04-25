@@ -5,19 +5,20 @@ import MediaNav from "./media-nav";
 import ToggleIcon from "@/assets/icon/toggle.svg";
 import cn from "@/utils/cn";
 import type { ImageType } from "@/@types/images";
+import { usePathname } from "next/navigation";
 
 function MediaNavWrapper({
-  isModal,
   image,
   context,
   isList,
 }: {
-  isModal?: boolean;
   image: ImageType;
   context?: readonly unknown[];
   isList?: boolean;
 }) {
   const [open, setOpen] = useState<boolean>(true);
+  const pathname = usePathname();
+  const isModal = pathname.includes("@modal");
 
   if (open) {
     return (

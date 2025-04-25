@@ -4,13 +4,7 @@ import MediaWrapper from "@/components/media/media-wrapper";
 import { QUERY_KEY } from "@/constants/query-key";
 import useGetMyImageList from "@/hooks/user/use-get-my-image-list";
 
-function TabAllImageDetailContainer({
-  isModal,
-  imageId,
-}: {
-  isModal?: boolean;
-  imageId: number;
-}) {
+function TabAllImageDetailContainer({ imageId }: { imageId: number }) {
   const { data: cachedList } = useGetMyImageList();
   const allImages = cachedList?.pages.flatMap((page) => page.content) ?? [];
   const currentIndex = allImages.findIndex((image) => image.id === imageId);
@@ -23,7 +17,6 @@ function TabAllImageDetailContainer({
 
   return (
     <MediaWrapper
-      isModal={isModal}
       image={currentImage}
       context={QUERY_KEY.MY.PROJECT()}
       prevId={prevId}

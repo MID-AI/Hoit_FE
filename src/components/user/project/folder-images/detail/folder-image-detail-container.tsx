@@ -5,11 +5,9 @@ import { QUERY_KEY } from "@/constants/query-key";
 import useGetFolderImages from "@/hooks/user/use-get-folder-images";
 
 function FolderImageDetailContainer({
-  isModal,
   imageId,
   folderId,
 }: {
-  isModal?: boolean;
   imageId: number;
   folderId: number;
 }) {
@@ -25,7 +23,6 @@ function FolderImageDetailContainer({
 
   return (
     <MediaWrapper
-      isModal={isModal}
       image={currentImage}
       context={QUERY_KEY.MY.PROJECT_FOLDER_IMAGES(folderId)}
       prevId={prevId}

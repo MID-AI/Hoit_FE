@@ -6,13 +6,7 @@ import { QUERY_KEY } from "@/constants/query-key";
 import { ImageType, PageNation } from "@/@types/images";
 import useGetImageDetail from "@/hooks/home/use-get-image-detail";
 
-function HomeImageDetailContainer({
-  isModal,
-  imageId,
-}: {
-  isModal?: boolean;
-  imageId: number;
-}) {
+function HomeImageDetailContainer({ imageId }: { imageId: number }) {
   const queryClient = useQueryClient();
   const cachedList = queryClient.getQueryData(
     QUERY_KEY.IMAGE.LIST,
@@ -52,7 +46,6 @@ function HomeImageDetailContainer({
 
   return (
     <MediaWrapper
-      isModal={isModal}
       image={imageToUse as ImageType}
       prevId={image ? prevId : undefined}
       nextId={image ? nextId : undefined}

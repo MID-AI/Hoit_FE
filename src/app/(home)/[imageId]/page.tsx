@@ -1,19 +1,15 @@
 import HomeImageDetailContainer from "@/components/home/home-image-detail-container";
 
-function ImageDetailPage({
-  isModal = false,
+async function ImageDetailPage({
   params,
 }: {
-  isModal?: boolean;
-  params: {
+  params: Promise<{
     imageId: string;
-  };
+  }>;
 }) {
-  const { imageId } = params;
+  const { imageId } = await params;
 
-  return (
-    <HomeImageDetailContainer isModal={isModal} imageId={Number(imageId)} />
-  );
+  return <HomeImageDetailContainer imageId={Number(imageId)} />;
 }
 
 export default ImageDetailPage;

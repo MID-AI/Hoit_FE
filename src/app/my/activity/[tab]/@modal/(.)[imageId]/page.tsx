@@ -4,7 +4,7 @@ import ActivityImagePage from "../../[imageId]/page";
 function ActivityImageModalPage(props: any) {
   return (
     <Modal>
-      <ActivityImagePage {...props} isModal={true} />
+      <ActivityImagePage {...props} />
     </Modal>
   );
 }

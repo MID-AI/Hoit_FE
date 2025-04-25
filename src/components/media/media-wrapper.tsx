@@ -6,7 +6,6 @@ import { ImageType } from "@/@types/images";
 import Link from "next/link";
 
 interface Props {
-  isModal?: boolean;
   image: ImageType;
   context?: readonly unknown[];
   folderId?: number;
@@ -15,14 +14,7 @@ interface Props {
   isList?: boolean;
 }
 
-function MediaWrapper({
-  isModal,
-  image,
-  context,
-  prevId,
-  nextId,
-  isList,
-}: Props) {
+function MediaWrapper({ image, context, prevId, nextId, isList }: Props) {
   return (
     <main className="flex h-screen w-full items-center justify-center gap-200 py-95">
       <div className="ml-180 flex items-center justify-between gap-64">
@@ -45,12 +37,7 @@ function MediaWrapper({
         )}
       </div>
 
-      <MediaNavWrapper
-        isModal={isModal}
-        image={image}
-        context={context}
-        isList={isList}
-      />
+      <MediaNavWrapper image={image} context={context} isList={isList} />
     </main>
   );
 }

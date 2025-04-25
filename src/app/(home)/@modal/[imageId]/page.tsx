@@ -5,7 +5,7 @@ import Modal from "@/components/common/modal/modal";
 function ImageDetailModalPage(props: any) {
   return (
     <Modal>
-      <ImageDetailPage {...props} isModal={true} />
+      <ImageDetailPage {...props} />
     </Modal>
   );
 }

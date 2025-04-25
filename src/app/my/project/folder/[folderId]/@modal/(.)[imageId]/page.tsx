@@ -5,7 +5,7 @@ import FolderImageDetailPage from "../../[imageId]/page";
 function FolderImageDetailModalPage(props: any) {
   return (
     <Modal>
-      <FolderImageDetailPage {...props} isModal={true} />
+      <FolderImageDetailPage {...props} />
     </Modal>
   );
 }

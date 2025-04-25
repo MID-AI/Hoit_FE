@@ -4,13 +4,7 @@ import MediaWrapper from "@/components/media/media-wrapper";
 import { QUERY_KEY } from "@/constants/query-key";
 import useGetMyActivityPosts from "@/hooks/user/use-get-my-activity-posts";
 
-function PostImageDetailContainer({
-  isModal,
-  imageId,
-}: {
-  isModal?: boolean;
-  imageId: number;
-}) {
+function PostImageDetailContainer({ imageId }: { imageId: number }) {
   const { data: cachedList } = useGetMyActivityPosts();
   const allImages = cachedList?.pages.flatMap((page) => page.content) ?? [];
   const currentIndex = allImages.findIndex((image) => image.id === imageId);
@@ -23,7 +17,6 @@ function PostImageDetailContainer({
 
   return (
     <MediaWrapper
-      isModal={isModal}
       image={currentImage}
       context={QUERY_KEY.MY.ACTIVITY_POST}
       prevId={prevId}
