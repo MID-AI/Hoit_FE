@@ -1,13 +1,38 @@
 import Image from "next/image";
+import LogoBlack from "@/assets/logo/logo_black.svg";
+import HeroButton from "./hero-button";
+import ImageIcon from "@/assets/icon/hero_icon_image.svg";
+import VideoIcon from "@/assets/icon/hero_icon_video.svg";
+import PAGE_ROUTES from "@/constants/page-routes";
 
 function Hero() {
   return (
-    <header className="relative mb-38 h-335 w-full">
-      <div className="absolute z-10 h-full w-full pl-40 pt-38 text-53 font-bold text-coolGray-800">
-        <p>상상을 현실로,</p>
-        <p>AI 애니메이션 호잇</p>
+    <header className="relative mb-30 h-266 w-full">
+      <div className="absolute z-10 flex h-full w-full flex-col justify-between gap-14 pb-32 pl-40 pt-28 text-40 font-semibold text-coolGray-800">
+        <div>
+          <p className="flex items-center gap-14">
+            상상을 현실로, AI 애니메이션{" "}
+            <LogoBlack className="hidden lg:block" />
+          </p>
+          <p className="mt-6 text-Type-20-medium">
+            고품질 무료 AI이미지와 영상을 제작해보세요!
+          </p>
+        </div>
+
+        <p className="flex gap-12">
+          <HeroButton
+            href={PAGE_ROUTES.IMAGE_CREATE}
+            text="이미지 생성하기"
+            icon={<ImageIcon />}
+          />
+          <HeroButton
+            href={PAGE_ROUTES.VIDEO_CREATE}
+            text="영상 생성하기"
+            icon={<VideoIcon />}
+          />
+        </p>
       </div>
-      <div className="relative h-335 w-full">
+      <div className="relative h-266 w-full">
         <Image
           src="/main/hero1.png"
           fill

@@ -17,7 +17,7 @@ export default function SidebarItem({ icon, label, href, sub_href }: Props) {
     <Link
       href={href}
       className={cn(
-        "box-border flex h-48 w-full items-center gap-8 rounded-76 px-8 py-12 text-coolGray-500",
+        "box-border flex h-48 w-48 items-center justify-center gap-8 rounded-76 p-12 text-coolGray-500 lg:w-full lg:justify-start lg:px-8",
         pathname === href || pathname === sub_href
           ? "border border-cBlue-400 text-cBlue-400 shadow-[0px_2px_4px_1px_rgba(20,120,194,0.15)]"
           : "transparent",
@@ -31,7 +31,9 @@ export default function SidebarItem({ icon, label, href, sub_href }: Props) {
       >
         {icon}
       </div>
-      <span className="shrink-0 text-Type-16-medium">{label}</span>
+      <span className="hidden shrink-0 text-Type-16-medium lg:flex">
+        {label}
+      </span>
     </Link>
   );
 }

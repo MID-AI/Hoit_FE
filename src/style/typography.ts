@@ -1,3 +1,7 @@
+/**
+ * 디자인 시스템 - 타이포
+ * size 40, weight semibold는 개별 적용
+ */
 export const generateFontSizes = () => {
   const sizes = [12, 14, 16, 18, 20, 24, 28, 32];
   const weights = {

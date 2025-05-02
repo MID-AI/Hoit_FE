@@ -10,7 +10,7 @@ const PUBLIC_PATHS = [
 ];
 
 export const config = {
-  matcher: ["/((?!_next/|api|favicon.ico).*)"],
+  matcher: [],
 };
 
 // 인증 여부 확인
@@ -20,6 +20,14 @@ const isAuthenticated = (request: NextRequest) => {
 };
 
 export async function middleware(request: NextRequest) {
+  if (
+    request.nextUrl.pathname.startsWith("/_next") ||
+    request.nextUrl.pathname.includes("/api/") ||
+    request.nextUrl.pathname.match(/\.(ico|png|svg|jpg|jpeg|gif)$/)
+  ) {
+    return NextResponse.next();
+  }
+
   const { pathname } = request.nextUrl;
 
   // 공개 경로는 인증 없이 접근 허용
