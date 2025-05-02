@@ -6,6 +6,7 @@ import { MswComponent } from "@/mocks/msw.component";
 import QueryProviders from "@/providers/query-provider";
 import JotaiProvider from "@/providers/jotai-provider";
 import ErrorDialog from "@/components/common/dialog/error-dialog";
+import SidebarContainer from "@/components/sidebar/sidebar-container";
 
 export const metadata: Metadata = {
   title: "Hoit",
@@ -29,10 +30,8 @@ const notoSansKr = Noto_Sans_KR({
 
 export default function RootLayout({
   children,
-  sidebar,
 }: Readonly<{
   children: React.ReactNode;
-  sidebar: React.ReactNode;
 }>) {
   return (
     <html lang="ko">
@@ -43,7 +42,7 @@ export default function RootLayout({
         <Provider>
           <QueryProviders>
             <JotaiProvider>
-              {sidebar}
+              <SidebarContainer />
               <main className="ml-64 flex items-start justify-center lg:ml-140">
                 {children}
                 <div id="modal-root"></div>
