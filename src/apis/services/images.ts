@@ -3,12 +3,22 @@ import { apiClient } from "../client/APIClient";
 import API_ROUTES from "../constants/routes";
 
 // 홈 - 공유 이미지 리스트
-export async function getSharedImages(page: number) {
+export async function getSharedImages({
+  cursor,
+  size = 20,
+  searchValue,
+}: {
+  cursor?: string | null;
+  size?: number;
+  searchValue?: string;
+}) {
   const response = await apiClient.get<PageNation<ImageType>>(
     API_ROUTES.SHARED_IMAGES,
     {
       params: {
-        page,
+        ...(cursor && { cursor }),
+        ...(size && { size }),
+        ...(searchValue && { searchValue }),
       },
     },
   );

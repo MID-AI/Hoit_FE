@@ -11,7 +11,7 @@ function CreateVideoContainer() {
   return (
     <>
       <VideoCreateNavigation isLoading={isLoading} />
-      <Display isLoading={isLoading} />
+      <Display isLoading={isLoading} image={null} />
     </>
   );
 }

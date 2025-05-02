@@ -7,7 +7,9 @@ function TabFolderContainer() {
   return (
     <InfinitePrefetch
       queryKey={QUERY_KEY.MY.PROJECT_FOLDER}
-      queryFn={({ pageParam = 0 }) => getMyProjectFolder(pageParam)}
+      queryFn={({ pageParam = null }) =>
+        getMyProjectFolder({ cursor: pageParam })
+      }
     >
       <TabFolder />
     </InfinitePrefetch>

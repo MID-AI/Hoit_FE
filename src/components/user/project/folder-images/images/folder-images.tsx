@@ -23,7 +23,7 @@ function FolderImages({ folderId }: { folderId: number }) {
   const editMode = useAtomValue(editModeFolderAtom);
   const { ref, inView } = useInView();
 
-  const isAllEmpty = data?.pages?.[0]?.empty ?? false;
+  const isAllEmpty = data?.pages?.[0]?.content ? true : false;
 
   useEffect(() => {
     if (inView && hasNextPage) {

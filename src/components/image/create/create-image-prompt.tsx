@@ -3,12 +3,14 @@
 import Prompt from "@/components/create/prompt/prompt";
 import useCreateImage from "@/hooks/create/use-create-image";
 import usePostImageRef from "@/hooks/create/use-post-image-ref";
-import { isCreateImageOptionLockedAtom } from "@/stores/create-image-atom";
-import { useAtomValue } from "jotai";
-import { useState } from "react";
+import {
+  isCreateImageOptionLockedAtom,
+  promptAtom,
+} from "@/stores/create-image-atom";
+import { useAtom, useAtomValue } from "jotai";
 
 function CreateImagePrompt() {
-  const [prompt, setPrompt] = useState("");
+  const [prompt, setPrompt] = useAtom(promptAtom);
   const postRefImages = usePostImageRef();
   const createImage = useCreateImage({ prompt });
   const isLoading = useAtomValue(isCreateImageOptionLockedAtom);

@@ -34,7 +34,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <Comp
         className={cn(
           buttonVariants({ variant }),
-          "text-Type-20-bold",
+          "text-Type-18-bold",
           className,
         )}
         ref={ref}

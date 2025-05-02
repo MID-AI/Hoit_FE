@@ -20,7 +20,7 @@ const SelectTrigger = React.forwardRef<
   <SelectPrimitive.Trigger
     ref={ref}
     className={cn(
-      "flex w-full items-center justify-between whitespace-nowrap border-input disabled:cursor-not-allowed disabled:opacity-50",
+      "flex w-full items-center justify-between whitespace-nowrap border-input disabled:cursor-not-allowed",
       className,
     )}
     {...props}
@@ -41,7 +41,7 @@ const SelectContent = React.forwardRef<
     <SelectPrimitive.Content
       ref={ref}
       className={cn(
-        "relative z-50 overflow-hidden border p-4 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
+        "relative z-50 box-border overflow-hidden border data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
         position === "popper" && "translate-y-1",
         className,
       )}
@@ -52,10 +52,10 @@ const SelectContent = React.forwardRef<
         className={cn(
           "",
           position === "popper" &&
-            "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]",
+            "h-[var(--radix-select-trigger-height)] min-w-[var(--radix-select-trigger-width)]",
         )}
       >
-        {children}
+        <div className="p-4">{children}</div>
       </SelectPrimitive.Viewport>
     </SelectPrimitive.Content>
   </SelectPrimitive.Portal>
@@ -69,12 +69,12 @@ const SelectItem = React.forwardRef<
   <SelectPrimitive.Item
     ref={ref}
     className={cn(
-      "relative flex cursor-pointer select-none items-center focus:outline-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+      "relative box-border flex cursor-pointer select-none items-center focus:outline-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       className,
     )}
     {...props}
   >
-    <span className="absolute right-7 flex items-center justify-center">
+    <span className="absolute right-8 flex items-center justify-center">
       <SelectPrimitive.ItemIndicator>
         <CheckIcon />
       </SelectPrimitive.ItemIndicator>

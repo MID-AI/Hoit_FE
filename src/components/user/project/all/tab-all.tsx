@@ -26,15 +26,10 @@ function TabAll() {
   const setIsAllEmpty = useSetAtom(isAllEmptyAtom);
   const { ref, inView } = useInView();
 
-  const isEmpty = useMemo(() => {
-    if (!data?.pages) return null;
-    return data.pages[0]?.empty ?? false;
-  }, [data]);
+  const isEmpty = data?.pages[0].content.length === 0;
 
   useEffect(() => {
-    if (isEmpty !== null) {
-      setIsAllEmpty(isEmpty);
-    }
+    setIsAllEmpty(isEmpty);
   }, [isEmpty, setIsAllEmpty]);
 
   useEffect(() => {
@@ -56,8 +51,7 @@ function TabAll() {
   };
 
   const grouped = useMemo(() => {
-    if (!data?.pages) return {};
-    const allImages = data.pages.flatMap((page) => page.content);
+    const allImages = data?.pages.flatMap((page) => page.content) ?? [];
     return groupImagesByDate(allImages);
   }, [data]);
 

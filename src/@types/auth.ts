@@ -1,4 +1,6 @@
 export interface UserType {
+  id: number;
   nickname: string;
-  credit: number;
+  profileImage: string;
+  credit?: number;
 }

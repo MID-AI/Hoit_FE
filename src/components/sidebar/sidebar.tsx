@@ -4,13 +4,13 @@ import CreateVideoIcon from "@/assets/icon/create video.svg";
 import MyActiveIcon from "@/assets/icon/folder.svg";
 import SocialIcon from "@/assets/icon/activity.svg";
 import Logo from "@/assets/logo/logo.svg";
-import LogoSm from "@/assets/logo/logo_sm.svg";
 import SidebarItem from "./sidebar-item";
-import SidebarItemIcon from "./sidebar-item-icon";
 import SidebarUser from "./sidebar-user";
 import PAGE_ROUTES from "@/constants/page-routes";
 import Link from "next/link";
-import UserProfileFetcher from "../common/auth/user-profile-fetcher";
+import DataPrefetch from "../query/data-prefetch";
+import { QUERY_KEY } from "@/constants/query-key";
+import { getUserInfo } from "@/apis/services/user";
 
 export const menuItems = [
   { icon: <HomeIcon />, label: "홈", href: "/" },
@@ -72,13 +72,13 @@ export function Sidebar() {
             ))}
           </div>
         </div>
-        <UserProfileFetcher>
+        <DataPrefetch queryKey={QUERY_KEY.MY.PROFILE} queryFn={getUserInfo}>
           <SidebarUser />
-        </UserProfileFetcher>
+        </DataPrefetch>
       </div>
 
       {/* Tablet sidebar */}
-      <div className="fixed z-50 flex h-screen w-64 flex-col items-center justify-between bg-default py-8 pb-32 pt-21 lg:hidden">
+      {/* <div className="fixed z-50 flex h-screen w-64 flex-col items-center justify-between bg-default py-8 pb-32 pt-21 lg:hidden">
         <div className="flex flex-col items-center gap-49">
           <Link href="/">
             <LogoSm />
@@ -97,7 +97,7 @@ export function Sidebar() {
         <UserProfileFetcher>
           <SidebarUser icon />
         </UserProfileFetcher>
-      </div>
+      </div> */}
 
       {/* Mobile footer menu */}
       {/* <div className="fixed bottom-0 left-0 right-0 z-50 border-t bg-[#EDEDED] bg-background md:hidden">

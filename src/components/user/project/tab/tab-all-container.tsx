@@ -10,7 +10,9 @@ function TabAllContainer() {
       <TabAllCleanup />
       <InfinitePrefetch
         queryKey={QUERY_KEY.MY.PROJECT()}
-        queryFn={({ pageParam = 0 }) => getMyImageList(pageParam)}
+        queryFn={({ pageParam = null }) =>
+          getMyImageList({ cursor: pageParam })
+        }
       >
         <TabAll />
       </InfinitePrefetch>

@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import cn from "@/utils/cn";
 
 function ImageCreateNavigationSelectItem({
   content,
@@ -9,14 +9,15 @@ function ImageCreateNavigationSelectItem({
 }) {
   return (
     <div className="flex items-center gap-7 text-Type-12-regular">
-      <span className="h-14 w-19">
-        <span
-          className={clsx(
+      <div className="h-14 w-19">
+        <div
+          className={cn(
+            "h-14 w-14 items-center rounded-4 border border-coolGray-800",
+            width === "w-15" && "w-15",
             width,
-            "flex h-14 items-center rounded-4 border border-coolGray-800",
           )}
         />
-      </span>
+      </div>
       {content}
     </div>
   );

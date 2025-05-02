@@ -1,5 +1,4 @@
 import { createImage } from "@/apis/services/images";
-import { CREATE_IMAGE_SELECT_MENU } from "@/constants/select-menu";
 import { errorDialogAtom } from "@/stores/error-atom";
 import {
   imageCharacterUrlAtom,
@@ -42,7 +41,7 @@ export default function useCreateImage({ prompt }: { prompt: string }) {
 
     const payload = {
       prompt,
-      ratio: CREATE_IMAGE_SELECT_MENU[ratio].content,
+      ratio: ratio,
       crefUrl: characterRef || undefined,
       srefUrl: styleRef || undefined,
     };
