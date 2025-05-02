@@ -4,11 +4,20 @@ import type { FolderType } from "@/@types/folder";
 import API_ROUTES from "../constants/routes";
 
 // 내 프로젝트 - 전체
-export async function getMyImageList(page: number, size?: number) {
+export async function getMyImageList({
+  cursor,
+  size = 20,
+  searchValue,
+}: {
+  cursor?: string | null;
+  size?: number;
+  searchValue?: string;
+}) {
   return await apiClient.get<PageNation<ImageType>>(API_ROUTES.MY_IMAGES, {
     params: {
-      page,
+      ...(cursor && { cursor }),
       ...(size && { size }),
+      ...(searchValue && { searchValue }),
     },
   });
 }
@@ -19,12 +28,22 @@ export async function deleteImages(imageIds: number[]) {
 }
 
 // 내 프로젝트 - 폴더
-export async function getMyProjectFolder(page: number) {
+export async function getMyProjectFolder({
+  cursor,
+  size = 20,
+  searchValue,
+}: {
+  cursor?: string | null;
+  size?: number;
+  searchValue?: string;
+}) {
   return await apiClient.get<PageNation<FolderType>>(
     API_ROUTES.MY_PROJECT_FOLDER,
     {
       params: {
-        page,
+        ...(cursor && { cursor }),
+        ...(size && { size }),
+        ...(searchValue && { searchValue }),
       },
     },
   );
@@ -47,12 +66,24 @@ export async function deleteFolder(folderId: number) {
   return await apiClient.delete(API_ROUTES.DELETE_MY_PROJECT_FOLDER(folderId));
 }
 // 내 프로젝트 - 폴더 이미지 리스트
-export async function getFolderImages(page: number, folderId: number) {
+export async function getFolderImages({
+  cursor,
+  size = 20,
+  searchValue,
+  folderId,
+}: {
+  cursor?: string | null;
+  size?: number;
+  searchValue?: string;
+  folderId: number;
+}) {
   return await apiClient.get<PageNation<ImageType>>(
     API_ROUTES.MY_PROJECT_FOLDER_IMAGES(folderId),
     {
       params: {
-        page,
+        ...(cursor && { cursor }),
+        ...(size && { size }),
+        ...(searchValue && { searchValue }),
       },
     },
   );

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Noto_Sans_KR } from "next/font/google";
 import Provider from "./provider";
-import { Sidebar } from "@/components/sidebar/sidebar";
 import { MswComponent } from "@/mocks/msw.component";
 import QueryProviders from "@/providers/query-provider";
 import JotaiProvider from "@/providers/jotai-provider";
@@ -30,8 +29,10 @@ const notoSansKr = Noto_Sans_KR({
 
 export default function RootLayout({
   children,
+  sidebar,
 }: Readonly<{
   children: React.ReactNode;
+  sidebar: React.ReactNode;
 }>) {
   return (
     <html lang="ko">
@@ -42,7 +43,7 @@ export default function RootLayout({
         <Provider>
           <QueryProviders>
             <JotaiProvider>
-              <Sidebar />
+              {sidebar}
               <main className="ml-64 flex items-start justify-center lg:ml-140">
                 {children}
                 <div id="modal-root"></div>

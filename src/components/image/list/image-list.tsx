@@ -15,7 +15,7 @@ interface Props {
 
 function ImageList({ data, isLoading, fetchNextPage, hasNextPage }: Props) {
   const { ref, inView } = useInView();
-  const isAllEmpty = data?.pages[0].empty;
+  const isAllEmpty = data?.pages[0].content.length === 0;
 
   useEffect(() => {
     if (inView && hasNextPage) {
@@ -48,7 +48,7 @@ function ImageList({ data, isLoading, fetchNextPage, hasNextPage }: Props) {
                   key={img.id}
                   id={img.id}
                   url={img.url}
-                  nickname={img.nickname}
+                  nickname={img.member.nickname}
                   likeCount={img.likeCount}
                   isLiked={img?.isLiked}
                 />

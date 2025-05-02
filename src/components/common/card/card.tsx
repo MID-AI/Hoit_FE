@@ -1,11 +1,19 @@
 "use client";
-import { type ImageType } from "@/@types/images";
+
 import { Skeleton } from "@/components/ui/skeleton";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import CardInfo from "./card-info";
 import cn from "@/utils/cn";
+
+interface Props {
+  id: number;
+  url: string;
+  nickname?: string;
+  likeCount: number;
+  isLiked: boolean | null;
+}
 
 function Card({
   id,
@@ -14,7 +22,7 @@ function Card({
   likeCount,
   isLiked,
   className,
-}: Omit<ImageType, "ratio" | "prompt" | "createdAt"> & {
+}: Props & {
   className?: string;
 }) {
   const [isLoading, setIsLoading] = useState(true);

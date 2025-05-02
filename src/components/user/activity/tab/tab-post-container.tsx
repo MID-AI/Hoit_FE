@@ -8,7 +8,9 @@ function TabPostContainer() {
   return (
     <InfinitePrefetch
       queryKey={QUERY_KEY.MY.ACTIVITY_POST}
-      queryFn={({ pageParam = 0 }) => getMyActivityPost(pageParam)}
+      queryFn={({ pageParam = null }) =>
+        getMyActivityPost({ cursor: pageParam })
+      }
     >
       <TabPost />
     </InfinitePrefetch>

@@ -14,9 +14,10 @@ export default function SidebarUser({
   icon?: boolean;
   mobile?: boolean;
 }) {
-  const { data } = useGetUser();
+  const { data, isLoading } = useGetUser();
   const [isModalOpen, setModalOpen] = useState(false);
 
+  if (isLoading) return null;
   return (
     <>
       <button

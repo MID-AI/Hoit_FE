@@ -1,8 +1,10 @@
 export const CREATE_IMAGE_SELECT_MENU = {
-  "1": { content: "1:1", width: "w-14" },
-  "2": { content: "3:4", width: "w-15" },
-  "3": { content: "16:9", width: "w-19" },
+  "1:1": { width: "w-14" },
+  "3:4": { width: "w-15" },
+  "16:9": { width: "w-19" },
 } as const;
+
+export type AspectRatio = keyof typeof CREATE_IMAGE_SELECT_MENU;
 
 export const CREATE_VIDEO_SELECT_MENU = {
   "1": { content: "I2V-01", describe: "기본 image-video 모델" },

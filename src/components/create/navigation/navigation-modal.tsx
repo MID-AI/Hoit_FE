@@ -1,29 +1,24 @@
 import {
-  DialogClose,
   DialogContent,
   DialogDescription,
   DialogTitle,
 } from "@/components/ui/dialog";
 import SiteIcon from "@/assets/create/global.svg";
 import FolderIcon from "@/assets/create/folder_sm.svg";
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
+import { modalTabVariant } from "@/style/button";
+import NavigationImageListContainer from "./navigation-image-list-container";
+import ModalButtons from "@/components/common/dialog/modal-buttons";
 
 const ALLOWED_FILE_TYPES = ["image/jpeg", "image/png", "image/webp"];
 
-/**
- * 수정 예정
- * - 이미지 리스트
- * - 버튼 공통 컴포넌트로 변경
- * - css 정리
- */
-
 function NavigationModal({
   type,
-  setImage,
+  setFile,
+  setUrl,
 }: {
   type: string;
-  setImage: (file: File | null) => void;
+  setFile: (file: File | null) => void;
+  setUrl: (url: string | null) => void;
 }) {
   const handleFileChange = async (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -35,30 +30,30 @@ function NavigationModal({
         console.warn("파일 타입 에러");
         return;
       }
-      setImage(file);
+      setFile(file);
       document.getElementById("closeModal")?.click();
     }
     event.target.value = "";
   };
 
   return (
-    <DialogContent className="flex h-640 w-1244 flex-col items-center gap-40 px-38 pb-44 pt-26 text-coolGray-800">
+    <DialogContent className="flex max-h-616 w-1236 flex-col items-center gap-40 px-38 pb-44 pt-26 text-coolGray-800">
       <DialogTitle>레퍼런스 업로드</DialogTitle>
-      <DialogDescription className="flex gap-36">
-        <span className="flex flex-col gap-12">
-          <Button className="rounded-22 border border-coolGray-500 bg-coolGray-200 px-20 py-17 text-Type-20-bold">
+      <DialogDescription className="sr-only">
+        레퍼런스 이미지 업로드 방식을 선택해 주세요
+      </DialogDescription>
+      <div className="flex gap-36">
+        <div className="flex w-full flex-col gap-12">
+          <span className={modalTabVariant({ modalTab: "primary" })}>
             <SiteIcon />
             사이트에서
-          </Button>
+          </span>
 
-          <label
-            htmlFor={type}
-            className="flex cursor-pointer items-center gap-6 rounded-22 border border-coolGray-50 bg-coolGray-50 px-20 py-17 text-Type-20-bold"
-          >
+          <label htmlFor={type} className={modalTabVariant()}>
             <FolderIcon />
-            <span className="shrink-0">컴퓨터에서</span>
+            컴퓨터에서
           </label>
-          <span>
+          <div>
             <input
               type="file"
               id={type}
@@ -67,96 +62,15 @@ function NavigationModal({
               className="hidden"
               accept="image/*"
             />
-          </span>
-        </span>
-        <span>
-          <span className="flex h-390 w-980 flex-wrap gap-10 overflow-y-auto">
-            <Image
-              src="https://picsum.photos/500/500"
-              width={155}
-              height={205}
-              alt="이미지 예시"
-              className="h-205 w-150 rounded-20"
-            />
-            <Image
-              src="https://picsum.photos/500/800"
-              width={155}
-              height={205}
-              alt="이미지 예시"
-              className="h-205 w-150 rounded-20"
-            />
-            <Image
-              src="https://picsum.photos/500/800"
-              width={155}
-              height={205}
-              alt="이미지 예시"
-              className="h-205 w-150 rounded-20"
-            />
-            <Image
-              src="https://picsum.photos/500/800"
-              width={155}
-              height={205}
-              alt="이미지 예시"
-              className="h-205 w-150 rounded-20"
-            />
-            <Image
-              src="https://picsum.photos/500/800"
-              width={155}
-              height={205}
-              alt="이미지 예시"
-              className="h-205 w-150 rounded-20"
-            />
-            <Image
-              src="https://picsum.photos/500/800"
-              width={155}
-              height={205}
-              alt="이미지 예시"
-              className="h-205 w-150 rounded-20"
-            />
-            <Image
-              src="https://picsum.photos/500/800"
-              width={155}
-              height={205}
-              alt="이미지 예시"
-              className="h-205 w-150 rounded-20"
-            />
-            <Image
-              src="https://picsum.photos/500/800"
-              width={155}
-              height={205}
-              alt="이미지 예시"
-              className="h-205 w-150 rounded-20"
-            />
-            <Image
-              src="https://picsum.photos/500/800"
-              width={155}
-              height={205}
-              alt="이미지 예시"
-              className="h-205 w-150 rounded-20"
-            />
-            <Image
-              src="https://picsum.photos/500/800"
-              width={155}
-              height={205}
-              alt="이미지 예시"
-              className="h-205 w-150 rounded-20"
-            />
-            <Image
-              src="https://picsum.photos/500/800"
-              width={155}
-              height={205}
-              alt="이미지 예시"
-              className="h-205 w-150 rounded-20"
-            />
-          </span>
-          <span className="mt-26 flex items-center justify-end gap-14">
-            <DialogClose id="closeModal" asChild>
-              <Button variant="secondary">취소</Button>
-            </DialogClose>
-            <Button>확인</Button>
-          </span>
-        </span>
-      </DialogDescription>
+          </div>
+        </div>
+        <div>
+          <NavigationImageListContainer
+            onClick={(url: string) => setUrl(url)}
+          />
+          <ModalButtons />
+        </div>
+      </div>
     </DialogContent>
   );
 }

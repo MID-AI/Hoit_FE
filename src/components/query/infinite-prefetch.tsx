@@ -7,24 +7,22 @@ import {
 interface Props<T> {
   children: React.ReactNode;
   queryKey: readonly (string | number | undefined)[];
-  queryFn: ({ pageParam }: { pageParam?: number }) => Promise<T>;
-  initialPageParam?: number;
+  queryFn: ({ pageParam }: { pageParam?: string | null }) => Promise<T>;
+  initialPageParam?: string | null;
 }
 
 async function InfinitePrefetch<T>({
   children,
   queryKey,
   queryFn,
-  initialPageParam = 0,
+  initialPageParam = null,
 }: Props<T>) {
   const queryClient = new QueryClient();
   await queryClient.prefetchInfiniteQuery({
     queryKey,
     queryFn,
     initialPageParam,
-    getNextPageParam: (lastPage: any, pages: any) => {
-      return !lastPage.last ? pages.length : undefined;
-    },
+    getNextPageParam: (lastPage: any) => lastPage.nextPageCursor ?? undefined,
   });
 
   return (

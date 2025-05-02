@@ -13,7 +13,9 @@ export default function Home() {
       <header className="mb-10 text-Type-24-bold">갤러리</header>
       <InfinitePrefetch
         queryKey={QUERY_KEY.IMAGE.LIST}
-        queryFn={({ pageParam = 0 }) => getSharedImages(pageParam)}
+        queryFn={({ pageParam = null }) =>
+          getSharedImages({ cursor: pageParam })
+        }
       >
         <ImageListFetcher />
       </InfinitePrefetch>

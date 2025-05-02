@@ -3,8 +3,8 @@ import type { NextRequest } from "next/server";
 
 const PUBLIC_PATHS = [
   "/",
-  "/image/create",
-  "/video/create",
+  "/create/image",
+  "/create/video",
   "/login",
   "/media",
 ];

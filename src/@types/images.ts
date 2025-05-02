@@ -1,3 +1,6 @@
+import type { AspectRatio } from "@/constants/select-menu";
+import type { UserType } from "./auth";
+
 export interface APIResponse<T> {
   timestamp: string;
   statusCode: number;
@@ -7,36 +10,12 @@ export interface APIResponse<T> {
 
 export interface PageNation<T> {
   content: T[];
-  empty: boolean;
-  first: boolean;
-  last: boolean;
-  number: number;
-  numberOfElements: number;
-  pageable: {
-    offset: number;
-
-    pageNumber: number;
-    pageSize: number;
-    paged: boolean;
-    sort: {
-      empty: boolean;
-      sorted: boolean;
-      unsorted: boolean;
-    };
-
-    unpaged: boolean;
-  };
-  size: number;
-  sort: {
-    empty: boolean;
-    sorted: boolean;
-    unsorted: boolean;
-  };
-  totalPages: number;
-  totalElements: number;
+  previousPageCursor: string | null;
+  nextPageCursor: string | null;
 }
 
 export interface ImageType {
+  member: Omit<UserType, "credit">;
   id: number;
   url: string;
   prompt: string;
@@ -51,4 +30,11 @@ export interface ImageType {
 export interface ReferenceType {
   crefImage: string;
   srefImage: string;
+}
+
+export interface CreatedImageType {
+  taskId: string;
+  imageUrls: string[];
+  prompt: string;
+  ratio: AspectRatio;
 }

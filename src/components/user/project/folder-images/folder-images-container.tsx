@@ -8,7 +8,9 @@ function FolderImagesContainer({ folderId }: { folderId: number }) {
   return (
     <InfinitePrefetch
       queryKey={QUERY_KEY.MY.PROJECT_FOLDER_IMAGES(folderId)}
-      queryFn={({ pageParam = 0 }) => getFolderImages(pageParam, folderId)}
+      queryFn={({ pageParam = null }) =>
+        getFolderImages({ cursor: pageParam, folderId })
+      }
     >
       <FolderImages folderId={folderId} />
     </InfinitePrefetch>

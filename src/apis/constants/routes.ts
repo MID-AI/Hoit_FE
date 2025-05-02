@@ -15,6 +15,7 @@ const API_ROUTES = {
   // 이미지 생성
   CREATE_IMAGE: "api/images/create",
   IMAGE_REFERENCE: "api/reference/images",
+  CREATE_IMAGE_SSE: (memberId: number) => `/sse/${memberId}`,
 
   // 비디오 생성
   CREATE_VIDEO: "api/videos/create",

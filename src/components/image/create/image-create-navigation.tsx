@@ -7,8 +7,12 @@ import {
   selectedCharacterAtom,
   selectedRatioAtom,
   selectedStyleAtom,
+  setCharacterByFileAtom,
+  setCharacterByUrlAtom,
+  setStyleByFileAtom,
+  setStyleByUrlAtom,
 } from "@/stores/create-image-atom";
-import { useAtom } from "jotai";
+import { useAtom, useSetAtom } from "jotai";
 import ImageCreateNavigationSelect from "./image-create-navigation-select";
 
 function ImageCreateNavigation({ isLoading }: { isLoading: boolean }) {
@@ -16,8 +20,13 @@ function ImageCreateNavigation({ isLoading }: { isLoading: boolean }) {
   const [character, setCharacter] = useAtom(selectedCharacterAtom);
   const [style, setStyle] = useAtom(selectedStyleAtom);
 
+  const setCharacterByFile = useSetAtom(setCharacterByFileAtom);
+  const setCharacterByUrl = useSetAtom(setCharacterByUrlAtom);
+  const setStyleByFile = useSetAtom(setStyleByFileAtom);
+  const setStyleByUrl = useSetAtom(setStyleByUrlAtom);
+
   const onClickReset = () => {
-    setRatio("1");
+    setRatio("1:1");
     setCharacter(null);
     setStyle(null);
   };
@@ -40,8 +49,9 @@ function ImageCreateNavigation({ isLoading }: { isLoading: boolean }) {
           <ImageInput
             type="character"
             image={character}
-            setImage={setCharacter}
             disabled={isLoading}
+            setFile={setCharacterByFile}
+            setUrl={setCharacterByUrl}
           />
         }
       />
@@ -51,8 +61,9 @@ function ImageCreateNavigation({ isLoading }: { isLoading: boolean }) {
           <ImageInput
             type="style"
             image={style}
-            setImage={setStyle}
             disabled={isLoading}
+            setFile={setStyleByFile}
+            setUrl={setStyleByUrl}
           />
         }
       />

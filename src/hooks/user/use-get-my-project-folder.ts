@@ -2,13 +2,17 @@ import { getMyProjectFolder } from "@/apis/services/project";
 import { QUERY_KEY } from "@/constants/query-key";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
-export default function useGetMyProjectFolder() {
+export default function useGetMyProjectFolder(
+  size?: number,
+  searchValue?: string,
+) {
   return useInfiniteQuery({
     queryKey: QUERY_KEY.MY.PROJECT_FOLDER,
-    queryFn: ({ pageParam = 0 }) => getMyProjectFolder(pageParam),
-    initialPageParam: 0,
-    getNextPageParam: (lastPage, pages) => {
-      return !lastPage.last ? pages.length : undefined;
-    },
+    queryFn: ({ pageParam }: { pageParam?: string | null }) =>
+      getMyProjectFolder({ cursor: pageParam, size, searchValue }),
+    initialPageParam: null,
+    getNextPageParam: (lastPage) => lastPage.nextPageCursor ?? undefined,
+    getPreviousPageParam: (firstPage) =>
+      firstPage.previousPageCursor ?? undefined,
   });
 }
