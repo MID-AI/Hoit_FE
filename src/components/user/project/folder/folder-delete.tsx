@@ -8,7 +8,7 @@ import {
   DialogDescription,
   DialogTitle,
 } from "@/components/ui/dialog";
-import useDeleteFolder from "@/hooks/user/use-delete-folder";
+import useDeleteFolder from "@/hooks/user/project/folder/use-delete-folder";
 
 interface Props {
   folderId: number;

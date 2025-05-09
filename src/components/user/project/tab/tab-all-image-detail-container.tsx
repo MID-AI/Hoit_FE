@@ -2,7 +2,7 @@
 
 import MediaWrapper from "@/components/media/media-wrapper";
 import { QUERY_KEY } from "@/constants/query-key";
-import useGetMyImageList from "@/hooks/user/use-get-my-image-list";
+import useGetMyImageList from "@/hooks/user/project/all/use-get-my-image-list";
 
 function TabAllImageDetailContainer({ imageId }: { imageId: number }) {
   const { data: cachedList } = useGetMyImageList();

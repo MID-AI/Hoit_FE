@@ -2,7 +2,7 @@
 
 import MediaWrapper from "@/components/media/media-wrapper";
 import { QUERY_KEY } from "@/constants/query-key";
-import useGetFolderImages from "@/hooks/user/use-get-folder-images";
+import useGetFolderImages from "@/hooks/user/project/folder/use-get-folder-images";
 
 function FolderImageDetailContainer({
   imageId,

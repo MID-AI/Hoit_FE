@@ -1,6 +1,6 @@
 "use client";
 
-import useGetUser from "@/hooks/user/use-get-user-profile";
+import useGetUser from "@/hooks/user/auth/use-get-user-profile";
 import SidebarNickname from "./sidebar-nickname";
 import SidebarCredit from "./sidebar-credit";
 import SidebarAlert from "./sidebar-alert";

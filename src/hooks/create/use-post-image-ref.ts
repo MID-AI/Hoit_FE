@@ -1,42 +1,42 @@
 import { postImageReference } from "@/apis/services/images";
-import {
-  imageCharacterUrlAtom,
-  imageStyleUrlAtom,
-  selectedCharacterAtom,
-  selectedStyleAtom,
-} from "@/stores/create-image-atom";
+import { createImageAtom } from "@/stores/create-image-atom";
 import { errorDialogAtom } from "@/stores/error-atom";
 import handleErrorDialog from "@/utils/handleErrorDialog";
 import { useMutation } from "@tanstack/react-query";
-import { useAtomValue, useSetAtom } from "jotai";
+import { useAtom, useSetAtom } from "jotai";
 
 function usePostImageRef() {
-  const characterRef = useAtomValue(selectedCharacterAtom);
-  const styleRef = useAtomValue(selectedStyleAtom);
-  const setStyleUrl = useSetAtom(imageStyleUrlAtom);
-  const setCharacterUrl = useSetAtom(imageCharacterUrlAtom);
+  const [state, setState] = useAtom(createImageAtom);
+  const { reference } = state;
+
   const setErrorDialog = useSetAtom(errorDialogAtom);
 
   const mutation = useMutation({
     mutationFn: (formData: FormData) => postImageReference(formData),
     onSuccess: (data) => {
-      if (data.srefImage) setStyleUrl(data.srefImage);
-      if (data.crefImage) setCharacterUrl(data.crefImage);
+      setState((prev) => ({
+        ...prev,
+        reference: {
+          ...prev.reference,
+          characterUrl: data.crefImage ?? prev.reference.characterUrl,
+          styleUrl: data.srefImage ?? prev.reference.styleUrl,
+        },
+      }));
     },
     onError: (error: any) => handleErrorDialog(error, setErrorDialog),
   });
 
   const postRefImages = () => {
-    if (!characterRef && !styleRef) return null;
+    if (!reference.character && !reference.style) return null;
 
     const formData = new FormData();
 
-    if (characterRef) {
-      formData.append("crefImage", characterRef);
+    if (reference.character) {
+      formData.append("crefImage", reference.character);
     }
 
-    if (styleRef) {
-      formData.append("srefImage", styleRef);
+    if (reference.style) {
+      formData.append("srefImage", reference.style);
     }
 
     mutation.mutate(formData);

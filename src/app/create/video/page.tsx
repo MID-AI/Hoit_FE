@@ -1,8 +1,10 @@
 import LoginChecker from "@/components/common/auth/login-checker";
+import DisplayVideo from "@/components/create/display/display-video";
+import DisplayWrapper from "@/components/create/display/display-wrapper";
 import ImageList from "@/components/create/image-list/image-list";
-import CreateVideoContainer from "@/components/video/create/create-video-container";
 import CreateVideoPrompt from "@/components/video/create/create-video-prompt";
 import CreateVideoStateCleanup from "@/components/video/create/create-video-state-cleanup";
+import VideoCreateNavigation from "@/components/video/create/video-create-navigation";
 
 function VideoCreation() {
   return (
@@ -10,7 +12,10 @@ function VideoCreation() {
       <CreateVideoStateCleanup />
       <LoginChecker />
       <section className="flex h-full w-full justify-between">
-        <CreateVideoContainer />
+        <VideoCreateNavigation />
+        <DisplayWrapper>
+          <DisplayVideo />
+        </DisplayWrapper>
         <ImageList />
       </section>
       <CreateVideoPrompt />

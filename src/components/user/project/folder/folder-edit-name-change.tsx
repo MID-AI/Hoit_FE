@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import FolderNameInputDialogContent from "./folder-name-input-dialog-content";
-import useEditFolderName from "@/hooks/user/use-edit-folder-name";
+import useEditFolderName from "@/hooks/user/project/folder/use-edit-folder-name";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useQueryClient } from "@tanstack/react-query";
 

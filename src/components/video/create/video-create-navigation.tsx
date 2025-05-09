@@ -2,36 +2,40 @@
 
 import Navigation from "@/components/create/navigation/navigation";
 import {
-  selectedAiModelAtom,
-  selectedRefImageAtom,
-  setRefByFileAtom,
-  setRefByUrlAtom,
+  createVideoAtom,
+  resetCreateVideoAtom,
 } from "@/stores/create-video-atom";
 import { useAtom, useSetAtom } from "jotai";
 import VideoCreateNavigationSelect from "./video-create-navigation-select";
 import NavigationSection from "@/components/create/navigation/navigation-section";
 import ImageInput from "@/components/common/card/image-input";
 
-function VideoCreateNavigation({ isLoading }: { isLoading: boolean }) {
-  const [aiModel, setAiModel] = useAtom(selectedAiModelAtom);
-  const [refImage, setRefImage] = useAtom(selectedRefImageAtom);
-  const setRefByFile = useSetAtom(setRefByFileAtom);
-  const setRefByUrl = useSetAtom(setRefByUrlAtom);
+function VideoCreateNavigation() {
+  const [state, setState] = useAtom(createVideoAtom);
+  const reset = useSetAtom(resetCreateVideoAtom);
+  const { aiModel, reference, isOptionLocked } = state;
 
-  const onClickReset = () => {
-    setAiModel("1");
-    setRefImage(null);
+  const setReference = (value: File | string | null, type: "file" | "url") => {
+    setState((prev) => ({
+      ...prev,
+      reference: {
+        file: type === "file" ? (value as File) : null,
+        url: type === "url" ? (value as string) : null,
+      },
+    }));
   };
 
   return (
-    <Navigation onClickReset={onClickReset} disabled={isLoading}>
+    <Navigation onClickReset={reset} disabled={isOptionLocked}>
       <NavigationSection
         title="모델"
         content={
           <VideoCreateNavigationSelect
             selectedValue={aiModel}
-            setSelectedValue={setAiModel}
-            disabled={isLoading}
+            setSelectedValue={(value) =>
+              setState((prev) => ({ ...prev, aiModel: value }))
+            }
+            disabled={isOptionLocked}
           />
         }
       />
@@ -40,10 +44,10 @@ function VideoCreateNavigation({ isLoading }: { isLoading: boolean }) {
         content={
           <ImageInput
             type="imageRef"
-            image={refImage}
-            disabled={isLoading}
-            setFile={setRefByFile}
-            setUrl={setRefByUrl}
+            image={reference.file}
+            disabled={isOptionLocked}
+            setFile={(file) => setReference(file, "file")}
+            setUrl={(url) => setReference(url, "url")}
           />
         }
       />

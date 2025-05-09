@@ -2,7 +2,7 @@
 
 import MediaWrapper from "@/components/media/media-wrapper";
 import { QUERY_KEY } from "@/constants/query-key";
-import useGetMyActivityPosts from "@/hooks/user/use-get-my-activity-posts";
+import useGetMyActivityPosts from "@/hooks/user/activity/use-get-my-activity-posts";
 
 function PostImageDetailContainer({ imageId }: { imageId: number }) {
   const { data: cachedList } = useGetMyActivityPosts();

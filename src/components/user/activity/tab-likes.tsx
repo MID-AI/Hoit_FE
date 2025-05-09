@@ -1,7 +1,7 @@
 "use client";
 
 import ImageList from "@/components/image/list/image-list";
-import useGetMyImagesLiked from "@/hooks/user/use-get-my-images-liked";
+import useGetMyImagesLiked from "@/hooks/user/activity/use-get-my-images-liked";
 
 function TabLikes() {
   const { data, isLoading, fetchNextPage, hasNextPage } = useGetMyImagesLiked();

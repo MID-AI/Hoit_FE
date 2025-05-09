@@ -2,7 +2,7 @@
 
 import MediaWrapper from "@/components/media/media-wrapper";
 import { QUERY_KEY } from "@/constants/query-key";
-import useGetMyImagesLiked from "@/hooks/user/use-get-my-images-liked";
+import useGetMyImagesLiked from "@/hooks/user/activity/use-get-my-images-liked";
 
 function LikeImageDetailContainer({ imageId }: { imageId: number }) {
   const { data: cachedList } = useGetMyImagesLiked();

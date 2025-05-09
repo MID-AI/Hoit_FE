@@ -1,21 +1,12 @@
 import { createImage } from "@/apis/services/images";
 import { errorDialogAtom } from "@/stores/error-atom";
-import {
-  imageCharacterUrlAtom,
-  imageStyleUrlAtom,
-  isCreateImageOptionLockedAtom,
-  selectedRatioAtom,
-} from "@/stores/create-image-atom";
+import { createImageAtom } from "@/stores/create-image-atom";
 import { useMutation } from "@tanstack/react-query";
-import { useAtomValue, useSetAtom } from "jotai";
+import { useAtom, useSetAtom } from "jotai";
 import handleErrorDialog from "@/utils/handleErrorDialog";
 
-export default function useCreateImage({ prompt }: { prompt: string }) {
-  const ratio = useAtomValue(selectedRatioAtom);
-  const characterRef = useAtomValue(imageCharacterUrlAtom);
-  const styleRef = useAtomValue(imageStyleUrlAtom);
-  const isOptionLockedAtom = useSetAtom(isCreateImageOptionLockedAtom);
-
+export default function useCreateImage() {
+  const [state, setState] = useAtom(createImageAtom);
   const setErrorDialog = useSetAtom(errorDialogAtom);
 
   const mutation = useMutation({
@@ -26,27 +17,31 @@ export default function useCreateImage({ prompt }: { prompt: string }) {
       srefUrl?: string;
     }) => createImage(data),
     onSuccess: () => {
-      isOptionLockedAtom(true);
+      setState((prev) => ({
+        ...prev,
+        isOptionLocked: true,
+      }));
     },
     onError: (error: any) => handleErrorDialog(error, setErrorDialog),
   });
 
   const handleCreateImage = () => {
-    let hasError = false;
-    if (prompt === "") {
+    const { prompt, ratio, reference } = state;
+
+    if (!prompt) {
       console.warn("프롬프트를 입력해주세요");
-      hasError = true;
+      return;
     }
-    if (hasError) return;
 
     const payload = {
       prompt,
-      ratio: ratio,
-      crefUrl: characterRef || undefined,
-      srefUrl: styleRef || undefined,
+      ratio,
+      crefUrl: reference.characterUrl || undefined,
+      srefUrl: reference.styleUrl || undefined,
     };
 
     mutation.mutate(payload);
   };
+
   return { handleCreateImage };
 }

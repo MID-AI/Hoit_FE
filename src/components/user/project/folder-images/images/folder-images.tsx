@@ -9,7 +9,7 @@ import {
   selectedFolderCardsAtom,
 } from "@/stores/project-atom";
 import Card from "@/components/common/card/card";
-import useGetFolderImages from "@/hooks/user/use-get-folder-images";
+import useGetFolderImages from "@/hooks/user/project/folder/use-get-folder-images";
 
 import EditImageWrapper from "../../edit/edit-image-wrapper";
 import { IMAGE_LIST_BREAKPOINTS } from "@/constants/image-list-breakpoints";

@@ -8,6 +8,7 @@ import SocialIcon from "@/assets/icon/activity.svg";
 import PAGE_ROUTES from "@/constants/page-routes";
 import DesktopSidebar from "./desktop-sidebar";
 import MobileSidebar from "./mobile-sidebar";
+import SSEContainer from "../sse/sse-container";
 
 // 메뉴 항목 타입
 type MenuItem = {
@@ -55,6 +56,7 @@ export const MY_MENU_ITEMS: Record<string, MenuItem> = {
 export function Sidebar() {
   return (
     <>
+      <SSEContainer />
       <DesktopSidebar />
       <MobileSidebar />
     </>
