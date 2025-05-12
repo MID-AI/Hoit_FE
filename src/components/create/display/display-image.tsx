@@ -1,16 +1,23 @@
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
-import PlayStopIcon from "@/assets/create/play_stop.svg";
+"use client";
 
-function DisplayImage({ image }: { image: string }) {
-  return (
-    <div>
-      <Image key={image} src={image} alt="image" width={800} height={800} />
-      <Button className="box-border bg-coolGray-300 p-5 hover:border hover:bg-white">
-        <PlayStopIcon />
-      </Button>
-    </div>
-  );
+import Image from "next/image";
+import { useAtomValue } from "jotai";
+import { createImageAtom } from "@/stores/create-image-atom";
+import DisplayLoading from "./display-loading";
+import DisplayDefault from "./display-default";
+
+function DisplayImage() {
+  const state = useAtomValue(createImageAtom);
+  const { createdImages, isOptionLocked } = state;
+
+  if (isOptionLocked) return <DisplayLoading />;
+
+  if (createdImages) {
+    return createdImages?.map((img, idx) => (
+      <Image key={idx} src={img} alt="image" width={800} height={800} />
+    ));
+  }
+  return <DisplayDefault />;
 }
 
 export default DisplayImage;

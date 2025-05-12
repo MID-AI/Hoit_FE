@@ -15,7 +15,7 @@ interface Props {
 
 function Prompt({ prompt, setPrompt, placeholder, onClick, isLoading }: Props) {
   return (
-    <div className="flex h-full max-h-222 flex-col items-end justify-between gap-2 rounded-22 border bg-white px-20 pb-12 pt-16">
+    <div className="z-10 flex h-full max-h-222 flex-col items-end justify-between gap-2 rounded-22 border bg-white px-20 pb-12 pt-16">
       <textarea
         placeholder={placeholder}
         value={prompt}

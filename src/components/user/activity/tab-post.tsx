@@ -1,7 +1,7 @@
 "use client";
 
 import ImageList from "@/components/image/list/image-list";
-import useGetMyActivityPosts from "@/hooks/user/use-get-my-activity-posts";
+import useGetMyActivityPosts from "@/hooks/user/activity/use-get-my-activity-posts";
 
 function TabPost() {
   const { data, isLoading, fetchNextPage, hasNextPage } =

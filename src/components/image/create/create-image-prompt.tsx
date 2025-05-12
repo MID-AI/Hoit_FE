@@ -3,17 +3,15 @@
 import Prompt from "@/components/create/prompt/prompt";
 import useCreateImage from "@/hooks/create/use-create-image";
 import usePostImageRef from "@/hooks/create/use-post-image-ref";
-import {
-  isCreateImageOptionLockedAtom,
-  promptAtom,
-} from "@/stores/create-image-atom";
-import { useAtom, useAtomValue } from "jotai";
+import { createImageAtom } from "@/stores/create-image-atom";
+import { useAtom } from "jotai";
 
 function CreateImagePrompt() {
-  const [prompt, setPrompt] = useAtom(promptAtom);
+  const [state, setState] = useAtom(createImageAtom);
+  const { prompt, isOptionLocked } = state;
+
   const postRefImages = usePostImageRef();
-  const createImage = useCreateImage({ prompt });
-  const isLoading = useAtomValue(isCreateImageOptionLockedAtom);
+  const createImage = useCreateImage();
 
   const handleSubmit = async () => {
     try {
@@ -27,14 +25,14 @@ function CreateImagePrompt() {
   return (
     <Prompt
       prompt={prompt}
-      setPrompt={setPrompt}
+      setPrompt={(value) => setState((prev) => ({ ...prev, prompt: value }))}
       placeholder={
-        isLoading
+        isOptionLocked
           ? "이미지를 만들고 있어요! 잠시만 기다려주세요..."
           : "프롬프트 예시: 푸른 언덕 위에 있는 오두막, 그림책, 아크릴 물감 느낌, 화려한 색깔"
       }
       onClick={handleSubmit}
-      isLoading={isLoading}
+      isLoading={isOptionLocked}
     />
   );
 }

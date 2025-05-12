@@ -3,43 +3,54 @@
 import ImageInput from "@/components/common/card/image-input";
 import Navigation from "@/components/create/navigation/navigation";
 import NavigationSection from "@/components/create/navigation/navigation-section";
-import {
-  selectedCharacterAtom,
-  selectedRatioAtom,
-  selectedStyleAtom,
-  setCharacterByFileAtom,
-  setCharacterByUrlAtom,
-  setStyleByFileAtom,
-  setStyleByUrlAtom,
-} from "@/stores/create-image-atom";
-import { useAtom, useSetAtom } from "jotai";
+import { createImageAtom } from "@/stores/create-image-atom";
+import { useAtom } from "jotai";
 import ImageCreateNavigationSelect from "./image-create-navigation-select";
 
-function ImageCreateNavigation({ isLoading }: { isLoading: boolean }) {
-  const [ratio, setRatio] = useAtom(selectedRatioAtom);
-  const [character, setCharacter] = useAtom(selectedCharacterAtom);
-  const [style, setStyle] = useAtom(selectedStyleAtom);
+function ImageCreateNavigation() {
+  const [state, setState] = useAtom(createImageAtom);
+  const { ratio, reference, isOptionLocked } = state;
 
-  const setCharacterByFile = useSetAtom(setCharacterByFileAtom);
-  const setCharacterByUrl = useSetAtom(setCharacterByUrlAtom);
-  const setStyleByFile = useSetAtom(setStyleByFileAtom);
-  const setStyleByUrl = useSetAtom(setStyleByUrlAtom);
+  const setReference = (
+    key: "character" | "style",
+    value: File | string | null,
+    type: "file" | "url",
+  ) => {
+    setState((prev) => ({
+      ...prev,
+      reference: {
+        ...prev.reference,
+        [key]: type === "file" ? value : null,
+        [`${key}Url`]: type === "url" ? value : null,
+      },
+    }));
+  };
 
   const onClickReset = () => {
-    setRatio("1:1");
-    setCharacter(null);
-    setStyle(null);
+    setState((prev) => ({
+      ...prev,
+      ratio: "1:1",
+      reference: {
+        ...prev.reference,
+        character: null,
+        characterUrl: null,
+        style: null,
+        styleUrl: null,
+      },
+    }));
   };
 
   return (
-    <Navigation onClickReset={onClickReset} disabled={isLoading}>
+    <Navigation onClickReset={onClickReset} disabled={isOptionLocked}>
       <NavigationSection
         title="이미지 비율"
         content={
           <ImageCreateNavigationSelect
             selectedValue={ratio}
-            setSelectedValue={setRatio}
-            disabled={isLoading}
+            setSelectedValue={(value) =>
+              setState((prev) => ({ ...prev, ratio: value }))
+            }
+            disabled={isOptionLocked}
           />
         }
       />
@@ -48,10 +59,10 @@ function ImageCreateNavigation({ isLoading }: { isLoading: boolean }) {
         content={
           <ImageInput
             type="character"
-            image={character}
-            disabled={isLoading}
-            setFile={setCharacterByFile}
-            setUrl={setCharacterByUrl}
+            image={reference.character}
+            disabled={isOptionLocked}
+            setFile={(file) => setReference("character", file, "file")}
+            setUrl={(url) => setReference("character", url, "url")}
           />
         }
       />
@@ -60,10 +71,10 @@ function ImageCreateNavigation({ isLoading }: { isLoading: boolean }) {
         content={
           <ImageInput
             type="style"
-            image={style}
-            disabled={isLoading}
-            setFile={setStyleByFile}
-            setUrl={setStyleByUrl}
+            image={reference.style}
+            disabled={isOptionLocked}
+            setFile={(file) => setReference("style", file, "file")}
+            setUrl={(url) => setReference("style", url, "url")}
           />
         }
       />

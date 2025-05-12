@@ -1,17 +1,17 @@
 "use client";
 
-import { resetCreateVideoAtoms } from "@/stores/create-video-atom";
+import { resetCreateVideoAtom } from "@/stores/create-video-atom";
 import { useSetAtom } from "jotai";
 import { useEffect } from "react";
 
 function CreateVideoStateCleanup() {
-  const resetAll = useSetAtom(resetCreateVideoAtoms);
+  const resetAll = useSetAtom(resetCreateVideoAtom);
 
   useEffect(() => {
     return () => {
       resetAll();
     };
-  }, []);
+  }, [resetAll]);
 
   return null;
 }

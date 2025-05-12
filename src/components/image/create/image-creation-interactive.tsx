@@ -1,21 +1,17 @@
-"use client";
-
 import ImageList from "@/components/create/image-list/image-list";
-import CreateImageContainer from "./create-image-container";
 import CreateImagePrompt from "./create-image-prompt";
-import useImageCreationSSE from "@/hooks/user/media/use-image-creation-sse";
-import { useQueryClient } from "@tanstack/react-query";
-import { UserType } from "@/@types/auth";
-import { QUERY_KEY } from "@/constants/query-key";
+import ImageCreateNavigation from "./image-create-navigation";
+import DisplayWrapper from "@/components/create/display/display-wrapper";
+import DisplayImage from "@/components/create/display/display-image";
 
 function ImageCreationInteractive() {
-  const queryClient = useQueryClient();
-  const user = queryClient.getQueryData<UserType>(QUERY_KEY.MY.PROFILE);
-  useImageCreationSSE(user?.id);
   return (
     <>
       <div className="flex h-full w-full justify-between">
-        <CreateImageContainer />
+        <ImageCreateNavigation />
+        <DisplayWrapper>
+          <DisplayImage />
+        </DisplayWrapper>
         <ImageList />
       </div>
       <CreateImagePrompt />

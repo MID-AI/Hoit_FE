@@ -1,7 +1,7 @@
 "use client";
 
 import { IMAGE_LIST_BREAKPOINTS } from "@/constants/image-list-breakpoints";
-import useGetMyImageList from "@/hooks/user/use-get-my-image-list";
+import useGetMyImageList from "@/hooks/user/project/all/use-get-my-image-list";
 import {
   editModeAllTabAtom,
   isAllEmptyAtom,

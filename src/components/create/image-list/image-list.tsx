@@ -1,19 +1,13 @@
 "use client";
 
-import useGetMyImageList from "@/hooks/user/use-get-my-image-list";
+import useGetMyImageList from "@/hooks/user/project/all/use-get-my-image-list";
 import ImageItem from "./image-item";
 import ArrowIcon from "@/assets/icon/arrow_small.svg";
-import { useSetAtom } from "jotai";
-import {
-  currentImageAtom,
-  promptAtom,
-  selectedRatioAtom,
-} from "@/stores/create-image-atom";
+import { useAtom } from "jotai";
+import { createImageAtom } from "@/stores/create-image-atom";
 
 function ImageList() {
-  const setCurrentImage = useSetAtom(currentImageAtom);
-  const setPrompt = useSetAtom(promptAtom);
-  const setRatio = useSetAtom(selectedRatioAtom);
+  const [state, setState] = useAtom(createImageAtom);
 
   const {
     data,
@@ -28,9 +22,13 @@ function ImageList() {
 
   const handleClick = (img: any) => {
     if (img?.url) {
-      setCurrentImage(img.url);
-      setPrompt(img.prompt);
-      setRatio(img.ratio);
+      setState((prev) => ({
+        ...prev,
+        createdImages: [img.url],
+        currentImage: img.url,
+        prompt: img.prompt,
+        ratio: img.ratio,
+      }));
     }
   };
 
@@ -46,6 +44,7 @@ function ImageList() {
           img={img?.url}
           createAt={img?.createdAt}
           onClick={() => handleClick(img)}
+          isClicked={img?.url === state.currentImage}
         />
       ))}
       <ArrowIcon

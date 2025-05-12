@@ -1,6 +1,6 @@
 "use client";
 
-import useCreateFolder from "@/hooks/user/use-create-folder";
+import useCreateFolder from "@/hooks/user/project/folder/use-create-folder";
 import { useState } from "react";
 import FolderNameInputDialogContent from "./folder-name-input-dialog-content";
 

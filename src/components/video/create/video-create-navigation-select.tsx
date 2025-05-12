@@ -35,7 +35,7 @@ function VideoCreateNavigationSelect({
       >
         <SelectValue>
           <VideoCreateNavigationSelectItem
-            content={CREATE_VIDEO_SELECT_MENU[selectedValue].content}
+            content={selectedValue}
             describe={CREATE_VIDEO_SELECT_MENU[selectedValue].describe}
             className="w-200 overflow-hidden text-ellipsis whitespace-nowrap"
           />
@@ -56,7 +56,7 @@ function VideoCreateNavigationSelect({
               )}
             >
               <VideoCreateNavigationSelectItem
-                content={menu.content}
+                content={key}
                 describe={menu.describe}
               />
             </SelectItem>
