@@ -1,4 +1,4 @@
-import FolderImagesContainer from "@/components/user/project/folder-images/folder-images-container";
+import FolderImagesContainer from "@/components/user/project/folder-images/FolderImagesContainer";
 import React from "react";
 
 async function FolderImagesPage({

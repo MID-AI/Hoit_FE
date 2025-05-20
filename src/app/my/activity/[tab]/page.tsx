@@ -1,6 +1,6 @@
-import TabLikes from "@/components/user/activity/tab-likes";
-import TabPostContainer from "@/components/user/activity/tab/tab-post-container";
-import TabWrapper from "@/components/user/activity/tab/tab-wrapper";
+import TabLikes from "@/components/user/activity/TabLikes";
+import TabPostContainer from "@/components/user/activity/tab/TabPostContainer";
+import TabWrapper from "@/components/user/activity/tab/TabWrapper";
 import { notFound } from "next/navigation";
 
 async function ActivityTabPage({

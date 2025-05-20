@@ -1,13 +1,13 @@
 import { getSharedImages } from "@/apis/services/images";
-import Hero from "@/components/home/hero";
-import ImageListFetcher from "@/components/home/image-list-fetcher";
-import InfinitePrefetch from "@/components/query/infinite-prefetch";
+import HeroMain from "@/components/home/HeroMain";
+import ImageListContainer from "@/components/home/ImageListContainer";
+import InfinitePrefetch from "@/components/query/InfinitePrefetch";
 import { QUERY_KEY } from "@/constants/query-key";
 
 export default function Home() {
   return (
     <div className="mx-26 flex w-full flex-col justify-center py-36">
-      <Hero />
+      <HeroMain />
       <header className="mb-10 text-Type-18-medium">갤러리</header>
       <InfinitePrefetch
         queryKey={QUERY_KEY.IMAGE.LIST}
@@ -15,7 +15,7 @@ export default function Home() {
           getSharedImages({ cursor: pageParam })
         }
       >
-        <ImageListFetcher />
+        <ImageListContainer />
       </InfinitePrefetch>
     </div>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import Card from "@/components/common/card/card";
+import Card from "@/components/common/card/ImageCard";
 import MockData from "@/mocks/data/imageList.json";
 import Masonry from "react-masonry-css";
 import { useAtom, useAtomValue } from "jotai";
@@ -8,7 +8,7 @@ import {
   editModeFolderAtom,
   selectedFolderCardsAtom,
 } from "@/stores/project-atom";
-import EditImageWrapper from "../edit/edit-image-wrapper";
+import EditImageWrapper from "../edit/EditImageWrapper";
 
 function TestFolderImages() {
   const [selectedCards, setSelectedCards] = useAtom(selectedFolderCardsAtom);

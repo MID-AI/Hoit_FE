@@ -1,5 +1,5 @@
-import TabFolderContainer from "@/components/user/project/tab/tab-folder-container";
-import TabWrapper from "@/components/user/project/tab/tab-wrapper";
+import TabFolderContainer from "@/components/user/project/tab/TabFolderContainer";
+import TabWrapper from "@/components/user/project/tab/TabWrapper";
 
 async function ProjectFolderTabPage() {
   return (

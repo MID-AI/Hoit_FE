@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import ResetButton from "./reset-button";
+import ResetButton from "./ResetButton";
 
 function Navigation({
   children,

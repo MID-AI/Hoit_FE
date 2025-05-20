@@ -1,10 +1,10 @@
 import LoginChecker from "@/components/common/auth/LoginChecker";
-import DisplayVideo from "@/components/create/display/display-video";
-import DisplayWrapper from "@/components/create/display/display-wrapper";
+import DisplayVideo from "@/components/create/display/DisplayVideo";
+import DisplayWrapper from "@/components/create/display/DisplayWrapper";
 import ImageList from "@/components/create/image-list/ImageList";
-import CreateVideoPrompt from "@/components/video/create/create-video-prompt";
-import CreateVideoStateCleanup from "@/components/video/create/create-video-state-cleanup";
-import VideoCreateNavigation from "@/components/video/create/video-create-navigation";
+import CreateVideoPrompt from "@/components/video/create/CreateVideoPrompt";
+import CreateVideoStateCleanup from "@/components/video/create/CreateVideoStateCleanup";
+import VideoCreateNavigation from "@/components/video/create/VideoCreateNavigation";
 
 function VideoCreation() {
   return (

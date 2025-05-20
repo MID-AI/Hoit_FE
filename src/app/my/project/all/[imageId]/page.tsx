@@ -1,4 +1,4 @@
-import TabAllImageDetailContainer from "@/components/user/project/tab/tab-all-image-detail-container";
+import TabAllImageDetailContainer from "@/components/user/project/tab/TabAllImageDetailContainer";
 import React from "react";
 
 async function TabAllImageDetailPage({

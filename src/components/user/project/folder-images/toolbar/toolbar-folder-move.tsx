@@ -1,4 +1,4 @@
-import ToolbarEditButton from "../../toolbar/toolbar-edit-button";
+import ToolbarEditButton from "../../toolbar/ToolbarEditButton";
 import MoveFolderIcon from "@/assets/my/move_folder.svg";
 
 function ToolbarFolderMove() {

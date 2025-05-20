@@ -16,7 +16,7 @@ function ImageItem({
     <div
       className={cn(
         "h-84 w-84 shrink-0 overflow-hidden rounded-22 bg-coolGray-100",
-        isClicked && "outline-1 outline-cBlue-500",
+        isClicked && "h-96 w-96 outline outline-1 outline-cBlue-500",
       )}
     >
       {img && (
@@ -27,6 +27,7 @@ function ImageItem({
           height={84}
           className="h-full w-full"
           onClick={onClick}
+          unoptimized
         />
       )}
     </div>

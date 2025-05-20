@@ -1,7 +1,7 @@
 "use client";
 
 import { useAtom, useAtomValue } from "jotai";
-import Toolbar from "../../toolbar/toolbar";
+import Toolbar from "../../toolbar/Toolbar";
 import {
   editModeFolderAtom,
   isFolderEmptyAtom,

@@ -1,7 +1,7 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import ToolbarEditButton from "../../toolbar/toolbar-edit-button";
+import ToolbarEditButton from "../../toolbar/ToolbarEditButton";
 import DownLoadIcon from "@/assets/create/download.svg";
 import { type InfiniteData, useQueryClient } from "@tanstack/react-query";
 import { useAtomValue } from "jotai";
