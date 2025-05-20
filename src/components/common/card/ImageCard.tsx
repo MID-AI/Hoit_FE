@@ -4,7 +4,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import CardInfo from "./card-info";
+import CardInfo from "./CardInfo";
 import cn from "@/utils/cn";
 
 interface Props {
@@ -15,7 +15,7 @@ interface Props {
   isLiked: boolean | null;
 }
 
-function Card({
+function ImageCard({
   id,
   url,
   nickname,
@@ -63,4 +63,4 @@ function Card({
   );
 }
 
-export default Card;
+export default ImageCard;

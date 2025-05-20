@@ -1,6 +1,6 @@
 "use client";
 
-import LoginModal from "./login-modal";
+import LoginModal from "./LoginModal";
 import { Dialog } from "@/components/ui/dialog";
 import { useEffect, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";

@@ -10,7 +10,7 @@ interface Props {
   link: string;
 }
 
-function CardHorizontal({ img, title, content, tag, link }: Props) {
+function HorizontalCard({ img, title, content, tag, link }: Props) {
   return (
     <Link
       href={link}
@@ -42,4 +42,4 @@ function CardHorizontal({ img, title, content, tag, link }: Props) {
   );
 }
 
-export default CardHorizontal;
+export default HorizontalCard;
