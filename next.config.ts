@@ -35,15 +35,18 @@ const nextConfig: NextConfig = {
 
   images: {
     formats: ["image/avif", "image/webp"],
-    domains: ["picsum.photos"],
     remotePatterns: [
       {
-        protocol: "http",
-        hostname: "**",
+        protocol: "https",
+        hostname: "cdn.midjourney.com",
       },
       {
         protocol: "https",
-        hostname: "**",
+        hostname: "picsum.photos",
+      },
+      {
+        protocol: "https",
+        hostname: "*.googleusercontent.com",
       },
     ],
   },
