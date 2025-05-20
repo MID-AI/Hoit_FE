@@ -1,6 +1,6 @@
 import React from "react";
 import ImageDetailPage from "../../[imageId]/page";
-import Modal from "@/components/common/modal/modal";
+import Modal from "@/components/common/modal/Modal";
 
 function ImageDetailModalPage(props: any) {
   return (

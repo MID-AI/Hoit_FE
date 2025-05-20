@@ -1,5 +1,5 @@
 import CreateImageStateCleanup from "@/components/image/create/create-image-state-cleanup";
-import LoginChecker from "@/components/common/auth/login-checker";
+import LoginChecker from "@/components/common/auth/LoginChecker";
 import ImageCreationInteractive from "@/components/image/create/image-creation-interactive";
 
 function ImageCreation() {

@@ -1,7 +1,7 @@
 import { BASE_URL } from "@/apis/client/APIClient";
 import { CLIENT_URL } from "@/apis/client/baseUrl";
 import API_ROUTES from "@/apis/constants/routes";
-import NoItems from "@/components/common/card/no-items";
+import NoItems from "@/components/common/card/NoItems";
 
 async function LoginPage({
   searchParams,
