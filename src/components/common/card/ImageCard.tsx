@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useState } from "react";
 import CardInfo from "./CardInfo";
 import cn from "@/utils/cn";
+import { usePathname } from "next/navigation";
 
 interface Props {
   id: number;
@@ -29,6 +30,7 @@ function ImageCard({
   const [imageDimensions, setImageDimensions] = useState<{
     height: number;
   } | null>(null);
+  const path = usePathname();
 
   const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
     const { naturalHeight } = e.currentTarget;
@@ -38,7 +40,7 @@ function ImageCard({
 
   return (
     <Link
-      href={`image/${id}`}
+      href={`${path}/${id}`}
       className={cn(
         "group relative mb-24 flex w-full break-inside-avoid overflow-hidden rounded-20 bg-white text-Type-14-regular",
         className,
@@ -57,6 +59,7 @@ function ImageCard({
         height={600}
         className={`h-auto w-full transition-opacity duration-300 ${isLoading ? "opacity-0" : "opacity-100"}`}
         onLoad={handleImageLoad}
+        unoptimized
       />
       <CardInfo nickname={nickname} isLiked={isLiked} likeCount={likeCount} />
     </Link>

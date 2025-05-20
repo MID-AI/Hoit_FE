@@ -2,7 +2,7 @@
 
 import { UserType } from "@/@types/auth";
 import { QUERY_KEY } from "@/constants/query-key";
-import useUserSSE from "@/hooks/user/sse/use-user-sse";
+import useUserSSE from "@/hooks/user/sse/useUserSSE";
 import { useQueryClient } from "@tanstack/react-query";
 
 function SSEContainer() {
