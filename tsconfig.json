@@ -14,6 +14,7 @@
     "jsx": "preserve",
     "incremental": true,
     "types": ["jest", "node"],
+    "baseUrl": ".",
     "plugins": [
       {
         "name": "next"
@@ -23,6 +24,12 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["svgr.d.ts", "next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", ".next"]
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "next-env.d.ts",
+    "svgr.d.ts",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": ["node_modules"]
 }
