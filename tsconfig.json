@@ -14,14 +14,13 @@
     "jsx": "preserve",
     "incremental": true,
     "types": ["jest", "node"],
-    "baseUrl": ".",
     "plugins": [
       {
         "name": "next"
       }
     ],
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["./src/*"]
     }
   },
   "include": [
