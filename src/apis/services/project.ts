@@ -5,19 +5,19 @@ import API_ROUTES from "../constants/routes";
 
 // 내 프로젝트 - 전체
 export async function getMyImageList({
-  cursor,
   size = 20,
-  searchValue,
+  cursor,
+  direction,
 }: {
-  cursor?: string | null;
   size?: number;
-  searchValue?: string;
+  cursor?: string | null;
+  direction?: "prev" | "next";
 }) {
   return await apiClient.get<PageNation<ImageType>>(API_ROUTES.MY_IMAGES, {
     params: {
-      ...(cursor && { cursor }),
-      ...(size && { size }),
-      ...(searchValue && { searchValue }),
+      size,
+      ...(cursor && direction === "prev" && { prevPageCursor: cursor }),
+      ...(cursor && direction === "next" && { nextPageCursor: cursor }),
     },
   });
 }

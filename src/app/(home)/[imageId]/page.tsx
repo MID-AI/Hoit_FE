@@ -1,4 +1,4 @@
-import HomeImageDetailContainer from "@/components/home/home-image-detail-container";
+import HomeImageDetailContainer from "@/components/home/HomeImageDetailContainer";
 
 async function ImageDetailPage({
   params,

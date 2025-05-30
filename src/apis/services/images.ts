@@ -48,3 +48,8 @@ export async function postImageReference(formData: FormData) {
     formData,
   );
 }
+
+// 이미지 업스케일
+export async function imageUpscale(data: { taskId: string; index: string }) {
+  return await apiClient.post(API_ROUTES.IMAGE_UPSCALE, data);
+}

@@ -3,20 +3,33 @@ import { getMyImageList } from "@/apis/services/project";
 import { QUERY_KEY } from "@/constants/query-key";
 import { InfiniteData, useInfiniteQuery } from "@tanstack/react-query";
 
-export default function useGetMyImageList(size?: number, searchValue?: string) {
+type PageParam = { cursor: string | null; direction: "prev" | "next" };
+
+export default function useGetMyImageList(size = 20) {
   return useInfiniteQuery<
     PageNation<ImageType>,
     Error,
     InfiniteData<PageNation<ImageType>>,
     ReturnType<typeof QUERY_KEY.MY.PROJECT>,
-    string | null
+    PageParam | null
   >({
     queryKey: QUERY_KEY.MY.PROJECT(size),
     queryFn: ({ pageParam }) =>
-      getMyImageList({ cursor: pageParam, size, searchValue }),
-    initialPageParam: null,
-    getNextPageParam: (lastPage) => lastPage.nextPageCursor ?? undefined,
+      getMyImageList({
+        size,
+        cursor: pageParam?.cursor ?? null,
+        direction: pageParam?.direction ?? "next",
+      }),
+    initialPageParam: { cursor: null, direction: "next" },
+
+    getNextPageParam: (lastPage) =>
+      lastPage.nextPageCursor
+        ? { cursor: lastPage.nextPageCursor, direction: "next" }
+        : undefined,
+
     getPreviousPageParam: (firstPage) =>
-      firstPage.previousPageCursor ?? undefined,
+      firstPage.previousPageCursor
+        ? { cursor: firstPage.previousPageCursor, direction: "prev" }
+        : undefined,
   });
 }

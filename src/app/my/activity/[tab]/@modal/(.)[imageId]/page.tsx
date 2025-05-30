@@ -1,11 +1,11 @@
-import Modal from "@/components/common/modal/modal";
 import ActivityImagePage from "../../[imageId]/page";
+import PageModal from "@/components/common/modal/PageModal";
 
 function ActivityImageModalPage(props: any) {
   return (
-    <Modal>
+    <PageModal>
       <ActivityImagePage {...props} />
-    </Modal>
+    </PageModal>
   );
 }
 

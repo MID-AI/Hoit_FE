@@ -16,6 +16,7 @@ const API_ROUTES = {
   CREATE_IMAGE: "api/images/create",
   IMAGE_REFERENCE: "api/reference/images",
   CREATE_IMAGE_SSE: (memberId: number) => `/sse/${memberId}`,
+  IMAGE_UPSCALE: "api/upscale-images/create",
 
   // 비디오 생성
   CREATE_VIDEO: "api/videos/create",

@@ -24,6 +24,8 @@ export interface ImageType {
   createdAt: string;
   likeCount: number;
   isLiked: boolean | null;
+  taskId?: string | null;
+  index?: number | null;
   isPosted?: boolean;
 }
 

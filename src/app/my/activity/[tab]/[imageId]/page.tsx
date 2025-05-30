@@ -1,5 +1,5 @@
-import LikeImageDetailContainer from "@/components/user/activity/detail/like-image-detail-container";
-import PostImageDetailContainer from "@/components/user/activity/detail/post-image-detail-container";
+import LikeImageDetailContainer from "@/components/user/activity/detail/LikeImageDetailContainer";
+import PostImageDetailContainer from "@/components/user/activity/detail/PostImageDetailContainer";
 import { notFound } from "next/navigation";
 
 async function ActivityImagePage({

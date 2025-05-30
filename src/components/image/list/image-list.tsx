@@ -3,7 +3,7 @@
 import Masonry from "react-masonry-css";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
-import Card from "@/components/common/card/card";
+import ImageCard from "@/components/common/card/ImageCard";
 import { IMAGE_LIST_BREAKPOINTS } from "@/constants/image-list-breakpoints";
 
 interface Props {
@@ -44,7 +44,7 @@ function ImageList({ data, isLoading, fetchNextPage, hasNextPage }: Props) {
           >
             {data?.pages.map((page: any) =>
               page.content.map((img: any) => (
-                <Card
+                <ImageCard
                   key={img.id}
                   id={img.id}
                   url={img.url}

@@ -19,22 +19,31 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Cache node modules
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.npm
-            node_modules
-            .next/cache
-          key: ${{ runner.os }}-node-${{ matrix.node-version }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-${{ matrix.node-version }}-
+      # - name: Cache node modules
+      #   uses: actions/cache@v3
+      #   with:
+      #     path: |
+      #       ~/.npm
+      #       node_modules
+      #       .next/cache
+      #     key: ${{ runner.os }}-node-${{ matrix.node-version }}-${{ hashFiles('**/package-lock.json') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-node-${{ matrix.node-version }}-
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
 
+      - name: Clean npm cache
+        run: npm cache clean --force
+
+      - name: Delete node_modules and .next cache
+        run: rm -rf node_modules .next/cache
+
       - name: Install dependencies
         run: npm ci
+
+      - name: Show TSConfig
+        run: npx tsc --showConfig
 
       - name: Check TypeScript
         run: npm run type-check --if-present

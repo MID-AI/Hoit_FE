@@ -1,26 +1,22 @@
 import { postImageReference } from "@/apis/services/images";
-import { createImageAtom } from "@/stores/create-image-atom";
+import { imageRefAtom } from "@/stores/create-image-atom";
 import { errorDialogAtom } from "@/stores/error-atom";
 import handleErrorDialog from "@/utils/handleErrorDialog";
 import { useMutation } from "@tanstack/react-query";
 import { useAtom, useSetAtom } from "jotai";
 
 function usePostImageRef() {
-  const [state, setState] = useAtom(createImageAtom);
-  const { reference } = state;
+  const [reference, setReference] = useAtom(imageRefAtom);
 
   const setErrorDialog = useSetAtom(errorDialogAtom);
 
   const mutation = useMutation({
     mutationFn: (formData: FormData) => postImageReference(formData),
     onSuccess: (data) => {
-      setState((prev) => ({
+      setReference((prev) => ({
         ...prev,
-        reference: {
-          ...prev.reference,
-          characterUrl: data.crefImage ?? prev.reference.characterUrl,
-          styleUrl: data.srefImage ?? prev.reference.styleUrl,
-        },
+        characterUrl: data.crefImage ?? prev.characterUrl,
+        styleUrl: data.srefImage ?? prev.styleUrl,
       }));
     },
     onError: (error: any) => handleErrorDialog(error, setErrorDialog),

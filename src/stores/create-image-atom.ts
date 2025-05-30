@@ -1,56 +1,54 @@
 import { type AspectRatio } from "@/constants/select-menu";
 import { atom } from "jotai";
 
-type CreateImageState = {
-  createdImages: string[] | null;
-  ratio: AspectRatio;
-  prompt: string;
-
-  reference: {
-    character: File | null;
-    characterUrl: string | null;
-    style: File | null;
-    styleUrl: string | null;
-  };
-
-  currentImage: string | null;
-
-  isOptionLocked: boolean;
+type ImageRefType = {
+  character: File | null;
+  characterUrl: string | null;
+  style: File | null;
+  styleUrl: string | null;
 };
 
-const defaultState: CreateImageState = {
-  createdImages: null,
-  ratio: "1:1",
-  prompt: "",
+const ImageRefState: ImageRefType = {
+  character: null,
+  characterUrl: null,
+  style: null,
+  styleUrl: null,
+};
 
-  reference: {
+type ImageInfoType = {
+  isUpscaled: boolean;
+  taskId: string | null;
+  imageIndex: number | null;
+};
+
+export const createImageAtom = atom<string[] | null>(null);
+
+export const imageRatioAtom = atom<AspectRatio>("1:1");
+export const imageRefAtom = atom<ImageRefType>(ImageRefState);
+export const imageInformationAtom = atom<ImageInfoType>({
+  isUpscaled: false,
+  taskId: null,
+  imageIndex: null,
+});
+export const imagePromptAtom = atom<string>("");
+
+export const imageLoadingAtom = atom<boolean>(false);
+export const imageProgressAtom = atom<number | null>(null);
+
+// 초기화
+export const resetCreateImageAtom = atom(null, (_, set) => {
+  set(createImageAtom, null);
+  set(imagePromptAtom, "");
+  set(imageRatioAtom, "1:1");
+  set(imageRefAtom, {
     character: null,
     characterUrl: null,
     style: null,
     styleUrl: null,
-  },
-
-  currentImage: null,
-
-  isOptionLocked: false,
-};
-
-export const createImageAtom = atom<CreateImageState>(defaultState);
-
-// 초기화
-export const resetCreateImageAtom = atom(null, (_, set) => {
-  set(createImageAtom, (prev) => ({
-    ...prev,
-    prompt: "",
-    ratio: "1:1",
-    createdImages: null,
-    reference: {
-      character: null,
-      characterUrl: null,
-      style: null,
-      styleUrl: null,
-    },
-
-    currentImage: null,
-  }));
+  });
+  set(imageInformationAtom, {
+    isUpscaled: false,
+    taskId: null,
+    imageIndex: null,
+  });
 });

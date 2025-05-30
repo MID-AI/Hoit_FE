@@ -2,9 +2,10 @@ import type { AspectRatio, VideoModelKey } from "@/constants/select-menu";
 
 export type Notification = {
   id: string;
-  type: "image" | "video" | "alert";
+  type: "IMAGE" | "VIDEO" | "ALERT";
+  status: "PENDING" | "SUCCESS" | "ERROR";
   message: string;
-  isRead: boolean;
+  read: boolean;
   createdAt: string;
   payload: ImagePayload | VideoPayload;
 };
@@ -15,7 +16,9 @@ export type ImagePayload = {
   prompt: string;
   ratio: AspectRatio;
   taskId: string;
-  progress?: number;
+  index: number;
+  isUpscaled: boolean;
+  progress?: string;
 };
 
 export type VideoPayload = {
@@ -24,5 +27,5 @@ export type VideoPayload = {
   prompt: string;
   model: VideoModelKey;
   taskId: string;
-  progress?: number;
+  progress?: string;
 };

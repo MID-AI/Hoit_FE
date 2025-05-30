@@ -8,9 +8,19 @@ import { SetStateAction } from "jotai";
  * @throws 에러 모달
  */
 export default function handleErrorDialog(
-  error: HTTPErrorInfo,
+  error: HTTPErrorInfo | string | null,
   setErrorDialog: (value: SetStateAction<ErrorDialogType | null>) => void,
 ) {
+  if (typeof error === "string") {
+    setErrorDialog({
+      isOpen: true,
+      heading: "에러 발생",
+      body: error,
+      button: "확인",
+    });
+    return;
+  }
+
   const payload = error?.payload;
 
   if (payload) {

@@ -1,4 +1,4 @@
-import FolderImageDetailContainer from "@/components/user/project/folder-images/detail/folder-image-detail-container";
+import FolderImageDetailContainer from "@/components/user/project/folder-images/detail/FolderImageDetailContainer";
 import React from "react";
 
 async function FolderImageDetailPage({

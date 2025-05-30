@@ -5,8 +5,8 @@ import Provider from "./provider";
 import { MswComponent } from "@/mocks/msw.component";
 import QueryProviders from "@/providers/query-provider";
 import JotaiProvider from "@/providers/jotai-provider";
-import ErrorDialog from "@/components/common/dialog/error-dialog";
-import SidebarContainer from "@/components/sidebar/sidebar-container";
+import ErrorDialog from "@/components/common/dialog/ErrorDialog";
+import SidebarContainer from "@/components/sidebar/SidebarContainer";
 
 export const metadata: Metadata = {
   title: "Hoit",
