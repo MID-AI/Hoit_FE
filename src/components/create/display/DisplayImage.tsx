@@ -2,7 +2,13 @@
 
 import Image from "next/image";
 import { useAtomValue } from "jotai";
-import { createImageAtom, imageProgressAtom } from "@/stores/create-image-atom";
+import {
+  createImageAtom,
+  imageInformationAtom,
+  imageLoadingAtom,
+  imageProgressAtom,
+  imageRatioAtom,
+} from "@/stores/create-image-atom";
 import DisplayLoading from "./DisplayLoading";
 import DisplayDefault from "./DisplayDefault";
 import ImageWrapper from "./ImageWrapper";
@@ -12,12 +18,14 @@ import { getAspectRatioClass } from "@/utils/getAspectRatioClass";
 import cn from "@/utils/cn";
 
 function DisplayImage() {
-  const state = useAtomValue(createImageAtom);
+  const createdImages = useAtomValue(createImageAtom);
   const progress = useAtomValue(imageProgressAtom);
-  const { createdImages, ratio, isOptionLocked } = state;
+  const ratio = useAtomValue(imageRatioAtom);
+  const { isUpscaled, taskId, imageIndex } = useAtomValue(imageInformationAtom);
+  const isLoading = useAtomValue(imageLoadingAtom);
   const aspectRatioClass = getAspectRatioClass(ratio);
 
-  if (isOptionLocked) return <DisplayLoading progress={progress} />;
+  if (isLoading) return <DisplayLoading progress={progress} />;
 
   if (!createdImages) return <DisplayDefault />;
   const imageCount = createdImages.length;
@@ -40,7 +48,12 @@ function DisplayImage() {
           className="h-full w-full object-contain"
           unoptimized
         />
-        <CreationButtonsWrapper image={createdImages[0]} />
+        <CreationButtonsWrapper
+          image={createdImages[0]}
+          isUpscaled={isUpscaled}
+          taskId={taskId}
+          index={imageIndex}
+        />
       </div>
     );
   }
@@ -57,7 +70,12 @@ function DisplayImage() {
             loading="lazy"
             unoptimized
           />
-          <CreationButtonsWrapper image={img} />
+          <CreationButtonsWrapper
+            image={img}
+            isUpscaled={isUpscaled}
+            taskId={taskId}
+            index={idx + 1}
+          />
         </ImageWrapper>
       ))}
     </DisplayWrapper>

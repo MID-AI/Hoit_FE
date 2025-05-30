@@ -3,7 +3,12 @@ import { SERVER_URL } from "@/apis/client/baseUrl";
 import API_ROUTES from "@/apis/constants/routes";
 import { QUERY_KEY } from "@/constants/query-key";
 import { SSE_STATUS, SSE_TYPE, type SSEStatus } from "@/constants/sse-status";
-import { createImageAtom, imageProgressAtom } from "@/stores/create-image-atom";
+import {
+  createImageAtom,
+  imageInformationAtom,
+  imageLoadingAtom,
+  imageProgressAtom,
+} from "@/stores/create-image-atom";
 import { createVideoAtom } from "@/stores/create-video-atom";
 import { errorDialogAtom } from "@/stores/error-atom";
 import handleErrorDialog from "@/utils/handleErrorDialog";
@@ -14,6 +19,8 @@ import { useEffect, useRef } from "react";
 export default function useUserSSE(memberId?: number | null) {
   const queryClient = useQueryClient();
   const setImage = useSetAtom(createImageAtom);
+  const setImageInfo = useSetAtom(imageInformationAtom);
+  const setImageLoading = useSetAtom(imageLoadingAtom);
   const setImageProgress = useSetAtom(imageProgressAtom);
   const setVideo = useSetAtom(createVideoAtom);
   const setErrorDialog = useSetAtom(errorDialogAtom);
@@ -105,26 +112,28 @@ export default function useUserSSE(memberId?: number | null) {
       message?: string,
     ) => {
       if (status === SSE_STATUS.PENDING) {
-        setImage((prev) => ({ ...prev, isOptionLocked: true }));
+        setImageLoading(true);
         setImageProgress(Number(payload.progress));
       } else if (status === SSE_STATUS.ERROR) {
         handleErrorDialog(
           message || "이미지 생성 중 오류가 발생했습니다.",
           setErrorDialog,
         );
-        setImage((prev) => ({ ...prev, isOptionLocked: false }));
+        setImageLoading(true);
       } else if (
         status === SSE_STATUS.SUCCESS &&
         payload.imageUrl.length > 0 &&
         payload.imageUrl[0].startsWith("https://")
       ) {
-        setImage((prev) => ({
-          ...prev,
-          createdImages: payload.imageUrl,
-          prompt: payload.prompt,
-          ratio: payload.ratio,
-          isOptionLocked: false,
-        }));
+        setImageLoading(false);
+        setImage(payload.imageUrl);
+        setImageInfo({
+          isUpscaled: payload.isUpscaled,
+          taskId: payload.taskId,
+          imageIndex: payload.index,
+        });
+        setImageProgress(0);
+
         queryClient.invalidateQueries({ queryKey: QUERY_KEY.MY.PROJECT });
       }
     };
@@ -171,6 +180,8 @@ export default function useUserSSE(memberId?: number | null) {
     memberId,
     queryClient,
     setImage,
+    setImageInfo,
+    setImageLoading,
     setVideo,
     setErrorDialog,
     setImageProgress,

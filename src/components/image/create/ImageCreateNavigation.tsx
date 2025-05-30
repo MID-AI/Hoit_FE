@@ -2,55 +2,51 @@
 
 import ImageRefInput from "@/components/image/create/ImageRefInput";
 import NavigationSection from "@/components/create/navigation/NavigationSection";
-import { createImageAtom } from "@/stores/create-image-atom";
-import { useAtom } from "jotai";
+import {
+  imageLoadingAtom,
+  imageRatioAtom,
+  imageRefAtom,
+} from "@/stores/create-image-atom";
+import { useAtom, useAtomValue } from "jotai";
 import ImageCreateNavigationSelect from "./ImageCreateNavigationSelect";
 import Navigation from "@/components/create/navigation/Navigation";
 
 function ImageCreateNavigation() {
-  const [state, setState] = useAtom(createImageAtom);
-  const { ratio, reference, isOptionLocked } = state;
+  const [ratio, setRatio] = useAtom(imageRatioAtom);
+  const [reference, setReferenceState] = useAtom(imageRefAtom);
+  const isLoading = useAtomValue(imageLoadingAtom);
 
   const setReference = (
     key: "character" | "style",
     value: File | string | null,
     type: "file" | "url",
   ) => {
-    setState((prev) => ({
+    setReferenceState((prev) => ({
       ...prev,
-      reference: {
-        ...prev.reference,
-        [key]: type === "file" ? value : null,
-        [`${key}Url`]: type === "url" ? value : null,
-      },
+      [key]: type === "file" ? value : null,
+      [`${key}Url`]: type === "url" ? value : null,
     }));
   };
 
   const onClickReset = () => {
-    setState((prev) => ({
-      ...prev,
-      ratio: "1:1",
-      reference: {
-        ...prev.reference,
-        character: null,
-        characterUrl: null,
-        style: null,
-        styleUrl: null,
-      },
-    }));
+    setRatio("1:1");
+    setReferenceState({
+      character: null,
+      characterUrl: null,
+      style: null,
+      styleUrl: null,
+    });
   };
 
   return (
-    <Navigation onClickReset={onClickReset} disabled={isOptionLocked}>
+    <Navigation onClickReset={onClickReset} disabled={isLoading}>
       <NavigationSection
         title="이미지 비율"
         content={
           <ImageCreateNavigationSelect
             selectedValue={ratio}
-            setSelectedValue={(value) =>
-              setState((prev) => ({ ...prev, ratio: value }))
-            }
-            disabled={isOptionLocked}
+            setSelectedValue={setRatio}
+            disabled={isLoading}
           />
         }
       />
@@ -59,7 +55,7 @@ function ImageCreateNavigation() {
         content={
           <ImageRefInput
             type="character"
-            disabled={isOptionLocked}
+            disabled={isLoading}
             reference={reference}
             setReference={setReference}
           />
@@ -70,7 +66,7 @@ function ImageCreateNavigation() {
         content={
           <ImageRefInput
             type="style"
-            disabled={isOptionLocked}
+            disabled={isLoading}
             reference={reference}
             setReference={setReference}
           />

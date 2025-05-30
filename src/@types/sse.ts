@@ -14,8 +14,10 @@ export type ImagePayload = {
   requestId: string;
   imageUrl: string[];
   prompt: string;
-  taskId: string;
   ratio: AspectRatio;
+  taskId: string;
+  index: number;
+  isUpscaled: boolean;
   progress?: string;
 };
 
