@@ -1,7 +1,7 @@
 "use client";
 
 import { useAtom, useAtomValue } from "jotai";
-import Toolbar from "../../toolbar/Toolbar";
+
 import {
   editModeFolderAtom,
   isFolderEmptyAtom,
@@ -11,6 +11,7 @@ import ToolbarFolderMove from "./toolbar-folder-move";
 import ToolbarDownload from "./toolbar-download";
 import ToolbarImagesDelete from "./toolbar-images-delete";
 import { useParams } from "next/navigation";
+import Toolbar from "../../toolbar/Toolbar";
 
 function FolderImagesToolbar() {
   const params = useParams();

@@ -1,6 +1,6 @@
-import Modal from "@/components/common/modal/Modal";
 import React from "react";
 import TabAllImageDetailPage from "../../[imageId]/page";
+import Modal from "@/components/common/modal/Modal";
 
 function FolderImageDetailModalPage(props: any) {
   return (
