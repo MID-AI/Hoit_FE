@@ -1,12 +1,11 @@
-import { ReactNode } from "react";
 import ResetButton from "./ResetButton";
 
-function Navigation({
+function NavigationWrapper({
   children,
   onClickReset,
   disabled,
 }: {
-  children: ReactNode;
+  children: React.ReactNode;
   onClickReset: () => void;
   disabled: boolean;
 }) {
@@ -18,4 +17,4 @@ function Navigation({
   );
 }
 
-export default Navigation;
+export default NavigationWrapper;

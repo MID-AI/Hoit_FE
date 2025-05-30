@@ -7,11 +7,11 @@ import {
   isFolderEmptyAtom,
   selectedFolderCardsAtom,
 } from "@/stores/project-atom";
-import ToolbarFolderMove from "./toolbar-folder-move";
-import ToolbarDownload from "./toolbar-download";
-import ToolbarImagesDelete from "./toolbar-images-delete";
+import ToolbarFolderMove from "./ToolbarFolderMove";
+import ToolbarDownload from "./ToolbarDownload";
+import ToolbarImagesDelete from "./ToolbarImagesDelete";
 import { useParams } from "next/navigation";
-import Toolbar from "../../toolbar/Toolbar";
+import ToolbarWrapper from "../../toolbar/ToolbarWrapper";
 
 function FolderImagesToolbar() {
   const params = useParams();
@@ -31,7 +31,7 @@ function FolderImagesToolbar() {
   return (
     <>
       {editModeFolder ? (
-        <Toolbar onClick={handleClickCancel}>
+        <ToolbarWrapper onClick={handleClickCancel}>
           <span className="mr-2 text-coolGray-500">
             {selectedFolderCards.size} 개 선택
           </span>
@@ -42,7 +42,7 @@ function FolderImagesToolbar() {
             selectedCards={selectedFolderCards}
             setSelectedCards={setSelectedFolderCards}
           />
-        </Toolbar>
+        </ToolbarWrapper>
       ) : (
         <button
           onClick={() => setEditModeFolder((prev) => !prev)}

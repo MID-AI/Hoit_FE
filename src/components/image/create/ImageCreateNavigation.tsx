@@ -9,7 +9,7 @@ import {
 } from "@/stores/create-image-atom";
 import { useAtom, useAtomValue } from "jotai";
 import ImageCreateNavigationSelect from "./ImageCreateNavigationSelect";
-import Navigation from "@/components/create/navigation/Navigation";
+import NavigationWrapper from "@/components/create/navigation/NavigationWrapper";
 
 function ImageCreateNavigation() {
   const [ratio, setRatio] = useAtom(imageRatioAtom);
@@ -39,7 +39,7 @@ function ImageCreateNavigation() {
   };
 
   return (
-    <Navigation onClickReset={onClickReset} disabled={isLoading}>
+    <NavigationWrapper onClickReset={onClickReset} disabled={isLoading}>
       <NavigationSection
         title="이미지 비율"
         content={
@@ -72,7 +72,7 @@ function ImageCreateNavigation() {
           />
         }
       />
-    </Navigation>
+    </NavigationWrapper>
   );
 }
 

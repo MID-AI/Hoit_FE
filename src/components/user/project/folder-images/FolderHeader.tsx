@@ -2,7 +2,7 @@
 
 import ArrowIcon from "@/assets/my/arrow_header.svg";
 import { useRouter } from "next/navigation";
-import FolderImagesToolbar from "./toolbar/folder-images-toolbar";
+import FolderImagesToolbar from "./toolbar/FolderImagesToolbar";
 
 function FolderHeader({
   folderName,

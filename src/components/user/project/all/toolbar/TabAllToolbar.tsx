@@ -9,7 +9,7 @@ import { useAtom, useAtomValue } from "jotai";
 
 import ToolbarImageDelete from "./ToolbarImageDelete";
 import ToolbarImageDownload from "./ToolbarImageDownload";
-import Toolbar from "../../toolbar/Toolbar";
+import ToolbarWrapper from "../../toolbar/ToolbarWrapper";
 
 function TabAllToolbar() {
   const [editModeAllTab, setEditModeAllTab] = useAtom(editModeAllTabAtom);
@@ -27,7 +27,7 @@ function TabAllToolbar() {
   return (
     <>
       {editModeAllTab ? (
-        <Toolbar onClick={handleClickCancel}>
+        <ToolbarWrapper onClick={handleClickCancel}>
           <span className="mr-2 text-coolGray-500">
             {selectedAllTabCards.size} 개 선택
           </span>
@@ -36,7 +36,7 @@ function TabAllToolbar() {
             selectedCards={selectedAllTabCards}
             setSelectedCards={setSelectedAllTabCards}
           />
-        </Toolbar>
+        </ToolbarWrapper>
       ) : (
         <button
           onClick={() => setEditModeAllTab((prev) => !prev)}

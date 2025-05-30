@@ -4,7 +4,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-function Toolbar({ onClick, children }: Props) {
+function ToolbarWrapper({ onClick, children }: Props) {
   return (
     <div className="flex items-center text-Type-20-bold">
       {children}
@@ -18,4 +18,4 @@ function Toolbar({ onClick, children }: Props) {
   );
 }
 
-export default Toolbar;
+export default ToolbarWrapper;

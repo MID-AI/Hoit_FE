@@ -1,12 +1,12 @@
 import React from "react";
 import ImageDetailPage from "../../[imageId]/page";
-import Modal from "@/components/common/modal/Modal";
+import PageModal from "@/components/common/modal/PageModal";
 
 function ImageDetailModalPage(props: any) {
   return (
-    <Modal>
+    <PageModal>
       <ImageDetailPage {...props} />
-    </Modal>
+    </PageModal>
   );
 }
 
