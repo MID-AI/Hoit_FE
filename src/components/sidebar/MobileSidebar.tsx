@@ -23,7 +23,7 @@ export default function MobileSidebar() {
     <>
       {/* 상단 헤더 */}
       <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-3 md:hidden bg-[#F8F8F8]">
-        <div className="flex items-center">
+        <div className="flex items-center ml-[16px] mt-[15px]">
           <Link href="/">
             <Logo width={68} height={35} />
           </Link>
