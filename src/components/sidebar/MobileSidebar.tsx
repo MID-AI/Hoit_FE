@@ -109,7 +109,6 @@ export default function MobileSidebar() {
           </button>
         </div>
       </header>
-
       {/* 햄버거 메뉴 열렸을 때 */}
       {open && (
         <nav className="fixed left-0 right-0 top-[64px] z-40 bg-white shadow-md md:hidden">
