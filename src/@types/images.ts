@@ -26,7 +26,7 @@ export interface ImageType {
   isLiked: boolean | null;
   taskId?: string | null;
   index?: number | null;
-  isPosted?: boolean;
+  isShared: boolean | null;
 }
 
 export interface ReferenceType {

@@ -1,5 +1,5 @@
 import { ImageType } from "@/@types/images";
-import { postMediaPosting } from "@/apis/services/media";
+import { deleteMediaPosting, postMediaPosting } from "@/apis/services/media";
 import { errorDialogAtom } from "@/stores/error-atom";
 import handleErrorDialog from "@/utils/handleErrorDialog";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -16,9 +16,15 @@ function usePostingMediaMutation({
   const setErrorDialog = useSetAtom(errorDialogAtom);
 
   return useMutation({
-    mutationFn: (imageId: number) => postMediaPosting(imageId),
+    mutationFn: ({
+      imageId,
+      isShared,
+    }: {
+      imageId: number;
+      isShared: boolean | null;
+    }) => (isShared ? deleteMediaPosting(imageId) : postMediaPosting(imageId)),
 
-    onMutate: async (imageId) => {
+    onMutate: async ({ imageId }) => {
       if (!queryKey) return;
 
       const previous = queryClient.getQueryData(queryKey);
@@ -34,7 +40,7 @@ function usePostingMediaMutation({
                 img.id === imageId
                   ? {
                       ...img,
-                      isPosted: !img.isPosted,
+                      isShared: !img.isShared,
                     }
                   : img,
               ),
@@ -45,7 +51,7 @@ function usePostingMediaMutation({
         if (!isList && old?.id === imageId) {
           return {
             ...old,
-            isPosted: !old.isPosted,
+            isShared: !old.isShared,
           };
         }
 

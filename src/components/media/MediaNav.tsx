@@ -14,13 +14,11 @@ function MediaNav({
   image,
   context,
   isList,
-  isUserImage,
 }: {
   onClick: () => void;
   image: ImageType;
   context?: readonly unknown[];
   isList?: boolean;
-  isUserImage?: boolean;
 }) {
   return (
     <nav className="mr-128 h-full">
@@ -32,19 +30,17 @@ function MediaNav({
           </button>
         </div>
         <div className="mb-29 flex items-center justify-between">
-          {!isUserImage && (
-            <div className="flex items-center gap-10">
-              <Image
-                src={image.url}
-                alt={`${image.nickname}의 프로필이미지`}
-                height={24}
-                width={24}
-                className="aspect-square shrink rounded-full"
-                unoptimized
-              />
-              <span>{image.nickname}</span>
-            </div>
-          )}
+          <div className="flex items-center gap-10">
+            <Image
+              src={image.member.profileImage}
+              alt={`${image.member.nickname}의 프로필이미지`}
+              height={24}
+              width={24}
+              className="aspect-square shrink rounded-full"
+              unoptimized
+            />
+            <span>{image.member.nickname}</span>
+          </div>
 
           <div className="flex items-center">
             <MediaLikes
@@ -54,9 +50,8 @@ function MediaNav({
               context={context}
               isList={isList}
             />
-
-            <MediaDownload />
-            <MediaShare isPosted={false} />
+            <MediaDownload image={image.url} />
+            <MediaShare isShared={image.isShared} />
           </div>
         </div>
         <MediaPrompt prompt={image.prompt} />
@@ -65,7 +60,7 @@ function MediaNav({
           imageId={image.id}
           context={context}
           isList={isList}
-          isPosted={false}
+          isShared={image.isShared}
           className="absolute bottom-25 right-25"
         />
       </div>

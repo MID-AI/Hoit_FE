@@ -5,7 +5,7 @@ import ShareIcon from "@/assets/icon/share.svg";
 import { usePathname } from "next/navigation";
 import { useCallback } from "react";
 
-function MediaShare({ isPosted }: { isPosted: boolean }) {
+function MediaShare({ isShared }: { isShared: boolean | null }) {
   const pathname = usePathname();
 
   const handleShare = useCallback(() => {
@@ -22,10 +22,9 @@ function MediaShare({ isPosted }: { isPosted: boolean }) {
       });
   }, [pathname]);
 
-  if (!isPosted) return null;
-
+  if (isShared === null || !isShared) return null;
   return (
-    <button onClick={handleShare}>
+    <button onClick={handleShare} className="ml-18">
       <ShareIcon />
     </button>
   );
