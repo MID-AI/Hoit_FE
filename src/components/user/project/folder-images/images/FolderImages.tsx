@@ -19,11 +19,12 @@ import useGetFolderImages from "@/hooks/user/project/folder/useGetFolderImages";
 function FolderImages({ folderId }: { folderId: number }) {
   const { data, isLoading, fetchNextPage, hasNextPage } =
     useGetFolderImages(folderId);
+
   const [selectedCards, setSelectedCards] = useAtom(selectedFolderCardsAtom);
   const editMode = useAtomValue(editModeFolderAtom);
   const { ref, inView } = useInView();
 
-  const isAllEmpty = data?.pages?.[0]?.images.content ? true : false;
+  const isAllEmpty = data?.pages?.[0]?.images.content ? false : true;
   const folderTitle = data?.pages?.[0]?.name || "";
 
   useEffect(() => {
@@ -97,7 +98,7 @@ function FolderImages({ folderId }: { folderId: number }) {
           다음 페이지 불러오는 중...
         </div>
       ) : (
-        <div className="mt-8 text-center text-gray-400">
+        <div className="sr-only mt-8 text-center text-gray-400">
           마지막 페이지입니다.
         </div>
       )}
