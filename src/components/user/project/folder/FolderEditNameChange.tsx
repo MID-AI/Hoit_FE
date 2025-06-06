@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import FolderNameInputDialogContent from "./FolderNameInputDialogContent";
-import useEditFolderName from "@/hooks/user/project/folder/use-edit-folder-name";
+
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useQueryClient } from "@tanstack/react-query";
+import useEditFolderName from "@/hooks/user/project/folder/useEditFolderName";
 
 interface Props {
   folderId: number;
@@ -71,7 +72,6 @@ function FolderEditNameChange({
       <DialogContent className="flex h-435 w-847 flex-col items-center justify-center px-38 pb-44 pt-32">
         <FolderNameInputDialogContent
           modalTitle="이름 수정하기"
-          maxLength={22}
           folderName={newFolderName}
           handleInputChange={handleInputChange}
           handleSubmit={handleSubmit}

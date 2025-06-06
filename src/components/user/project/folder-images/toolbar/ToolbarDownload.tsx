@@ -7,8 +7,8 @@ import { type InfiniteData, useQueryClient } from "@tanstack/react-query";
 import { useAtomValue } from "jotai";
 import { selectedFolderCardsAtom } from "@/stores/project-atom";
 import type { ImageType, PageNation } from "@/@types/images";
-import { downloadImage } from "@/utils/download";
 import { QUERY_KEY } from "@/constants/query-key";
+import { downloadImage } from "@/utils/downloadImage";
 
 function ToolbarDownload() {
   const params = useParams();
@@ -25,8 +25,7 @@ function ToolbarDownload() {
       .filter((img) => selectedCards.has(img.id));
 
     selectedImages?.forEach((img) => {
-      const extension = img.url.split(".").pop()?.split("?")[0] ?? "jpg";
-      downloadImage(img.url, `image_${img.id}.${extension}`);
+      downloadImage(img.url);
     });
   };
 

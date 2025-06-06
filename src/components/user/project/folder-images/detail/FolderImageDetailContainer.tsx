@@ -2,7 +2,7 @@
 
 import MediaWrapper from "@/components/media/MediaWrapper";
 import { QUERY_KEY } from "@/constants/query-key";
-import useGetFolderImages from "@/hooks/user/project/folder/use-get-folder-images";
+import useGetFolderImages from "@/hooks/user/project/folder/useGetFolderImages";
 
 function FolderImageDetailContainer({
   imageId,
@@ -12,7 +12,8 @@ function FolderImageDetailContainer({
   folderId: number;
 }) {
   const { data: cachedList } = useGetFolderImages(folderId);
-  const allImages = cachedList?.pages.flatMap((page) => page.content) ?? [];
+  const allImages =
+    cachedList?.pages.flatMap((page) => page.images.content) ?? [];
   const currentIndex = allImages.findIndex((image) => image.id === imageId);
   const prevId = allImages[currentIndex - 1]?.id;
   const nextId = allImages[currentIndex + 1]?.id;

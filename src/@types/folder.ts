@@ -1,3 +1,5 @@
+import { PageNation } from "./images";
+
 export interface FolderType {
   id: number;
   name: string;
@@ -5,4 +7,10 @@ export interface FolderType {
   videoCount: number;
   coverImage: string;
   modifiedAt: string;
+}
+
+export interface FolderImagesType<T> {
+  id: number;
+  name: string;
+  images: PageNation<T>;
 }

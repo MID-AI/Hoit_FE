@@ -19,7 +19,6 @@ function MediaNavWrapper({
   const [open, setOpen] = useState<boolean>(true);
   const pathname = usePathname();
   const isModal = pathname.includes("@modal");
-  const isUserImage = pathname.includes("my");
 
   if (open) {
     return (
@@ -28,7 +27,6 @@ function MediaNavWrapper({
         image={image}
         context={context}
         isList={isList}
-        isUserImage={isUserImage}
       />
     );
   }

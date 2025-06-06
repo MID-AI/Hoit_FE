@@ -9,21 +9,23 @@ import {
   selectedFolderCardsAtom,
 } from "@/stores/project-atom";
 import Card from "@/components/common/card/ImageCard";
-import useGetFolderImages from "@/hooks/user/project/folder/use-get-folder-images";
 
 import EditImageWrapper from "../../edit/EditImageWrapper";
 import { IMAGE_LIST_BREAKPOINTS } from "@/constants/image-list-breakpoints";
 import NoItems from "@/components/common/card/NoItems";
 import FolderHeader from "../FolderHeader";
+import useGetFolderImages from "@/hooks/user/project/folder/useGetFolderImages";
 
 function FolderImages({ folderId }: { folderId: number }) {
   const { data, isLoading, fetchNextPage, hasNextPage } =
     useGetFolderImages(folderId);
+
   const [selectedCards, setSelectedCards] = useAtom(selectedFolderCardsAtom);
   const editMode = useAtomValue(editModeFolderAtom);
   const { ref, inView } = useInView();
 
-  const isAllEmpty = data?.pages?.[0]?.content ? true : false;
+  const isAllEmpty = data?.pages?.[0]?.images.content ? false : true;
+  const folderTitle = data?.pages?.[0]?.name || "";
 
   useEffect(() => {
     if (inView && hasNextPage) {
@@ -54,7 +56,7 @@ function FolderImages({ folderId }: { folderId: number }) {
   if (isAllEmpty) {
     return (
       <>
-        <FolderHeader folderName="제목 데이터 확인하기" isEmpty={isAllEmpty} />
+        <FolderHeader folderName={folderTitle} isEmpty={isAllEmpty} />
         <NoItems text="이미지와 영상을 폴더에 추가해보세요!" />;
       </>
     );
@@ -62,13 +64,13 @@ function FolderImages({ folderId }: { folderId: number }) {
 
   return (
     <>
-      <FolderHeader folderName="제목 데이터 확인하기" />
+      <FolderHeader folderName={folderTitle} />
       <Masonry
         breakpointCols={IMAGE_LIST_BREAKPOINTS}
         className="flex justify-start gap-20 md:pl-0 lg:px-0"
       >
         {data?.pages.map((page) =>
-          page.content.map((img) => {
+          page.images.content.map((img) => {
             const isChecked = selectedCards.has(img.id);
             return (
               <EditImageWrapper
@@ -96,7 +98,7 @@ function FolderImages({ folderId }: { folderId: number }) {
           다음 페이지 불러오는 중...
         </div>
       ) : (
-        <div className="mt-8 text-center text-gray-400">
+        <div className="sr-only mt-8 text-center text-gray-400">
           마지막 페이지입니다.
         </div>
       )}

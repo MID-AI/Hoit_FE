@@ -3,11 +3,11 @@
 import type { ImageType, PageNation } from "@/@types/images";
 import { QUERY_KEY } from "@/constants/query-key";
 import { selectedAllTabCardsAtom } from "@/stores/project-atom";
-import { downloadImage } from "@/utils/download";
 import { type InfiniteData, useQueryClient } from "@tanstack/react-query";
 import { useAtomValue } from "jotai";
 import ToolbarEditButton from "../../toolbar/ToolbarEditButton";
 import DownLoadIcon from "@/assets/create/download.svg";
+import { downloadImage } from "@/utils/downloadImage";
 
 function ToolbarImageDownload() {
   const selectedCards = useAtomValue(selectedAllTabCardsAtom);
@@ -22,8 +22,7 @@ function ToolbarImageDownload() {
       .filter((img) => selectedCards.has(img.id));
 
     selectedImages?.forEach((img) => {
-      const extension = img.url.split(".").pop()?.split("?")[0] ?? "jpg";
-      downloadImage(img.url, `image_${img.id}.${extension}`);
+      downloadImage(img.url, img.id);
     });
   };
 

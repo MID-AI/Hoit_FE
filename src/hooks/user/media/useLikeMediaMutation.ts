@@ -1,5 +1,5 @@
 import type { ImageType } from "@/@types/images";
-import { postMediaLike } from "@/apis/services/media";
+import { deleteMediaLike, postMediaLike } from "@/apis/services/media";
 import { errorDialogAtom } from "@/stores/error-atom";
 import handleErrorDialog from "@/utils/handleErrorDialog";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -16,18 +16,22 @@ function useLikeMediaMutation({
   const setErrorDialog = useSetAtom(errorDialogAtom);
 
   return useMutation({
-    mutationFn: (imageId: number) => postMediaLike(imageId),
+    mutationFn: ({
+      imageId,
+      isLiked,
+    }: {
+      imageId: number;
+      isLiked: boolean;
+    }) => (isLiked ? deleteMediaLike(imageId) : postMediaLike(imageId)),
 
-    onMutate: async (imageId) => {
+    onMutate: async ({ imageId }) => {
       if (!queryKey) return;
 
       const previous = queryClient.getQueryData(queryKey);
-
       queryClient.setQueryData(queryKey, (old: any) => {
         if (!old) return old;
 
         if (isList && "pages" in old) {
-          // 리스트 캐시 업데이트
           return {
             ...old,
             pages: old.pages.map((page: any) => ({
@@ -46,7 +50,6 @@ function useLikeMediaMutation({
         }
 
         if (!isList && "like" in old) {
-          // 상세 캐시 업데이트
           const newStatus = old.like.likeStatus === 1 ? 0 : 1;
           return {
             ...old,

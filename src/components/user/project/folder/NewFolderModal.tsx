@@ -1,18 +1,18 @@
 "use client";
 
-import useCreateFolder from "@/hooks/user/project/folder/use-create-folder";
 import { useState } from "react";
 import FolderNameInputDialogContent from "./FolderNameInputDialogContent";
+import useCreateFolder from "@/hooks/user/project/folder/useCreateFolder";
+import { FOLDER_NAME_MAX_LENGTH } from "@/constants/input-limits";
 
 function NewFolderModal() {
   const [folderName, setFolderName] = useState("");
   const createFolderMutation = useCreateFolder();
-  const maxLength = 22;
 
   const handleInputChange = (e: React.FormEvent<HTMLInputElement>) => {
     const target = e.currentTarget;
-    if (target.value.length > maxLength) {
-      target.value = target.value.slice(0, maxLength);
+    if (target.value.length > FOLDER_NAME_MAX_LENGTH) {
+      target.value = target.value.slice(0, FOLDER_NAME_MAX_LENGTH);
     }
     setFolderName(target.value);
   };
@@ -32,7 +32,6 @@ function NewFolderModal() {
   return (
     <FolderNameInputDialogContent
       modalTitle="새로운 폴더 만들기"
-      maxLength={maxLength}
       folderName={folderName}
       handleInputChange={handleInputChange}
       handleSubmit={handleSubmit}

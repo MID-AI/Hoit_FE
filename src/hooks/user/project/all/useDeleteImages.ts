@@ -12,7 +12,7 @@ export default function useDeleteImages() {
   return useMutation({
     mutationFn: (imageIds: number[]) => deleteImages(Array.from(imageIds)),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: QUERY_KEY.MY.PROJECT });
+      queryClient.invalidateQueries({ queryKey: QUERY_KEY.MY.PROJECT() });
     },
     onError: (error: any) => handleErrorDialog(error, setErrorDialog),
   });

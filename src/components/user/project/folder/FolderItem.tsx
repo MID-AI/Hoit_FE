@@ -31,7 +31,7 @@ function FolderItem({
             className="h-full w-full object-cover"
           />
         ) : (
-          <EmptyFolderIcon />
+          <EmptyFolderIcon className="h-32 w-39 text-coolGray-300" />
         )}
       </Link>
 
