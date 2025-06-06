@@ -1,4 +1,3 @@
-import useDeleteImages from "@/hooks/user/project/all/use-delete-images";
 import ToolbarEditButton from "../../toolbar/ToolbarEditButton";
 import DeleteIcon from "@/assets/my/delete_folder.svg";
 import {
@@ -10,6 +9,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import useDeleteImages from "@/hooks/user/project/all/useDeleteImages";
 
 interface Props {
   selectedCards: Set<number>;
@@ -23,6 +23,7 @@ function ToolbarImageDelete({ selectedCards, setSelectedCards }: Props) {
     deleteMutation.mutate(Array.from(selectedCards), {
       onSuccess: () => setSelectedCards(new Set()),
     });
+    document.getElementById("closeModal")?.click();
   };
 
   return (

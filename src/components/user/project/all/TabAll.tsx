@@ -1,21 +1,21 @@
 "use client";
 
 import { IMAGE_LIST_BREAKPOINTS } from "@/constants/image-list-breakpoints";
-import useGetMyImageList from "@/hooks/user/project/all/use-get-my-image-list";
 import {
   editModeAllTabAtom,
   isAllEmptyAtom,
   selectedAllTabCardsAtom,
 } from "@/stores/project-atom";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
-import { useEffect, useMemo } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { useInView } from "react-intersection-observer";
 import Masonry from "react-masonry-css";
 import EditImageWrapper from "../edit/EditImageWrapper";
 import Card from "@/components/common/card/ImageCard";
 import NoItems from "@/components/common/card/NoItems";
 import groupImagesByDate from "@/utils/groupImagesByDate";
-import dayjs from "@/utils/dayjs";
+import ImageDate from "./list/ImageDate";
+import useGetMyImageList from "@/hooks/user/project/all/useGetMyImageList";
 
 function TabAll() {
   const { data, isLoading, fetchNextPage, hasNextPage } = useGetMyImageList();
@@ -38,17 +38,20 @@ function TabAll() {
     }
   }, [inView, hasNextPage, fetchNextPage]);
 
-  const toggleSelect = (id: number) => {
-    setSelectedAllTabCards((prev) => {
-      const newSet = new Set(prev);
-      if (newSet.has(id)) {
-        newSet.delete(id);
-      } else {
-        newSet.add(id);
-      }
-      return newSet;
-    });
-  };
+  const toggleSelect = useCallback(
+    (id: number) => {
+      setSelectedAllTabCards((prev) => {
+        const newSet = new Set(prev);
+        if (newSet.has(id)) {
+          newSet.delete(id);
+        } else {
+          newSet.add(id);
+        }
+        return newSet;
+      });
+    },
+    [setSelectedAllTabCards],
+  );
 
   const grouped = useMemo(() => {
     const allImages = data?.pages.flatMap((page) => page.content) ?? [];
@@ -69,17 +72,35 @@ function TabAll() {
 
   return (
     <>
-      {Object.entries(grouped)
-        .sort(([a], [b]) => (dayjs(a).isBefore(dayjs(b)) ? 1 : -1))
-        .map(([date, images]) => (
-          <section key={date} className="mb-16">
-            <div>
-              <h2 className="mb-16 text-Type-18-medium text-gray-700">
-                {date}
-              </h2>
-              {editMode && <button>버튼</button>}
-            </div>
+      {Object.entries(grouped).map(([date, images]) => {
+        const allSelected = images.every((img) =>
+          selectedAllTabCards.has(img.id),
+        );
 
+        const toggleAllForDate = () => {
+          setSelectedAllTabCards((prev) => {
+            const newSet = new Set(prev);
+            const allIds = images.map((img) => img.id);
+            const isAllSelected = allIds.every((id) => newSet.has(id));
+
+            if (isAllSelected) {
+              allIds.forEach((id) => newSet.delete(id));
+            } else {
+              allIds.forEach((id) => newSet.add(id));
+            }
+
+            return newSet;
+          });
+        };
+
+        return (
+          <section key={date} className="mb-16">
+            <ImageDate
+              date={date}
+              editMode={editMode}
+              allSelected={allSelected}
+              toggleAllForDate={toggleAllForDate}
+            />
             <Masonry
               breakpointCols={IMAGE_LIST_BREAKPOINTS}
               className="flex justify-start gap-20 md:pl-0 lg:px-0"
@@ -106,7 +127,8 @@ function TabAll() {
               })}
             </Masonry>
           </section>
-        ))}
+        );
+      })}
 
       {hasNextPage ? (
         <div ref={ref} className="mt-8 text-center text-gray-400">

@@ -1,6 +1,6 @@
 "use client";
 
-import useDeleteFolderImages from "@/hooks/user/project/folder/use-delete-folder-images";
+import useDeleteFolderImages from "@/hooks/user/project/folder/useDeleteFolderImages";
 import ToolbarEditButton from "../../toolbar/ToolbarEditButton";
 import DeleteIcon from "@/assets/my/delete_folder.svg";
 
