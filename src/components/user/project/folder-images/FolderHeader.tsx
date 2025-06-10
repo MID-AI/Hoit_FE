@@ -1,8 +1,7 @@
-"use client";
-
 import ArrowIcon from "@/assets/my/arrow_header.svg";
-import { useRouter } from "next/navigation";
 import FolderImagesToolbar from "./toolbar/FolderImagesToolbar";
+import Link from "next/link";
+import PAGE_ROUTES from "@/constants/page-routes";
 
 function FolderHeader({
   folderName,
@@ -11,19 +10,17 @@ function FolderHeader({
   folderName: string;
   isEmpty?: boolean;
 }) {
-  const router = useRouter();
-
   return (
-    <div className="mb-39 mt-30 flex w-full items-center justify-between">
-      <button
-        onClick={() => router.back()}
-        className="flex items-center gap-13"
-      >
+    <Link
+      href={PAGE_ROUTES.MY_PROJECT_FOLDER}
+      className="mb-39 mt-30 flex w-full items-center justify-between"
+    >
+      <div className="flex items-center gap-13">
         <ArrowIcon />
         <header className="text-Type-28-bold">{folderName}</header>
-      </button>
+      </div>
       {!isEmpty && <FolderImagesToolbar />}
-    </div>
+    </Link>
   );
 }
 

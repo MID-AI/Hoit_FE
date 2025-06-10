@@ -6,19 +6,12 @@ function MediaLikes({
   imageId,
   isLiked,
   likeCount,
-  context,
-  isList = true,
 }: {
   imageId: number;
   isLiked: boolean | null;
   likeCount: number;
-  context?: readonly unknown[];
-  isList?: boolean;
 }) {
-  const { mutate } = useLikeMediaMutation({
-    queryKey: context,
-    isList: isList,
-  });
+  const { mutate } = useLikeMediaMutation();
   const handleLikeClick = () => {
     if (isLiked === null || isLiked === null) return;
     mutate({ imageId, isLiked });
