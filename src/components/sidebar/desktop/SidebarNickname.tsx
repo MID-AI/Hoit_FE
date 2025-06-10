@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import UserIcon from "@/assets/icon/profile.svg";
-import { Dialog } from "../ui/dialog";
-import LoginModal from "../common/auth/LoginModal";
+
 import Image from "next/image";
+import { Dialog } from "@/components/ui/dialog";
+import LoginModal from "@/components/common/auth/LoginModal";
 
 function SidebarNickname({
   nickname,

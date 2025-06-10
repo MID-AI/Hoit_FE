@@ -1,5 +1,5 @@
-import SidebarItem from "./SidebarItem";
 import CreditIcon from "@/assets/icon/credit.svg";
+import SidebarItem from "./SidebarItem";
 
 function SidebarCredit({ credit }: { credit?: string }) {
   if (!credit) return;

@@ -3,7 +3,7 @@ import SidebarItem from "./SidebarItem";
 import Logo from "@/assets/logo/logo.svg";
 import LogoSm from "@/assets/logo/logo_sm.svg";
 import SidebarUser from "./SidebarUser";
-import { MENU_ITEMS, MY_MENU_ITEMS } from "./Sidebar";
+import { MENU_ITEMS, MY_MENU_ITEMS } from "../Sidebar";
 
 function DesktopSidebar() {
   return (

@@ -1,9 +1,9 @@
 "use client";
 
 import useGetUser from "@/hooks/user/auth/use-get-user-profile";
-import SidebarNickname from "./SidebarNickname";
-import SidebarCredit from "./SidebarCredit";
 import SidebarAlert from "./SidebarAlert";
+import SidebarCredit from "./SidebarCredit";
+import SidebarNickname from "./SidebarNickname";
 
 export default function SidebarUser() {
   const { data, isLoading } = useGetUser();

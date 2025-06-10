@@ -1,13 +1,11 @@
-"use client";
-
 import HomeIcon from "@/assets/icon/home.svg";
 import CreateIcon from "@/assets/icon/create.svg";
 import CreateVideoIcon from "@/assets/icon/create video.svg";
 import MyActiveIcon from "@/assets/icon/folder.svg";
 import SocialIcon from "@/assets/icon/activity.svg";
 import PAGE_ROUTES from "@/constants/page-routes";
-import DesktopSidebar from "./DesktopSidebar";
-import MobileSidebar from "./MobileSidebar";
+import DesktopSidebar from "./desktop/DesktopSidebar";
+import MobileSidebar from "./mobile/MobileSidebar";
 import SSEContainer from "../sse/SSEContainer";
 
 // 메뉴 항목 타입
