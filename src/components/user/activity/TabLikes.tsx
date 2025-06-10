@@ -1,16 +1,18 @@
 "use client";
 
 import ImageList from "@/components/image/list/image-list";
-import MediaModal from "@/components/media/MediaModal";
 import PAGE_ROUTES from "@/constants/page-routes";
-import useMediaNavigation from "@/hooks/media/useMediaNavigation";
 import useGetMyImagesLiked from "@/hooks/user/activity/use-get-my-images-liked";
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
+
+const Media = dynamic(() => import("@/components/media/MediaModal"), {
+  ssr: false,
+});
 
 function TabLikes() {
   const { data, isLoading, fetchNextPage, hasNextPage } = useGetMyImagesLiked();
   const allImages = data?.pages.flatMap((page) => page.content) ?? [];
-  const { mediaId, showNext, showPrev, closeModal, hasNext, hasPrev } =
-    useMediaNavigation(allImages, PAGE_ROUTES.MY_ACTIVITY_LIKE); // mediaId → 탐색 로직 처리
 
   return (
     <>
@@ -20,15 +22,9 @@ function TabLikes() {
         fetchNextPage={fetchNextPage}
         hasNextPage={hasNextPage}
       />
-      {mediaId ? (
-        <MediaModal
-          mediaId={mediaId}
-          images={allImages}
-          onClose={closeModal}
-          onNext={hasNext ? showNext : undefined}
-          onPrev={hasPrev ? showPrev : undefined}
-        />
-      ) : null}
+      <Suspense fallback={null}>
+        <Media images={allImages} pageRoute={PAGE_ROUTES.MY_ACTIVITY_LIKE} />
+      </Suspense>
     </>
   );
 }

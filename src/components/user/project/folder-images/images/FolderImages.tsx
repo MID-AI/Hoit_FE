@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { useAtom, useAtomValue } from "jotai";
 import Masonry from "react-masonry-css";
 import { useInView } from "react-intersection-observer";
@@ -13,11 +13,14 @@ import { IMAGE_LIST_BREAKPOINTS } from "@/constants/image-list-breakpoints";
 import NoItems from "@/components/common/card/NoItems";
 import FolderHeader from "../FolderHeader";
 import useGetFolderImages from "@/hooks/user/project/folder/useGetFolderImages";
-import useMediaNavigation from "@/hooks/media/useMediaNavigation";
 import PAGE_ROUTES from "@/constants/page-routes";
-import MediaModal from "@/components/media/MediaModal";
 import { useRouter } from "next/navigation";
 import ImageCard from "@/components/common/card/ImageCard";
+import dynamic from "next/dynamic";
+
+const Media = dynamic(() => import("@/components/media/MediaModal"), {
+  ssr: false,
+});
 
 function FolderImages({ folderId }: { folderId: number }) {
   const router = useRouter();
@@ -31,12 +34,6 @@ function FolderImages({ folderId }: { folderId: number }) {
   const allImages = data?.pages.flatMap((page) => page.images.content) ?? [];
   const isAllEmpty = (data?.pages?.[0]?.images.content.length ?? 0) === 0;
   const folderTitle = data?.pages?.[0]?.name || "";
-
-  const { mediaId, showNext, showPrev, closeModal, hasNext, hasPrev } =
-    useMediaNavigation(
-      allImages,
-      PAGE_ROUTES.MY_PROJECT_FOLDER_IMAGE(folderId),
-    );
 
   useEffect(() => {
     if (inView && hasNextPage) {
@@ -110,15 +107,12 @@ function FolderImages({ folderId }: { folderId: number }) {
           )}
         </section>
       )}
-      {mediaId ? (
-        <MediaModal
-          mediaId={mediaId}
+      <Suspense fallback={null}>
+        <Media
           images={allImages}
-          onClose={closeModal}
-          onNext={hasNext ? showNext : undefined}
-          onPrev={hasPrev ? showPrev : undefined}
+          pageRoute={PAGE_ROUTES.MY_PROJECT_FOLDER_IMAGE(folderId)}
         />
-      ) : null}
+      </Suspense>
     </>
   );
 }
