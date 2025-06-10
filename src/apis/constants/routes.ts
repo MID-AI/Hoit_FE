@@ -3,6 +3,7 @@ const API_ROUTES = {
 
   //auth
   LOGIN: "oauth2/authorization/google",
+  LOGOUT: "api/auth/logout",
   REFRESH_TOKEN: "auth/token/verify",
   USER: "api/user/profile",
   EDIT_NICKNAME: "api/user/nickname",

@@ -2,6 +2,7 @@ import { getAccessTokenFromCookies } from "@/utils/cookies-server";
 import handleAPIError from "../utils/handleAPIError";
 import { SERVER_URL } from "./baseUrl";
 import HTTPError from "../error/HTTPError";
+import API_ROUTES from "../constants/routes";
 
 export const BASE_URL = SERVER_URL;
 
@@ -68,10 +69,30 @@ class APIClient {
     return headers;
   }
 
+  private async verifyAndRefreshToken(): Promise<void> {
+    try {
+      await this.request(API_ROUTES.REFRESH_TOKEN, {
+        method: "POST",
+        credentials: "include",
+      });
+    } catch {
+      throw handleAPIError(
+        401,
+        "로그인이 만료되었습니다. 다시 로그인해 주세요.",
+        "TOKEN_EXPIRATION",
+      );
+    }
+  }
+
   /**
    * API 요청 메서드
    */
-  private async request<T>(path: string, config?: RequestConfig): Promise<T> {
+  private async request<T>(
+    path: string,
+    config?: RequestConfig,
+    retry = true,
+    skipTokenVerification = false,
+  ): Promise<T> {
     try {
       const url = this.createURL(path, config?.params);
       const headers = await this.createHeaders(config);
@@ -90,6 +111,18 @@ class APIClient {
 
       if (!response.ok) {
         const errorJson = await response.json();
+        if (response.status === 401 && retry && !skipTokenVerification) {
+          try {
+            await this.verifyAndRefreshToken();
+            return this.request<T>(path, config, false);
+          } catch {
+            throw handleAPIError(
+              401,
+              "로그인이 만료되었습니다. 다시 로그인해 주세요.",
+              "TOKEN_EXPIRATION",
+            );
+          }
+        }
         handleAPIError(response.status, errorJson.message, errorJson.error);
       }
 
@@ -108,8 +141,17 @@ class APIClient {
     return this.request<T>(path, { ...config, method: "GET" });
   }
 
-  async post<T>(path: string, body?: any, config?: RequestConfig) {
-    return this.request<T>(path, { ...config, body, method: "POST" });
+  async post<T>(
+    path: string,
+    body?: any,
+    config?: RequestConfig & { skipTokenVerification?: boolean },
+  ) {
+    return this.request<T>(
+      path,
+      { ...config, body, method: "POST" },
+      true,
+      config?.skipTokenVerification,
+    );
   }
 
   async patch<T>(path: string, body?: any, config?: RequestConfig) {

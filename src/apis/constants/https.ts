@@ -34,4 +34,10 @@ export const HTTP_ERROR_MESSAGE = {
     BUTTON: "크레딧 충전하기",
     REDIRECT_URL: "",
   },
+  TOKEN_EXPIRATION: {
+    HEADING: "로그인 시간 만료",
+    BODY: "로그인이 만료되었습니다. 다시 로그인해 주세요.",
+    BUTTON: "확인",
+    REDIRECT_URL: PAGE_ROUTES.HOME,
+  },
 } as const;

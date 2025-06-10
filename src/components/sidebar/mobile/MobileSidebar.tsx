@@ -7,7 +7,7 @@ import BellIcon from "@/assets/icon/bell.svg";
 import CreditIcon from "@/assets/icon/credit.svg";
 import MenuIcon from "@/assets/icon/hamburger.svg";
 import Logo from "@/assets/logo/mobile_logo.svg";
-import { MENU_ITEMS, MY_MENU_ITEMS } from "./Sidebar";
+import { MENU_ITEMS, MY_MENU_ITEMS } from "../Sidebar";
 
 export default function MobileSidebar() {
   const [open, setOpen] = useState(false);
