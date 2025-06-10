@@ -2,11 +2,9 @@
 
 import { Skeleton } from "@/components/ui/skeleton";
 import Image from "next/image";
-import Link from "next/link";
 import { useState } from "react";
 import CardInfo from "./CardInfo";
 import cn from "@/utils/cn";
-import { usePathname } from "next/navigation";
 
 interface Props {
   id: number;
@@ -14,15 +12,16 @@ interface Props {
   nickname?: string;
   likeCount: number;
   isLiked: boolean | null;
+  onClick?: () => void;
 }
 
 function ImageCard({
-  id,
   url,
   nickname,
   likeCount,
   isLiked,
   className,
+  onClick,
 }: Props & {
   className?: string;
 }) {
@@ -30,8 +29,6 @@ function ImageCard({
   const [imageDimensions, setImageDimensions] = useState<{
     height: number;
   } | null>(null);
-  const path = usePathname();
-
   const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
     const { naturalHeight } = e.currentTarget;
     setImageDimensions({ height: naturalHeight });
@@ -39,12 +36,12 @@ function ImageCard({
   };
 
   return (
-    <Link
-      href={`${path}/${id}`}
+    <div
       className={cn(
         "group relative mb-24 flex w-full break-inside-avoid overflow-hidden rounded-20 bg-white text-Type-14-regular",
         className,
       )}
+      onClick={onClick}
     >
       {isLoading && (
         <Skeleton
@@ -62,7 +59,7 @@ function ImageCard({
         unoptimized
       />
       <CardInfo nickname={nickname} isLiked={isLiked} likeCount={likeCount} />
-    </Link>
+    </div>
   );
 }
 

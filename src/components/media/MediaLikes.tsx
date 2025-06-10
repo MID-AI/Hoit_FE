@@ -1,27 +1,20 @@
 import HeartIcon from "@/assets/icon/heart.svg";
 import HeartBlueIcon from "@/assets/icon/heart_blue.svg";
-import useLikeMediaMutation from "@/hooks/user/media/use-like-media-mutation";
+import useLikeMediaMutation from "@/hooks/user/media/useLikeMediaMutation";
 
 function MediaLikes({
   imageId,
   isLiked,
   likeCount,
-  context,
-  isList = true,
 }: {
   imageId: number;
   isLiked: boolean | null;
   likeCount: number;
-  context?: readonly unknown[];
-  isList?: boolean;
 }) {
-  const { mutate } = useLikeMediaMutation({
-    queryKey: context,
-    isList: isList,
-  });
+  const { mutate } = useLikeMediaMutation();
   const handleLikeClick = () => {
-    if (isLiked === null) return;
-    mutate(imageId);
+    if (isLiked === null || isLiked === null) return;
+    mutate({ imageId, isLiked });
   };
 
   return (

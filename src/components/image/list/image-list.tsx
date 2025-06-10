@@ -5,6 +5,7 @@ import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
 import ImageCard from "@/components/common/card/ImageCard";
 import { IMAGE_LIST_BREAKPOINTS } from "@/constants/image-list-breakpoints";
+import { useRouter } from "next/navigation";
 
 interface Props {
   data: any;
@@ -16,6 +17,10 @@ interface Props {
 function ImageList({ data, isLoading, fetchNextPage, hasNextPage }: Props) {
   const { ref, inView } = useInView();
   const isAllEmpty = data?.pages[0].content.length === 0;
+  const router = useRouter();
+  const handleImageClick = (id: number) => {
+    router.push(`?mediaView=${id}`, { scroll: false });
+  };
 
   useEffect(() => {
     if (inView && hasNextPage) {
@@ -51,6 +56,7 @@ function ImageList({ data, isLoading, fetchNextPage, hasNextPage }: Props) {
                   nickname={img.member.nickname}
                   likeCount={img.likeCount}
                   isLiked={img?.isLiked}
+                  onClick={() => handleImageClick(img.id)}
                 />
               )),
             )}

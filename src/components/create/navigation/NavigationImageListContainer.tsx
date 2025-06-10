@@ -2,7 +2,8 @@
 
 import NoItems from "@/components/common/card/NoItems";
 import { IMAGE_LIST_BREAKPOINTS } from "@/constants/image-list-breakpoints";
-import useGetMyImageList from "@/hooks/user/project/all/use-get-my-image-list";
+import useGetMyImageList from "@/hooks/user/project/all/useGetMyImageList";
+
 import Image from "next/image";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";

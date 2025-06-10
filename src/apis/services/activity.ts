@@ -4,13 +4,11 @@ import API_ROUTES from "../constants/routes";
 
 // 내 활동 - 포스팅
 export async function getMyActivityPost({
-  cursor,
   size = 20,
-  searchValue,
+  cursor,
 }: {
   cursor?: string | null;
   size?: number;
-  searchValue?: string;
 }) {
   return await apiClient.get<PageNation<ImageType>>(
     API_ROUTES.MY_ACTIVITY_POSTS,
@@ -18,7 +16,6 @@ export async function getMyActivityPost({
       params: {
         ...(cursor && { cursor }),
         ...(size && { size }),
-        ...(searchValue && { searchValue }),
       },
     },
   );
@@ -28,11 +25,9 @@ export async function getMyActivityPost({
 export async function getMyActivityLikes({
   cursor,
   size = 20,
-  searchValue,
 }: {
   cursor?: string | null;
   size?: number;
-  searchValue?: string;
 }) {
   return await apiClient.get<PageNation<ImageType>>(
     API_ROUTES.MY_ACTIVITY_LIKES,
@@ -40,7 +35,6 @@ export async function getMyActivityLikes({
       params: {
         ...(cursor && { cursor }),
         ...(size && { size }),
-        ...(searchValue && { searchValue }),
       },
     },
   );

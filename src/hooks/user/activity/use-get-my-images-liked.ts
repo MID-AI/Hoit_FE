@@ -2,14 +2,11 @@ import { getMyActivityLikes } from "@/apis/services/activity";
 import { QUERY_KEY } from "@/constants/query-key";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
-export default function useGetMyImagesLiked(
-  size?: number,
-  searchValue?: string,
-) {
+export default function useGetMyImagesLiked(size?: number) {
   return useInfiniteQuery({
     queryKey: QUERY_KEY.MY.ACTIVITY_LIKES,
     queryFn: ({ pageParam }: { pageParam?: string | null }) =>
-      getMyActivityLikes({ cursor: pageParam, size, searchValue }),
+      getMyActivityLikes({ cursor: pageParam, size }),
     initialPageParam: null,
     getNextPageParam: (lastPage) => lastPage.nextPageCursor ?? undefined,
     getPreviousPageParam: (firstPage) =>

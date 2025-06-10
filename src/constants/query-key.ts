@@ -11,8 +11,8 @@ export const QUERY_KEY = {
   // my
   MY: {
     PROFILE: ["user"] as const,
-    PROJECT: (pageSize: number = 10, searchValue: string = "") =>
-      ["myProject", "imageList", pageSize, searchValue] as const,
+    PROJECT: (pageSize: number = 20) =>
+      ["myProject", "imageList", pageSize] as const,
     PROJECT_FOLDER: ["myProject", "folderList"] as const,
     PROJECT_FOLDER_IMAGES: (id: number) => ["myProject", "folder", id] as const,
     ACTIVITY_POST: ["myActivity", "post"] as const,
