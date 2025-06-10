@@ -7,15 +7,15 @@ export async function getMyActivityPost({
   size = 20,
   cursor,
 }: {
-  size?: number;
   cursor?: string | null;
+  size?: number;
 }) {
   return await apiClient.get<PageNation<ImageType>>(
     API_ROUTES.MY_ACTIVITY_POSTS,
     {
       params: {
-        size,
         ...(cursor && { cursor }),
+        ...(size && { size }),
       },
     },
   );

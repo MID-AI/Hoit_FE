@@ -29,6 +29,7 @@ function FolderItem({
             width={415}
             height={184}
             className="h-full w-full object-cover"
+            unoptimized
           />
         ) : (
           <EmptyFolderIcon className="h-32 w-39 text-coolGray-300" />

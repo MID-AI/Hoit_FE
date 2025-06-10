@@ -1,5 +1,3 @@
-import HomeImageDetailContainer from "@/components/home/HomeImageDetailContainer";
-
 async function ImageDetailPage({
   params,
 }: {
@@ -9,7 +7,7 @@ async function ImageDetailPage({
 }) {
   const { imageId } = await params;
 
-  return <HomeImageDetailContainer imageId={Number(imageId)} />;
+  return <div>수정 중 {imageId}</div>;
 }
 
 export default ImageDetailPage;

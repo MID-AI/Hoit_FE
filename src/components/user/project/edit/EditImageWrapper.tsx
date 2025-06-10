@@ -15,7 +15,7 @@ function EditImageWrapper({
 }) {
   return (
     <div
-      onClick={editMode ? onClick : undefined}
+      onClick={onClick}
       className={cn(
         "relative mb-24 box-border cursor-pointer overflow-hidden rounded-20",
         editMode && isChecked && "outline outline-4 outline-cBlue-400",

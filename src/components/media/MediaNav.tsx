@@ -12,20 +12,16 @@ import type { ImageType } from "@/@types/images";
 function MediaNav({
   onClick,
   image,
-  context,
-  isList,
 }: {
   onClick: () => void;
   image: ImageType;
-  context?: readonly unknown[];
-  isList?: boolean;
 }) {
   return (
     <nav className="mr-128 h-full">
       <div className="relative h-fit w-448 rounded-22 bg-white px-25 pb-42 pt-36">
         <div className="mb-38 flex items-end justify-between">
           <Logo className="h-30 w-50" />
-          <button onClick={onClick}>
+          <button onClick={onClick} aria-label="네비게이션 닫기">
             <ToggleIcon />
           </button>
         </div>
@@ -47,8 +43,6 @@ function MediaNav({
               imageId={image.id}
               isLiked={image.isLiked}
               likeCount={image.likeCount}
-              context={context}
-              isList={isList}
             />
             <MediaDownload image={image.url} />
             <MediaShare isShared={image.isShared} />
@@ -58,8 +52,6 @@ function MediaNav({
         <MediaRatio />
         <MediaPostingButton
           imageId={image.id}
-          context={context}
-          isList={isList}
           isShared={image.isShared}
           className="absolute bottom-25 right-25"
         />

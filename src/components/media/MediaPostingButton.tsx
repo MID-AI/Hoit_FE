@@ -4,23 +4,12 @@ import cn from "@/utils/cn";
 
 interface Props {
   imageId: number;
-  context: readonly unknown[] | undefined;
-  isList?: boolean;
   isShared?: boolean | null;
   className?: string;
 }
 
-function MediaPostingButton({
-  imageId,
-  context,
-  isList = true,
-  isShared,
-  className,
-}: Props) {
-  const { mutate } = usePostingMediaMutation({
-    queryKey: context,
-    isList: isList,
-  });
+function MediaPostingButton({ imageId, isShared, className }: Props) {
+  const { mutate } = usePostingMediaMutation();
 
   /**수정 필요
    * 응답으로 평문이 옴 -> json 으로 수정 해야 함
