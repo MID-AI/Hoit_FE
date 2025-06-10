@@ -2,20 +2,12 @@
 
 import Link from "next/link";
 import { useState } from "react";
-// import PAGE_ROUTES from "@/constants/page-routes";
+import PAGE_ROUTES from "@/constants/page-routes";
 import BellIcon from "@/assets/icon/bell.svg";
 import CreditIcon from "@/assets/icon/credit.svg";
 import MenuIcon from "@/assets/icon/hamburger.svg";
 import Logo from "@/assets/logo/mobile_logo.svg";
 import { MENU_ITEMS, MY_MENU_ITEMS } from "./Sidebar";
-
-// const menuItems = [
-//   { label: "홈", href: PAGE_ROUTES.HOME },
-//   { label: "이미지 생성", href: PAGE_ROUTES.IMAGE_CREATE },
-//   { label: "영상 생성", href: PAGE_ROUTES.VIDEO_CREATE },
-//   { label: "내 활동", href: PAGE_ROUTES.MY_ACTIVITY_POST },
-//   { label: "내 프로젝트", href: PAGE_ROUTES.MY_PROJECT_ALL },
-// ];
 
 export default function MobileSidebar() {
   const [open, setOpen] = useState(false);
@@ -29,25 +21,30 @@ export default function MobileSidebar() {
   return (
     <>
       {/* 상단 헤더 */}
-      <header className="bg-coolGrey-50 fixed left-0 right-0 top-0 z-50 flex h-64 items-center justify-between bg-coolGray-50 px-4 md:hidden">
-        <div className="ml-16 mt-15 flex items-center">
-          <Link href="/">
-            <Logo width={48} height={25} />
-          </Link>
-        </div>
-        <div className="flex items-center space-x-14 pr-1">
-          <div className="mt-23 flex items-center justify-center p-1">
-            <BellIcon className="h-21 w-21 text-gray-600" />
+      <header className="bg-coolGrey-50 fixed left-0 right-0 top-0 z-50 h-64 bg-coolGray-50 md:hidden">
+        <div className="flex h-full items-center justify-between px-16 pb-4 pt-4">
+          {/* 로고 */}
+          <div className="flex items-center">
+            <Link href={PAGE_ROUTES.HOME}>
+              <Logo width={48} height={25} />
+            </Link>
           </div>
-          <div className="mt-23 flex items-center justify-center p-1">
-            <CreditIcon className="h-21 w-21 text-gray-600" />
+
+          {/* 아이콘들 */}
+          <div className="flex items-center space-x-13">
+            <div className="flex items-center justify-center p-1">
+              <BellIcon className="h-21 w-21 text-gray-600" />
+            </div>
+            <div className="flex items-center justify-center p-1">
+              <CreditIcon className="h-21 w-21 text-gray-600" />
+            </div>
+            <button
+              onClick={() => setOpen(!open)}
+              className="flex items-center justify-center p-1"
+            >
+              <MenuIcon className="h-17 w-16 text-gray-800" />
+            </button>
           </div>
-          <button
-            onClick={() => setOpen(!open)}
-            className="mt-20 flex items-center justify-center p-1"
-          >
-            <MenuIcon className="h-17 w-16 translate-y-2 text-gray-800" />
-          </button>
         </div>
       </header>
       {/* 햄버거 메뉴 열렸을 때 */}
