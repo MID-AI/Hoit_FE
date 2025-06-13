@@ -36,14 +36,14 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body
-        className={`${notoSansKr.className} overflow-x-hidden overflow-y-scroll bg-default`}
+        className={`${notoSansKr.className} flex overflow-x-hidden bg-default`}
       >
         <MswComponent />
         <Provider>
           <QueryProviders>
             <JotaiProvider>
               <SidebarContainer />
-              <main className="ml-64 flex items-start justify-center lg:ml-140">
+              <main className="ml-64 flex h-screen w-full items-start justify-center overflow-y-scroll lg:ml-140">
                 {children}
                 <div id="modal-root"></div>
                 <ErrorDialog />

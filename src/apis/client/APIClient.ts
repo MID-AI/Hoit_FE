@@ -71,7 +71,7 @@ class APIClient {
 
   private async verifyAndRefreshToken(): Promise<void> {
     try {
-      await this.request(API_ROUTES.REFRESH_TOKEN, {
+      await this.request(API_ROUTES.AUTH.REFRESH_TOKEN, {
         method: "POST",
         credentials: "include",
       });
@@ -126,7 +126,12 @@ class APIClient {
         handleAPIError(response.status, errorJson.message, errorJson.error);
       }
 
-      return await response.json();
+      try {
+        const text = await response.text();
+        return text ? (JSON.parse(text) as T) : (null as T);
+      } catch {
+        return null as T;
+      }
     } catch (error: any) {
       if (error instanceof HTTPError) {
         throw error;
@@ -137,8 +142,16 @@ class APIClient {
   }
 
   // HTTP 메서드
-  async get<T>(path: string, config?: Omit<RequestConfig, "body">) {
-    return this.request<T>(path, { ...config, method: "GET" });
+  async get<T>(
+    path: string,
+    config?: Omit<RequestConfig, "body"> & { skipTokenVerification?: boolean },
+  ) {
+    return this.request<T>(
+      path,
+      { ...config, method: "GET" },
+      true,
+      config?.skipTokenVerification,
+    );
   }
 
   async post<T>(

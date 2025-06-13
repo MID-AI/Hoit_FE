@@ -1,4 +1,5 @@
-import type { ImageType, PageNation, ReferenceType } from "@/@types/images";
+import type { ImageType, ReferenceType } from "@/@types/images";
+import type { PageNation } from "@/@types/response";
 import { apiClient } from "../client/APIClient";
 import API_ROUTES from "../constants/routes";
 
@@ -6,19 +7,16 @@ import API_ROUTES from "../constants/routes";
 export async function getSharedImages({
   cursor,
   size = 20,
-  searchValue,
 }: {
   cursor?: string | null;
   size?: number;
-  searchValue?: string;
 }) {
   const response = await apiClient.get<PageNation<ImageType>>(
-    API_ROUTES.SHARED_IMAGES,
+    API_ROUTES.IMAGE.SHARED,
     {
       params: {
         ...(cursor && { cursor }),
         ...(size && { size }),
-        ...(searchValue && { searchValue }),
       },
     },
   );
@@ -28,7 +26,7 @@ export async function getSharedImages({
 
 // 이미지 상세
 export async function getImageDetail(imageId: number) {
-  return await apiClient.get<ImageType>(API_ROUTES.IMAGE_DETAIL(imageId));
+  return await apiClient.get<ImageType>(API_ROUTES.IMAGE.DETAIL(imageId));
 }
 
 // 이미지 생성
@@ -38,18 +36,18 @@ export async function createImage(data: {
   crefUrl?: string;
   srefUrl?: string;
 }) {
-  return await apiClient.post(API_ROUTES.CREATE_IMAGE, data);
+  return await apiClient.post(API_ROUTES.CREATE.IMAGE, data);
 }
 
 // 이미지 레퍼런스
 export async function postImageReference(formData: FormData) {
   return await apiClient.post<ReferenceType>(
-    API_ROUTES.IMAGE_REFERENCE,
+    API_ROUTES.CREATE.IMAGE_REFERENCE,
     formData,
   );
 }
 
 // 이미지 업스케일
 export async function imageUpscale(data: { taskId: string; index: string }) {
-  return await apiClient.post(API_ROUTES.IMAGE_UPSCALE, data);
+  return await apiClient.post(API_ROUTES.CREATE.UPSCALE, data);
 }

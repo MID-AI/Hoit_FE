@@ -1,4 +1,5 @@
-import type { ImageType, PageNation } from "@/@types/images";
+import type { ImageType } from "@/@types/images";
+import type { PageNation } from "@/@types/response";
 import { getMyImageList } from "@/apis/services/project";
 import { QUERY_KEY } from "@/constants/query-key";
 import { InfiniteData, useInfiniteQuery } from "@tanstack/react-query";

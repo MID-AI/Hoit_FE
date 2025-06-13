@@ -56,7 +56,7 @@ export default function useUserSSE(memberId?: number | null) {
         eventSourceRef.current = null;
       }
 
-      const url = `${SERVER_URL}${API_ROUTES.CREATE_IMAGE_SSE(memberId)}`;
+      const url = `${SERVER_URL}${API_ROUTES.USER.SSE(memberId)}`;
       const es = new EventSource(url, { withCredentials: true });
       eventSourceRef.current = es;
 

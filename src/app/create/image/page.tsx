@@ -4,11 +4,11 @@ import ImageCreationInteractive from "@/components/image/create/ImageCreationInt
 
 function ImageCreation() {
   return (
-    <main className="flex h-screen w-full flex-col justify-between gap-24 p-24">
+    <section className="flex h-screen w-full flex-col justify-between gap-24 p-24">
       <CreateImageStateCleanup />
       <LoginChecker />
       <ImageCreationInteractive />
-    </main>
+    </section>
   );
 }
 

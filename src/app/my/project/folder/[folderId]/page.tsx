@@ -8,9 +8,9 @@ async function FolderImagesPage({
 }) {
   const { folderId } = await params;
   return (
-    <main className="w-full px-24">
+    <section className="w-full px-24">
       <FolderImagesContainer folderId={Number(folderId)} />
-    </main>
+    </section>
   );
 }
 

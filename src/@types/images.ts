@@ -1,19 +1,6 @@
 import type { AspectRatio } from "@/constants/select-menu";
 import type { UserType } from "./auth";
 
-export interface APIResponse<T> {
-  timestamp: string;
-  statusCode: number;
-  message: string;
-  data: T;
-}
-
-export interface PageNation<T> {
-  content: T[];
-  previousPageCursor: string | null;
-  nextPageCursor: string | null;
-}
-
 export interface ImageType {
   member: Omit<UserType, "credit">;
   id: number;

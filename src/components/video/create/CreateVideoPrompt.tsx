@@ -1,8 +1,8 @@
 "use client";
 
 import Prompt from "@/components/create/prompt/prompt";
-import useCreateVideo from "@/hooks/create/use-create-video";
-import usePostVideoRef from "@/hooks/create/use-post-video-ref";
+import useCreateVideo from "@/hooks/create/useCreateVideo";
+import usePostVideoRef from "@/hooks/create/usePostVideoRef";
 import { createVideoAtom } from "@/stores/create-video-atom";
 
 import { useAtom } from "jotai";

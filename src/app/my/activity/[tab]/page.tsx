@@ -20,9 +20,9 @@ async function ActivityTabPage({
   }[tab];
 
   return (
-    <main className="w-full px-23 py-28">
+    <section className="w-full px-23 py-28">
       <TabWrapper activeTab={tab}>{tabContent}</TabWrapper>
-    </main>
+    </section>
   );
 }
 
