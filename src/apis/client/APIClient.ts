@@ -71,7 +71,7 @@ class APIClient {
 
   private async verifyAndRefreshToken(): Promise<void> {
     try {
-      await this.request(API_ROUTES.REFRESH_TOKEN, {
+      await this.request(API_ROUTES.AUTH.REFRESH_TOKEN, {
         method: "POST",
         credentials: "include",
       });

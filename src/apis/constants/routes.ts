@@ -2,44 +2,64 @@ const API_ROUTES = {
   TEST: "test",
 
   //auth
-  LOGIN: "oauth2/authorization/google",
-  LOGOUT: "api/auth/logout",
-  REFRESH_TOKEN: "auth/token/verify",
-  USER: "api/user/profile",
-  EDIT_NICKNAME: "api/user/nickname",
-  DELETE_ACCOUNT: "",
+  AUTH: {
+    LOGIN: "oauth2/authorization/google",
+    LOGOUT: "api/auth/logout",
+    REFRESH_TOKEN: "auth/token/verify",
+  },
 
-  // 홈
-  SHARED_IMAGES: "api/shared-images",
-  IMAGE_DETAIL: (id: number) => `api/images/${id}`,
+  // 유저
+  USER: {
+    PROFILE: "api/user/profile",
+    EDIT_NICKNAME: "api/user/nickname",
+    DELETE_ACCOUNT: "",
+    SSE: (memberId: number) => `/sse/${memberId}`,
+  },
 
-  // 이미지 생성
-  CREATE_IMAGE: "api/images/create",
-  IMAGE_REFERENCE: "api/reference/images",
-  CREATE_IMAGE_SSE: (memberId: number) => `/sse/${memberId}`,
-  IMAGE_UPSCALE: "api/upscale-images/create",
+  // 알림
+  NOTIFICATION: {
+    ALL: "api/notification",
+    SINGLE: (notificationId: number) => `api/notification/${notificationId}`,
+    UNREAD: "api/notification/unread",
+    AS_READ: (notificationId: number) =>
+      `api/notification/${notificationId}/read`,
+  },
 
-  // 비디오 생성
-  CREATE_VIDEO: "api/videos/create",
-  VIDEO_REFERENCE: "api/reference/videos",
+  // 생성
+  CREATE: {
+    // 이미지
+    IMAGE: "api/images/create",
+    IMAGE_REFERENCE: "api/reference/images",
+    UPSCALE: "api/upscale-images/create",
+
+    // 비디오
+    VIDEO: "api/videos/create",
+    VIDEO_REFERENCE: "api/reference/videos",
+  },
 
   // 내 활동
-  MY_ACTIVITY_POSTS: "api/mypage/shared-images",
-  MY_ACTIVITY_LIKES: "api/mypage/like",
+  ACTIVITY: {
+    POSTS: "api/mypage/shared-images",
+    LIKES: "api/mypage/like",
+  },
 
-  // 내 프로젝트(전체)
-  MY_IMAGES: "api/images/mypage",
+  // 내 프로젝트
+  PROJECT: {
+    IMAGES: "api/images/mypage",
+    FOLDERS: "api/folder",
+    DELETE_FOLDER: (folderId: number) => `api/folder/${folderId}`,
+    FOLDER_EDIT_NAME: (folderId: number) => `api/folder/${folderId}`,
+    FOLDER_IMAGES: (folderId: number) => `api/folder/${folderId}/images`,
+  },
 
-  // 내 프로젝트(폴더)
-  MY_PROJECT_FOLDER: "api/folder",
-  DELETE_MY_PROJECT_FOLDER: (id: number) => `api/folder/${id}`,
-  MY_PROJECT_FOLDER_EDIT_NAME: (id: number) => `api/folder/${id}`,
-  MY_PROJECT_FOLDER_IMAGES: (id: number) => `api/folder/${id}/images`,
+  // 이미지
+  IMAGE: {
+    SHARED: "api/shared-images",
+    DETAIL: (imageId: number) => `api/images/${imageId}`,
 
-  // 좋아요
-  IMAGE_LIKED: (id: number) => `api/${id}/like`,
-  // 포스팅하기
-  IMAGE_POSTING: (id: number) => `api/shared-images/${id}`,
+    LIKE: (imageId: number) => `api/${imageId}/like`,
+    POSTING: (imageId: number) => `api/shared-images/${imageId}`,
+  },
 } as const;
 
 export default API_ROUTES;

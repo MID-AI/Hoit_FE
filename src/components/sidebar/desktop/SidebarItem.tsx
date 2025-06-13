@@ -25,7 +25,7 @@ export default function SidebarItem({ icon, label, href, sub_href }: Props) {
     >
       <div
         className={cn(
-          "text-cool shrink-0",
+          "shrink-0",
           (pathname === href || pathname === sub_href) && "text-cBlue-400",
         )}
       >

@@ -18,4 +18,10 @@ export const QUERY_KEY = {
     ACTIVITY_POST: ["myActivity", "post"] as const,
     ACTIVITY_LIKES: ["myActivity", "likes"] as const,
   },
+
+  // notification
+  NOTIFICATION: {
+    ALL: ["notification"] as const,
+    UNREAD: ["notification", "unread"] as const,
+  },
 };

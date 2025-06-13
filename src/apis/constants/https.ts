@@ -21,12 +21,12 @@ export const HTTP_ERROR_MESSAGE = {
   UNAUTHORIZED: {
     BODY: "다시 로그인 해주세요.",
     BUTTON: "로그인하기",
-    REDIRECT_URL: `${SERVER_URL}/${API_ROUTES.LOGIN}`,
+    REDIRECT_URL: `${SERVER_URL}/${API_ROUTES.AUTH.LOGIN}`,
   },
   FAILED_IN_AUTHENTICATION: {
     BODY: "다시 로그인 해주세요.",
     BUTTON: "로그인하기",
-    REDIRECT_URL: `${SERVER_URL}/${API_ROUTES.LOGIN}`,
+    REDIRECT_URL: `${SERVER_URL}/${API_ROUTES.AUTH.LOGIN}`,
   },
   PAYMENT_REQUIRED: {
     HEADING: "크레딧 부족",
