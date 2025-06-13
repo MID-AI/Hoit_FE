@@ -1,4 +1,4 @@
-import { PageNation } from "./images";
+import type { PageNation } from "./response";
 
 export interface FolderType {
   id: number;

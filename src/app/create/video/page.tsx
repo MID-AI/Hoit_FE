@@ -8,18 +8,18 @@ import VideoCreateNavigation from "@/components/video/create/VideoCreateNavigati
 
 function VideoCreation() {
   return (
-    <main className="flex h-screen w-full flex-col justify-between gap-24 p-24">
+    <section className="flex h-screen w-full flex-col justify-between gap-24 p-24">
       <CreateVideoStateCleanup />
       <LoginChecker />
-      <section className="flex h-full w-full justify-between">
+      <div className="flex h-full w-full justify-between">
         <VideoCreateNavigation />
         <DisplayWrapper>
           <DisplayVideo />
         </DisplayWrapper>
         <ImageList />
-      </section>
+      </div>
       <CreateVideoPrompt />
-    </main>
+    </section>
   );
 }
 

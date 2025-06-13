@@ -1,6 +1,6 @@
 "use client";
 
-import useGetImageList from "@/hooks/home/use-get-image-list";
+import useGetImageList from "@/hooks/home/useGetImageList";
 import ImageList from "../image/list/image-list";
 
 function ImageListContainer() {

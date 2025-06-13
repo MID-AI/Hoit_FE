@@ -1,4 +1,5 @@
-import type { ImageType, PageNation } from "@/@types/images";
+import type { ImageType } from "@/@types/images";
+import type { PageNation } from "@/@types/response";
 import { apiClient } from "../client/APIClient";
 import API_ROUTES from "../constants/routes";
 

@@ -137,8 +137,16 @@ class APIClient {
   }
 
   // HTTP 메서드
-  async get<T>(path: string, config?: Omit<RequestConfig, "body">) {
-    return this.request<T>(path, { ...config, method: "GET" });
+  async get<T>(
+    path: string,
+    config?: Omit<RequestConfig, "body"> & { skipTokenVerification?: boolean },
+  ) {
+    return this.request<T>(
+      path,
+      { ...config, method: "GET" },
+      true,
+      config?.skipTokenVerification,
+    );
   }
 
   async post<T>(

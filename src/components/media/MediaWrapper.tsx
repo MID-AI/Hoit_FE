@@ -13,7 +13,7 @@ interface Props {
 
 function MediaWrapper({ image, onPrev, onNext }: Props) {
   return (
-    <main className="flex h-screen w-full items-center justify-between gap-200 py-95">
+    <section className="flex h-screen w-full items-center justify-between gap-200 py-95">
       <div className="relative ml-180 flex w-full items-center justify-center gap-64">
         <button
           onClick={onPrev}
@@ -49,7 +49,7 @@ function MediaWrapper({ image, onPrev, onNext }: Props) {
       </div>
 
       <MediaNavWrapper image={image} />
-    </main>
+    </section>
   );
 }
 

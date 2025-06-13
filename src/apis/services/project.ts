@@ -1,5 +1,6 @@
 import { apiClient } from "../client/APIClient";
-import type { ImageType, PageNation } from "@/@types/images";
+import type { PageNation } from "@/@types/response";
+import type { ImageType } from "@/@types/images";
 import type { FolderImagesType, FolderType } from "@/@types/folder";
 import API_ROUTES from "../constants/routes";
 

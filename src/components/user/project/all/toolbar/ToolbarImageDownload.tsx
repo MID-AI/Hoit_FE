@@ -1,6 +1,6 @@
 "use client";
 
-import type { ImageType, PageNation } from "@/@types/images";
+import type { ImageType } from "@/@types/images";
 import { QUERY_KEY } from "@/constants/query-key";
 import { selectedAllTabCardsAtom } from "@/stores/project-atom";
 import { type InfiniteData, useQueryClient } from "@tanstack/react-query";
@@ -8,6 +8,7 @@ import { useAtomValue } from "jotai";
 import ToolbarEditButton from "../../toolbar/ToolbarEditButton";
 import DownLoadIcon from "@/assets/create/download.svg";
 import { downloadImage } from "@/utils/downloadImage";
+import { PageNation } from "@/@types/response";
 
 function ToolbarImageDownload() {
   const selectedCards = useAtomValue(selectedAllTabCardsAtom);

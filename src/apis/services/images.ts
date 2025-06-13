@@ -1,4 +1,5 @@
-import type { ImageType, PageNation, ReferenceType } from "@/@types/images";
+import type { ImageType, ReferenceType } from "@/@types/images";
+import type { PageNation } from "@/@types/response";
 import { apiClient } from "../client/APIClient";
 import API_ROUTES from "../constants/routes";
 
@@ -6,11 +7,9 @@ import API_ROUTES from "../constants/routes";
 export async function getSharedImages({
   cursor,
   size = 20,
-  searchValue,
 }: {
   cursor?: string | null;
   size?: number;
-  searchValue?: string;
 }) {
   const response = await apiClient.get<PageNation<ImageType>>(
     API_ROUTES.SHARED_IMAGES,
@@ -18,7 +17,6 @@ export async function getSharedImages({
       params: {
         ...(cursor && { cursor }),
         ...(size && { size }),
-        ...(searchValue && { searchValue }),
       },
     },
   );

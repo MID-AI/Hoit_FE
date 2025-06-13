@@ -6,9 +6,10 @@ import DownLoadIcon from "@/assets/create/download.svg";
 import { type InfiniteData, useQueryClient } from "@tanstack/react-query";
 import { useAtomValue } from "jotai";
 import { selectedFolderCardsAtom } from "@/stores/project-atom";
-import type { ImageType, PageNation } from "@/@types/images";
+import type { ImageType } from "@/@types/images";
 import { QUERY_KEY } from "@/constants/query-key";
 import { downloadImage } from "@/utils/downloadImage";
+import { PageNation } from "@/@types/response";
 
 function ToolbarDownload() {
   const params = useParams();

@@ -1,8 +1,8 @@
 "use client";
 
 import Prompt from "@/components/create/prompt/prompt";
-import useCreateImage from "@/hooks/create/use-create-image";
-import usePostImageRef from "@/hooks/create/use-post-image-ref";
+import useCreateImage from "@/hooks/create/useCreateImage";
+import usePostImageRef from "@/hooks/create/usePostImageRef";
 import { imageLoadingAtom, imagePromptAtom } from "@/stores/create-image-atom";
 import { useAtom, useAtomValue } from "jotai";
 
