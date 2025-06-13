@@ -3,13 +3,13 @@
 import Prompt from "@/components/create/prompt/prompt";
 import useCreateVideo from "@/hooks/create/useCreateVideo";
 import usePostVideoRef from "@/hooks/create/usePostVideoRef";
-import { createVideoAtom } from "@/stores/create-video-atom";
+import { videoLoadingAtom, videoPromptAtom } from "@/stores/create-video-atom";
 
-import { useAtom } from "jotai";
+import { useAtom, useAtomValue } from "jotai";
 
 function CreateVideoPrompt() {
-  const [state, setState] = useAtom(createVideoAtom);
-  const { prompt, isOptionLocked } = state;
+  const [prompt, setPrompt] = useAtom(videoPromptAtom);
+  const isLoading = useAtomValue(videoLoadingAtom);
   const postRefImages = usePostVideoRef();
   const createImage = useCreateVideo();
 
@@ -25,14 +25,14 @@ function CreateVideoPrompt() {
   return (
     <Prompt
       prompt={prompt}
-      setPrompt={(value) => setState((prev) => ({ ...prev, prompt: value }))}
+      setPrompt={(value) => setPrompt(value)}
       placeholder={
-        isOptionLocked
+        isLoading
           ? "비디오를 생성하고 있어요! 잠시만 기다려주세요..."
           : "나만의 상상의 세계를 펼쳐보세요!"
       }
       onClick={handleSubmit}
-      isLoading={isOptionLocked}
+      isLoading={isLoading}
     />
   );
 }

@@ -9,7 +9,12 @@ import {
   imageLoadingAtom,
   imageProgressAtom,
 } from "@/stores/create-image-atom";
-import { createVideoAtom } from "@/stores/create-video-atom";
+import {
+  createVideoAtom,
+  videoInformationAtom,
+  videoLoadingAtom,
+  videoProgressAtom,
+} from "@/stores/create-video-atom";
 import { errorDialogAtom } from "@/stores/error-atom";
 import handleErrorDialog from "@/utils/handleErrorDialog";
 import { useQueryClient } from "@tanstack/react-query";
@@ -18,11 +23,20 @@ import { useEffect, useRef } from "react";
 
 export default function useUserSSE(memberId?: number | null) {
   const queryClient = useQueryClient();
+
+  // 이미지 state
   const setImage = useSetAtom(createImageAtom);
   const setImageInfo = useSetAtom(imageInformationAtom);
   const setImageLoading = useSetAtom(imageLoadingAtom);
   const setImageProgress = useSetAtom(imageProgressAtom);
+
+  // 비디오 state
   const setVideo = useSetAtom(createVideoAtom);
+  const setVideoInfo = useSetAtom(videoInformationAtom);
+  const setVideoLoading = useSetAtom(videoLoadingAtom);
+  const setVideoProgress = useSetAtom(videoProgressAtom);
+
+  // 에러 state
   const setErrorDialog = useSetAtom(errorDialogAtom);
 
   const eventSourceRef = useRef<EventSource | null>(null);
@@ -144,24 +158,25 @@ export default function useUserSSE(memberId?: number | null) {
       message?: string,
     ) => {
       if (status === SSE_STATUS.PENDING) {
-        setVideo((prev) => ({ ...prev, isOptionLocked: true }));
+        setVideoLoading(true);
+        setVideoProgress(Number(payload.progress));
       } else if (status === SSE_STATUS.ERROR) {
         handleErrorDialog(
           message || "비디오 생성 중 오류가 발생했습니다.",
           setErrorDialog,
         );
-        setVideo((prev) => ({ ...prev, isOptionLocked: false }));
+        setVideoLoading(false);
       } else if (
         status === SSE_STATUS.SUCCESS &&
         payload.videoUrl.length > 0 &&
         payload.videoUrl[0].startsWith("https://")
       ) {
-        setVideo((prev) => ({
-          ...prev,
-          aiModel: payload.model,
-          prompt: payload.prompt,
-          isOptionLocked: false,
-        }));
+        setVideoLoading(false);
+        setVideo(payload.videoUrl);
+        setVideoInfo({
+          isUpscaled: payload.isUpscaled,
+          taskId: payload.taskId,
+        });
         queryClient.invalidateQueries({ queryKey: QUERY_KEY.MY.PROJECT });
       }
     };
@@ -182,8 +197,11 @@ export default function useUserSSE(memberId?: number | null) {
     setImage,
     setImageInfo,
     setImageLoading,
-    setVideo,
-    setErrorDialog,
     setImageProgress,
+    setVideo,
+    setVideoInfo,
+    setVideoProgress,
+    setVideoLoading,
+    setErrorDialog,
   ]);
 }

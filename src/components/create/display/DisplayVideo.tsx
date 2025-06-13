@@ -1,24 +1,31 @@
 "use client";
 
-import { createVideoAtom } from "@/stores/create-video-atom";
+import {
+  createVideoAtom,
+  videoLoadingAtom,
+  videoProgressAtom,
+} from "@/stores/create-video-atom";
 import { useAtomValue } from "jotai";
 
 import DisplayLoading from "./DisplayLoading";
 import DisplayDefault from "./DisplayDefault";
+import DisplayWrapper from "./DisplayWrapper";
 
 function DisplayVideo() {
-  const state = useAtomValue(createVideoAtom);
-  const { createVideo, isOptionLocked } = state;
+  const video = useAtomValue(createVideoAtom);
+  const progress = useAtomValue(videoProgressAtom);
 
-  if (isOptionLocked) {
-    return <DisplayLoading />;
+  const isLoading = useAtomValue(videoLoadingAtom);
+  if (isLoading) {
+    return <DisplayLoading progress={progress} />;
   }
+  if (!video) return <DisplayDefault />;
 
-  if (createVideo) {
-    return <video src={createVideo} />;
-  }
-
-  return <DisplayDefault />;
+  return (
+    <DisplayWrapper>
+      <video src={video} />
+    </DisplayWrapper>
+  );
 }
 
 export default DisplayVideo;

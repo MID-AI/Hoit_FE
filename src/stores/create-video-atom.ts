@@ -1,37 +1,45 @@
 import { type VideoModelKey } from "@/constants/select-menu";
 import { atom } from "jotai";
 
-type CreateVideoState = {
-  createVideo: string;
-  aiModel: VideoModelKey;
-  reference: {
-    file: File | null;
-    url: string | null;
-  };
-  prompt: string;
-  isOptionLocked: boolean;
+type VideoRefType = {
+  ref: File | null;
+  refUrl: string | null;
 };
 
-export const defaultCreateVideoState: CreateVideoState = {
-  createVideo: "",
-  aiModel: "I2V-01",
-  reference: {
-    file: null,
-    url: null,
-  },
-  prompt: "",
-  isOptionLocked: false,
+const VideoRefState: VideoRefType = {
+  ref: null,
+  refUrl: null,
 };
 
-export const createVideoAtom = atom<CreateVideoState>(defaultCreateVideoState);
+type VideoInfoType = {
+  isUpscaled: boolean;
+  taskId: string | null;
+};
 
+export const createVideoAtom = atom<string | null>(null);
+export const videoModelAtom = atom<VideoModelKey>("I2V-01");
+export const videoRefAtom = atom<VideoRefType>(VideoRefState);
+export const videoInformationAtom = atom<VideoInfoType>({
+  isUpscaled: false,
+  taskId: null,
+});
+
+export const videoPromptAtom = atom<string>("");
+
+export const videoLoadingAtom = atom<boolean>(false);
+export const videoProgressAtom = atom<number | null>(null);
+
+// 초기화
 export const resetCreateVideoAtom = atom(null, (_, set) => {
-  set(createVideoAtom, (prev) => ({
-    ...prev,
-    aiModel: "I2V-01",
-    reference: {
-      file: null,
-      url: null,
-    },
-  }));
+  set(createVideoAtom, null);
+  set(videoPromptAtom, "");
+  set(videoModelAtom, "I2V-01");
+  set(videoRefAtom, {
+    ref: null,
+    refUrl: null,
+  });
+  set(videoInformationAtom, {
+    isUpscaled: false,
+    taskId: null,
+  });
 });
