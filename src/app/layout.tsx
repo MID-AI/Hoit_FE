@@ -43,7 +43,7 @@ export default function RootLayout({
           <QueryProviders>
             <JotaiProvider>
               <SidebarContainer />
-              <main className="ml-64 flex h-screen items-start justify-center overflow-y-scroll lg:ml-140">
+              <main className="ml-64 flex h-screen w-full items-start justify-center overflow-y-scroll lg:ml-140">
                 {children}
                 <div id="modal-root"></div>
                 <ErrorDialog />
