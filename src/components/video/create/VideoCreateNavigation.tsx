@@ -1,61 +1,60 @@
 "use client";
 
-// import Navigation from "@/components/create/navigation/navigation";
-// import {
-//   createVideoAtom,
-//   resetCreateVideoAtom,
-// } from "@/stores/create-video-atom";
-// import { useAtom, useSetAtom } from "jotai";
-// import VideoCreateNavigationSelect from "./video-create-navigation-select";
-// import NavigationSection from "@/components/create/navigation/navigation-section";
-// import ImageRefInput from "@/components/image/create/ImageRefInput";
+import NavigationSection from "@/components/create/navigation/NavigationSection";
+import NavigationWrapper from "@/components/create/navigation/NavigationWrapper";
+import {
+  videoLoadingAtom,
+  videoModelAtom,
+  videoRefAtom,
+} from "@/stores/create-video-atom";
+import { useAtom, useAtomValue } from "jotai";
+import VideoCreateNavigationSelect from "./VideoCreateNavigationSelect";
+import VideoRefInput from "./VideoRefInput";
 
 function VideoCreateNavigation() {
-  // const [state, setState] = useAtom(createVideoAtom);
-  // const reset = useSetAtom(resetCreateVideoAtom);
-  // const { aiModel, reference, isOptionLocked } = state;
+  const [model, setModel] = useAtom(videoModelAtom);
+  const [reference, setReferenceState] = useAtom(videoRefAtom);
+  const isLoading = useAtomValue(videoLoadingAtom);
 
-  // const setReference = (value: File | string | null, type: "file" | "url") => {
-  //   setState((prev) => ({
-  //     ...prev,
-  //     reference: {
-  //       file: type === "file" ? (value as File) : null,
-  //       url: type === "url" ? (value as string) : null,
-  //     },
-  //   }));
-  // };
+  const setReference = (value: File | string | null, type: "file" | "url") => {
+    setReferenceState({
+      ref: type === "file" ? (value as File) : null,
+      refUrl: type === "url" ? (value as string) : null,
+    });
+  };
 
-  return <div>수정작업 중</div>;
+  const onClickReset = () => {
+    setModel("I2V-01");
+    setReferenceState({
+      ref: null,
+      refUrl: null,
+    });
+  };
 
-  // return (
-  // <Navigation onClickReset={reset} disabled={isOptionLocked}>
-
-  //  <NavigationSection
-  //     title="모델"
-  //     content={
-  //       <VideoCreateNavigationSelect
-  //         selectedValue={aiModel}
-  //         setSelectedValue={(value) =>
-  //           setState((prev) => ({ ...prev, aiModel: value }))
-  //         }
-  //         disabled={isOptionLocked}
-  //       />
-  //     }
-  //   />
-  //   <NavigationSection
-  //     title="참고 이미지 업로드"
-  //     content={
-  //       <ImageRefInput
-  //         type="imageRef"
-  //         image={reference.file}
-  //         disabled={isOptionLocked}
-  //         setFile={(file) => setReference(file, "file")}
-  //         setUrl={(url) => setReference(url, "url")}
-  //       />
-  //     }
-  //   />
-  // </Navigation>
-  // );
+  return (
+    <NavigationWrapper onClickReset={onClickReset} disabled={isLoading}>
+      <NavigationSection
+        title="모델"
+        content={
+          <VideoCreateNavigationSelect
+            selectedValue={model}
+            setSelectedValue={(value) => setModel(value)}
+            disabled={isLoading}
+          />
+        }
+      />
+      <NavigationSection
+        title="참고 이미지 업로드"
+        content={
+          <VideoRefInput
+            disabled={isLoading}
+            reference={reference}
+            setReference={(file) => setReference(file, "file")}
+          />
+        }
+      />
+    </NavigationWrapper>
+  );
 }
 
 export default VideoCreateNavigation;

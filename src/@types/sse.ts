@@ -27,5 +27,6 @@ export type VideoPayload = {
   prompt: string;
   model: VideoModelKey;
   taskId: string;
+  isUpscaled: boolean;
   progress?: string;
 };
