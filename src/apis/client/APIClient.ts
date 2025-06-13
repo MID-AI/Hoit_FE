@@ -126,7 +126,12 @@ class APIClient {
         handleAPIError(response.status, errorJson.message, errorJson.error);
       }
 
-      return await response.json();
+      try {
+        const text = await response.text();
+        return text ? (JSON.parse(text) as T) : (null as T);
+      } catch {
+        return null as T;
+      }
     } catch (error: any) {
       if (error instanceof HTTPError) {
         throw error;
