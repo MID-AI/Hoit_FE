@@ -8,7 +8,7 @@ import useUpdateNickname from "@/hooks/user/profile/use-update-nickname";
 import { useState } from "react";
 
 export default function ProfilePage() {
-  // 기존 useGetUser 훅 사용
+  // 기존 useGetUser 훅 사용 중
   const { data, isLoading, error } = useGetUser();
   const updateNicknameMutation = useUpdateNickname();
 
