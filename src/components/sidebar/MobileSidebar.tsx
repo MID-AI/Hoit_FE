@@ -21,7 +21,7 @@ export default function MobileSidebar() {
   return (
     <>
       {/* 상단 헤더 */}
-      <header className="bg-coolGrey-50 fixed left-0 right-0 top-0 z-50 h-64 bg-coolGray-50 md:hidden">
+      <header className="fixed left-0 right-0 top-0 z-50 h-64 bg-coolGray-50 md:hidden">
         <div className="flex h-full items-center justify-between px-16 pb-4 pt-4">
           {/* 로고 */}
           <div className="flex items-center">
