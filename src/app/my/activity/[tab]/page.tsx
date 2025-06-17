@@ -1,4 +1,4 @@
-import TabLikes from "@/components/user/activity/TabLikes";
+import TabLikeContainer from "@/components/user/activity/tab/TabLikeContainer";
 import TabPostContainer from "@/components/user/activity/tab/TabPostContainer";
 import TabWrapper from "@/components/user/activity/tab/TabWrapper";
 import { notFound } from "next/navigation";
@@ -16,7 +16,7 @@ async function ActivityTabPage({
 
   const tabContent = {
     post: <TabPostContainer />,
-    like: <TabLikes />,
+    like: <TabLikeContainer />,
   }[tab];
 
   return (

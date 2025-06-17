@@ -13,7 +13,7 @@ function TabWrapper({
 }) {
   return (
     <Tabs value={activeTab} className="w-full">
-      <TabsList className="h-44">
+      <TabsList className="mb-68 h-44">
         <Link href={`${PAGE_ROUTES.MY_ACTIVITY_POST}`}>
           <TabsTrigger value="post">포스트</TabsTrigger>
         </Link>
