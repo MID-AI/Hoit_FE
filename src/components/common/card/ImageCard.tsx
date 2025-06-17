@@ -38,7 +38,7 @@ function ImageCard({
   return (
     <div
       className={cn(
-        "group relative mb-24 flex w-full break-inside-avoid overflow-hidden rounded-20 bg-white text-Type-14-regular",
+        "group relative mb-22 flex w-full break-inside-avoid overflow-hidden rounded-20 bg-white text-Type-14-regular",
         className,
       )}
       onClick={onClick}
