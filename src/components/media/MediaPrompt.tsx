@@ -26,7 +26,7 @@ function MediaPrompt({ prompt }: { prompt: string }) {
           복사하기 <CodyIcon />
         </button>
       </div>
-      <span className="text-Type-18-regular">{prompt}</span>
+      <span className="max-h-308 text-Type-18-regular">{prompt}</span>
     </div>
   );
 }

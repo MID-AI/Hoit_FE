@@ -84,7 +84,6 @@ function FolderImages({ folderId }: { folderId: number }) {
                   onClick={() => handleImageClick(img.id)}
                 >
                   <ImageCard
-                    id={img.id}
                     url={img.url}
                     nickname={img.nickname}
                     likeCount={img.likeCount}

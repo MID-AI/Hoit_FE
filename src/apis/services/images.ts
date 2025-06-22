@@ -11,22 +11,21 @@ export async function getSharedImages({
   cursor?: string | null;
   size?: number;
 }) {
-  const response = await apiClient.get<PageNation<ImageType>>(
-    API_ROUTES.IMAGE.SHARED,
-    {
-      params: {
-        ...(cursor && { cursor }),
-        ...(size && { size }),
-      },
+  return await apiClient.get<PageNation<ImageType>>(API_ROUTES.IMAGE.SHARED, {
+    params: {
+      ...(cursor && { cursor }),
+      ...(size && { size }),
     },
-  );
-
-  return response;
+  });
 }
 
 // 이미지 상세
 export async function getImageDetail(imageId: number) {
-  return await apiClient.get<ImageType>(API_ROUTES.IMAGE.DETAIL(imageId));
+  return await apiClient.get<ImageType>(API_ROUTES.IMAGE.DETAIL(imageId), {
+    params: {
+      size: 1,
+    },
+  });
 }
 
 // 이미지 생성

@@ -1,7 +1,7 @@
 import LoginChecker from "@/components/common/auth/LoginChecker";
 import DisplayVideo from "@/components/create/display/DisplayVideo";
 
-import ImageList from "@/components/create/image-list/ImageList";
+import VideoList from "@/components/create/image-list/VideoList";
 import CreateVideoPrompt from "@/components/video/create/CreateVideoPrompt";
 import CreateVideoStateCleanup from "@/components/video/create/CreateVideoStateCleanup";
 import VideoCreateNavigation from "@/components/video/create/VideoCreateNavigation";
@@ -14,7 +14,7 @@ function VideoCreation() {
       <div className="flex h-full w-full justify-between">
         <VideoCreateNavigation />
         <DisplayVideo />
-        <ImageList />
+        <VideoList />
       </div>
       <CreateVideoPrompt />
     </section>

@@ -1,7 +1,7 @@
 export const QUERY_KEY = {
   // home
   IMAGE: {
-    LIST: ["imageList"] as const,
+    LIST: (cursor: string) => ["imageList", cursor] as const,
     DETAIL: (id: number) => ["image", id] as const,
   },
   // image
@@ -11,8 +11,8 @@ export const QUERY_KEY = {
   // my
   MY: {
     PROFILE: ["user"] as const,
-    PROJECT: (pageSize: number = 20) =>
-      ["myProject", "imageList", pageSize] as const,
+    PROJECT: (pageSize: number = 20, type: "image" | "video" | "" = "") =>
+      ["myProject", "imageList", pageSize, type] as const,
     PROJECT_FOLDER: ["myProject", "folderList"] as const,
     PROJECT_FOLDER_IMAGES: (id: number) => ["myProject", "folder", id] as const,
     ACTIVITY_POST: ["myActivity", "post"] as const,

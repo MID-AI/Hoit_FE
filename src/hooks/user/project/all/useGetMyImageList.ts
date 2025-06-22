@@ -6,7 +6,7 @@ import { InfiniteData, useInfiniteQuery } from "@tanstack/react-query";
 
 type PageParam = { cursor: string | null; direction: "prev" | "next" };
 
-export default function useGetMyImageList(size = 20) {
+export default function useGetMyImageList(size = 20, type?: "image" | "video") {
   return useInfiniteQuery<
     PageNation<ImageType>,
     Error,
@@ -14,10 +14,11 @@ export default function useGetMyImageList(size = 20) {
     ReturnType<typeof QUERY_KEY.MY.PROJECT>,
     PageParam | null
   >({
-    queryKey: QUERY_KEY.MY.PROJECT(size),
+    queryKey: QUERY_KEY.MY.PROJECT(size, type),
     queryFn: ({ pageParam }) =>
       getMyImageList({
         size,
+        type: type ?? null,
         cursor: pageParam?.cursor ?? null,
         direction: pageParam?.direction ?? "next",
       }),

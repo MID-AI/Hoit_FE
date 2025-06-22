@@ -20,10 +20,11 @@ export default function useCreateVideo() {
   const mutation = useMutation({
     mutationFn: (data: { prompt: string; imageUrl?: string }) =>
       createVideo(data),
-    onSuccess: () => {
-      setLoading(true);
+    onMutate: () => setLoading(true),
+    onError: (error: any) => {
+      setLoading(false);
+      handleErrorDialog(error, setErrorDialog);
     },
-    onError: (error: any) => handleErrorDialog(error, setErrorDialog),
   });
 
   const handleCreateVideo = () => {

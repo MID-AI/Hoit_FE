@@ -11,10 +11,11 @@ export default function useImageUpscale() {
 
   const mutation = useMutation({
     mutationFn: (data: { taskId: string; index: string }) => imageUpscale(data),
-    onSuccess: () => {
-      setLoading(true);
+    onMutate: () => setLoading(true),
+    onError: (error: any) => {
+      setLoading(false);
+      handleErrorDialog(error, setErrorDialog);
     },
-    onError: (error: any) => handleErrorDialog(error, setErrorDialog),
   });
 
   const handleImageUpscale = (taskId: string, index: string) => {

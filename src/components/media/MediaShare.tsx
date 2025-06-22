@@ -11,7 +11,7 @@ function MediaShare({ isShared }: { isShared: boolean | null }) {
   const handleShare = useCallback(() => {
     const pathParts = pathname.split("/").filter(Boolean);
     const imageId = pathParts[pathParts.length - 1];
-    const shareUrl = `${CLIENT_URL}/${imageId}`;
+    const shareUrl = `${CLIENT_URL}/media/${imageId}`;
     navigator.clipboard
       .writeText(shareUrl)
       .then(() => {

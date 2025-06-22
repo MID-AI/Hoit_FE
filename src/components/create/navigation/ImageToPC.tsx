@@ -1,7 +1,6 @@
 import FolderIcon from "@/assets/create/folder_sm.svg";
+import { IMAGE_ALLOWED_FILE_TYPES } from "@/constants/input-limits";
 import { modalTabVariant } from "@/style/button";
-
-const ALLOWED_FILE_TYPES = ["image/jpeg", "image/png", "image/webp"];
 
 function ImageToPC({
   type,
@@ -16,7 +15,7 @@ function ImageToPC({
     const file = event.target.files?.[0];
 
     if (file) {
-      if (!ALLOWED_FILE_TYPES.includes(file.type)) {
+      if (!IMAGE_ALLOWED_FILE_TYPES.includes(file.type)) {
         console.warn("파일 타입 에러");
         return;
       }

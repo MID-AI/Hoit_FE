@@ -24,10 +24,11 @@ export default function useCreateImage() {
       crefUrl?: string;
       srefUrl?: string;
     }) => createImage(data),
-    onSuccess: () => {
-      setLoading(true);
+    onMutate: () => setLoading(true),
+    onError: (error: any) => {
+      setLoading(false);
+      handleErrorDialog(error, setErrorDialog);
     },
-    onError: (error: any) => handleErrorDialog(error, setErrorDialog),
   });
 
   const handleCreateImage = () => {
