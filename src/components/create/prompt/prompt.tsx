@@ -15,13 +15,13 @@ interface Props {
 
 function Prompt({ prompt, setPrompt, placeholder, onClick, isLoading }: Props) {
   return (
-    <div className="z-10 flex h-full max-h-222 flex-col items-end justify-between gap-2 rounded-22 border bg-white px-20 pb-12 pt-16">
+    <div className="flex h-full w-full flex-1 flex-col items-end justify-between gap-2 rounded-22 border bg-white px-20 pb-12 pt-16">
       <textarea
         placeholder={placeholder}
         value={prompt}
         onChange={(e) => setPrompt(e.target.value)}
         disabled={isLoading}
-        className="h-full w-full resize-none overflow-hidden overflow-y-auto text-Type-18-medium text-coolGray-600 placeholder:text-coolGray-300 focus:outline-none disabled:cursor-not-allowed disabled:bg-white"
+        className="h-full w-full resize-none overflow-hidden overflow-y-auto text-Type-16-medium text-coolGray-600 placeholder:text-coolGray-300 focus:outline-none disabled:cursor-not-allowed disabled:bg-white"
       />
       <div className="flex items-center gap-12">
         <ToolTip icon={<AlertIcon />} content={WARNING_TEXTS} />

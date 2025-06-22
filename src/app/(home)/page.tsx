@@ -6,7 +6,7 @@ import { QUERY_KEY } from "@/constants/query-key";
 
 export default function Home() {
   return (
-    <div className="mx-26 flex w-full flex-col justify-center py-36">
+    <div className="mx-26 flex w-full flex-col justify-center pt-16 md:pt-0">
       <HeroMain />
       <header className="mb-10 text-Type-18-medium">갤러리</header>
       <InfinitePrefetch

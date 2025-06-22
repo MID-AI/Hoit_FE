@@ -1,6 +1,4 @@
-import Logo from "@/assets/logo/logo.svg";
 import ToggleIcon from "@/assets/icon/toggle.svg";
-import Image from "next/image";
 import MediaLikes from "./MediaLikes";
 import MediaDownload from "./MediaDownload";
 import MediaShare from "./MediaShare";
@@ -17,45 +15,29 @@ function MediaNav({
   image: ImageType;
 }) {
   return (
-    <nav className="mr-128 h-full">
-      <div className="relative h-fit w-448 rounded-22 bg-white px-25 pb-42 pt-36">
-        <div className="mb-38 flex items-end justify-between">
-          <Logo className="h-30 w-50" />
-          <button onClick={onClick} aria-label="네비게이션 닫기">
-            <ToggleIcon />
-          </button>
+    <nav className="relative flex h-fit w-full max-w-500 flex-col justify-center rounded-22 bg-white px-25 pb-42 pt-24">
+      <div className="mb-32 flex items-center justify-between">
+        <div className="flex items-center">
+          <MediaLikes
+            imageId={image.id}
+            isLiked={image.isLiked}
+            likeCount={image.likeCount}
+          />
+          <MediaDownload image={image.url} />
+          <MediaShare isShared={image.isShared} />
         </div>
-        <div className="mb-29 flex items-center justify-between">
-          <div className="flex items-center gap-10">
-            <Image
-              src={image.member.profileImage}
-              alt={`${image.member.nickname}의 프로필이미지`}
-              height={24}
-              width={24}
-              className="aspect-square shrink rounded-full"
-              unoptimized
-            />
-            <span>{image.member.nickname}</span>
-          </div>
-
-          <div className="flex items-center">
-            <MediaLikes
-              imageId={image.id}
-              isLiked={image.isLiked}
-              likeCount={image.likeCount}
-            />
-            <MediaDownload image={image.url} />
-            <MediaShare isShared={image.isShared} />
-          </div>
-        </div>
-        <MediaPrompt prompt={image.prompt} />
-        <MediaRatio />
-        <MediaPostingButton
-          imageId={image.id}
-          isShared={image.isShared}
-          className="absolute bottom-25 right-25"
-        />
+        <button onClick={onClick} aria-label="네비게이션 닫기">
+          <ToggleIcon />
+        </button>
       </div>
+
+      <MediaPrompt prompt={image.prompt} />
+      <MediaRatio />
+      <MediaPostingButton
+        imageId={image.id}
+        isShared={image.isShared}
+        className="absolute bottom-25 right-25 mt-29"
+      />
     </nav>
   );
 }

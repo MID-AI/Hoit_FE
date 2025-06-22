@@ -11,7 +11,7 @@ function VideoCreation() {
     <section className="flex h-screen w-full flex-col justify-between gap-24 p-24">
       <CreateVideoStateCleanup />
       <LoginChecker />
-      <div className="flex h-full w-full justify-between">
+      <div className="flex h-full w-full flex-col justify-between gap-24 md:flex-row">
         <VideoCreateNavigation />
         <DisplayVideo />
         <VideoList />

@@ -65,7 +65,7 @@ function VideoList() {
   }, [totalPage, currentPageIndex]);
 
   return (
-    <div className="flex flex-col items-center justify-center gap-12">
+    <div className="hidden flex-col items-center justify-center gap-12 lg:flex">
       <ArrowIcon
         className={cn(
           "rotate-180",

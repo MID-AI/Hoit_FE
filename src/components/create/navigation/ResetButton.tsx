@@ -13,7 +13,7 @@ function ResetButton({
       onClick={onClick}
       disabled={disabled}
       className={cn(
-        "mt-36 flex w-72 items-center gap-6 rounded-20 border border-coolGray-100 bg-coolGray-100 px-8 py-6 disabled:cursor-not-allowed",
+        "mt-36 hidden w-72 items-center gap-6 rounded-20 border border-coolGray-100 bg-coolGray-100 px-8 py-6 disabled:cursor-not-allowed md:flex",
         !disabled &&
           "hover:border-coolGray-400 hover:bg-coolGray-200 hover:shadow-custom",
       )}

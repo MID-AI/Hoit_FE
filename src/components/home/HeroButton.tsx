@@ -15,7 +15,7 @@ function HeroButton({
       href={href}
       className="rounded-30 bg-gradient-to-r from-coolGray-700 via-cBlue-400 to-cBlue-400 p-1 shadow-custom"
     >
-      <span className="flex items-center gap-3 rounded-30 bg-white px-14 py-9 text-Type-16-medium">
+      <span className="flex items-center gap-3 rounded-30 bg-white px-14 py-9 text-Type-14-medium md:text-Type-16-medium">
         {icon}
         {text}
         <ArrowRightIcon />

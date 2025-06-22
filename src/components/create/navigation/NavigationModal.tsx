@@ -32,16 +32,16 @@ function NavigationModal({
   };
 
   return (
-    <DialogContent className="flex max-h-616 w-1236 flex-col items-center gap-40 px-38 pb-44 pt-26 text-coolGray-800">
+    <DialogContent className="flex h-full max-h-fit w-fit flex-col items-center gap-40 px-38 pb-44 pt-26 text-coolGray-800">
       <DialogTitle>레퍼런스 업로드</DialogTitle>
       <DialogDescription className="sr-only">
         레퍼런스 이미지 업로드 방식을 선택해 주세요
       </DialogDescription>
-      <div className="flex gap-36">
-        <div className="flex w-full flex-col gap-12">
+      <div className="flex flex-col gap-36 md:flex-row">
+        <div className="flex w-fit gap-12 md:flex-col">
           <span className={modalTabVariant({ modalTab: "primary" })}>
             <SiteIcon />
-            사이트에서
+            앱에서 선택
           </span>
           <ImageToPC type={type} setFile={setFile} />
         </div>

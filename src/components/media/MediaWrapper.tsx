@@ -13,42 +13,45 @@ interface Props {
 
 function MediaWrapper({ image, onPrev, onNext }: Props) {
   return (
-    <section className="flex h-screen w-full items-center justify-between gap-200 py-95">
-      <div className="relative ml-180 flex w-full items-center justify-center gap-64">
+    <section className="grid h-screen w-full grid-flow-row grid-rows-[2fr_1rf] items-center justify-center gap-24 px-16 lg:grid-flow-col lg:grid-rows-none lg:gap-64 lg:py-95">
+      <div className="relative flex w-full items-center justify-end gap-32">
         <button
           onClick={onPrev}
           disabled={!onPrev}
           aria-label="이전 이미지"
           className={cn(
-            "absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-black/30 p-2 text-white hover:bg-black/50",
+            "rounded-full bg-black/30 p-2 text-white hover:bg-black/50",
             !onPrev && "hidden",
           )}
         >
           <PrevIcon />
         </button>
+        <div>
+          <Image
+            src={image.url}
+            alt="이미지"
+            width={800}
+            height={800}
+            className="h-full max-h-650 w-full min-w-300 max-w-650 object-contain"
+            unoptimized
+          />
+        </div>
 
-        <Image
-          src={image.url}
-          alt="이미지"
-          width={800}
-          height={800}
-          className="max-h-800 max-w-650 object-contain"
-          unoptimized
-        />
         <button
           onClick={onNext}
           disabled={!onNext}
           aria-label="다음 이미지"
           className={cn(
-            "absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-black/30 p-2 text-white hover:bg-black/50",
+            "rounded-full bg-black/30 p-2 text-white hover:bg-black/50",
             !onNext && "hidden",
           )}
         >
           <NextIcon />
         </button>
       </div>
-
-      <MediaNavWrapper image={image} />
+      <div className="hidden lg:block">
+        <MediaNavWrapper image={image} />
+      </div>
     </section>
   );
 }

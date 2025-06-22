@@ -29,7 +29,7 @@ function ImageToPC({
     <>
       <label htmlFor={type} className={modalTabVariant()}>
         <FolderIcon />
-        컴퓨터에서
+        파일 업로드
       </label>
       <div>
         <input
