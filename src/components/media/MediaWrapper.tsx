@@ -13,7 +13,7 @@ interface Props {
 
 function MediaWrapper({ image, onPrev, onNext }: Props) {
   return (
-    <section className="grid h-screen w-full grid-flow-row grid-rows-[2fr_1rf] items-center justify-center gap-24 px-16 lg:grid-flow-col lg:grid-rows-none lg:gap-64 lg:py-95">
+    <section className="grid w-full grid-flow-row grid-rows-[2fr_1rf] items-center justify-center gap-24 px-16 lg:grid-flow-col lg:grid-rows-none lg:gap-64 lg:py-95">
       <div className="relative flex w-full items-center justify-end gap-32">
         <button
           onClick={onPrev}

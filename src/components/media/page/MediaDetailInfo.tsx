@@ -7,7 +7,7 @@ import Image from "next/image";
 
 function MediaDetailInfo(props: ImageType) {
   return (
-    <div className="w-full max-w-450">
+    <div className="w-full lg:max-w-450">
       <div className="mb-29 flex items-center justify-between">
         <div className="flex items-center gap-10">
           <Image

@@ -25,8 +25,23 @@ const MediaModal = ({
       if (e.key === "Escape") closeModal();
     };
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
   }, [closeModal]);
+
+  useEffect(() => {
+    if (selected) {
+      document.body.style.overflow = "hidden";
+      document.body.style.marginRight = "16px";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+      document.body.style.marginRight = "";
+    };
+  }, [selected]);
 
   if (!selected) return null;
 

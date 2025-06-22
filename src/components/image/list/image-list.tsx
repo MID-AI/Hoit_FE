@@ -5,7 +5,7 @@ import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
 import { IMAGE_LIST_BREAKPOINTS } from "@/constants/image-list-breakpoints";
 import { useRouter } from "next/navigation";
-import HomeMediaCard from "@/components/home/HomeMediaCard";
+import ImageCard from "@/components/common/card/ImageCard";
 
 interface Props {
   data: any;
@@ -49,9 +49,8 @@ function ImageList({ data, isLoading, fetchNextPage, hasNextPage }: Props) {
           >
             {data?.pages.map((page: any) =>
               page.content.map((img: any) => (
-                <HomeMediaCard
+                <ImageCard
                   key={img.id}
-                  id={img.id}
                   url={img.url}
                   nickname={img.member.nickname}
                   likeCount={img.likeCount}

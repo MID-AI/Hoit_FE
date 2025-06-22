@@ -13,7 +13,7 @@ async function page({
   const { imageId } = await params;
   const id = Number(imageId);
   return (
-    <section className="sm:p-32 lg:p-96">
+    <section className="p-12 sm:p-24 lg:p-64">
       <DataPrefetch
         queryKey={QUERY_KEY.IMAGE.DETAIL(id)}
         queryFn={() => getImageDetail(id)}

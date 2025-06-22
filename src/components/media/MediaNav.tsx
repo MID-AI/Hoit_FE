@@ -15,7 +15,7 @@ function MediaNav({
   image: ImageType;
 }) {
   return (
-    <nav className="relative flex h-fit w-full max-w-500 flex-col justify-center rounded-22 bg-white px-25 pb-42 pt-24">
+    <nav className="relative flex h-fit w-full min-w-350 max-w-500 flex-1 flex-col justify-center rounded-22 bg-white px-25 pb-42 pt-24">
       <div className="mb-32 flex items-center justify-between">
         <div className="flex items-center">
           <MediaLikes

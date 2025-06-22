@@ -7,7 +7,7 @@ function MediaDetailSection(props: ImageType) {
 
   return (
     <section className="mb-143 grid w-full grid-flow-row flex-col items-center justify-center gap-32 lg:grid-flow-col lg:grid-cols-2 lg:gap-102">
-      <div className="flex items-center justify-end">
+      <div className="flex items-center justify-center lg:justify-end">
         {isVideo ? (
           <video
             src={props.url}
