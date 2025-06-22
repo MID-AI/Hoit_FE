@@ -6,7 +6,6 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import GoogleLogo from "@/assets/logo/googleLogo.svg";
-import Logo from "@/assets/logo/logo.svg";
 import Image from "next/image";
 import { BASE_URL } from "@/apis/client/APIClient";
 import API_ROUTES from "@/apis/constants/routes";
@@ -18,10 +17,11 @@ function LoginModal() {
   const uri = pathname === "/" ? "" : `?redirect_uri=${CLIENT_URL}${pathname}`;
 
   return (
-    <DialogContent className="px-38 py-44">
+    <DialogContent className="flex w-full max-w-450 justify-center py-44 md:max-w-850 md:justify-between md:px-38">
       <DialogTitle className="sr-only">구글 로그인</DialogTitle>
-      <DialogDescription className="flex gap-95">
-        <span className="h-347 w-261">
+      <DialogDescription className="sr-only">로그인 화면</DialogDescription>
+      <div className="flex gap-95">
+        <span className="hidden h-347 w-261 md:block">
           <Image
             src="/login/login.png"
             width={261}
@@ -30,22 +30,28 @@ function LoginModal() {
             className="rounded-20"
           />
         </span>
-        <span className="mt-45 flex flex-col items-center">
-          <Logo width={67} hanging={35} className="mb-43" />
+        <span className="mt-45 flex flex-1 flex-col items-center">
+          <Image
+            src="/logo/logo.png"
+            width={67}
+            height={35}
+            alt="호잇 로고"
+            className="mb-43"
+          />
 
-          <span className="mb-24 shrink-0 text-nowrap text-Type-20-medium text-coolGray-500">
+          <span className="mb-24 text-nowrap text-Type-20-medium text-coolGray-500">
             로그인 후 나만의 이미지를 만들어 보세요!
           </span>
           <a
             href={`${BASE_URL}/${API_ROUTES.AUTH.LOGIN}${uri}`}
             rel="noopener noreferrer"
-            className="flex w-414 items-center gap-33 rounded-50 border border-coolGray-300 bg-coolGray-50 px-92 py-15 hover:border-blue-400 hover:bg-blue-50"
+            className="flex w-full max-w-414 items-center gap-33 rounded-50 border border-coolGray-300 bg-coolGray-50 px-92 py-15 hover:border-blue-400 hover:bg-blue-50"
           >
             <GoogleLogo />
-            <span className="text-Type-20-medium">구글로 로그인하기</span>
+            <span className="text-Type-20-medium">구글 로그인</span>
           </a>
         </span>
-      </DialogDescription>
+      </div>
     </DialogContent>
   );
 }
