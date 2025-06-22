@@ -1,12 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import RefImageIcon from "@/assets/create/ref_image.svg";
 import DeleteButtonIcon from "@/assets/create/delete_button.svg";
 import cn from "@/utils/cn";
 import { Dialog } from "@/components/ui/dialog";
 import NavigationModal from "@/components/create/navigation/NavigationModal";
 import { useState } from "react";
+import { ImagePlus } from "lucide-react";
 
 interface Props {
   type: "character" | "style";
@@ -47,7 +47,7 @@ function ImageRefInput({ type, disabled, reference, setReference }: Props) {
     <>
       <div
         className={cn(
-          "group flex h-148 w-full shrink-0 cursor-pointer items-center justify-center gap-12 rounded-20 border border-coolGray-100 bg-coolGray-100 p-12",
+          "group flex w-full cursor-pointer items-center justify-center gap-12 rounded-20 border border-coolGray-100 bg-coolGray-100 md:h-148 md:p-12",
           imageFile || imageUrl || disabled
             ? "cursor-default"
             : "cursor-pointer hover:border-coolGray-500 hover:bg-coolGray-300",
@@ -58,7 +58,7 @@ function ImageRefInput({ type, disabled, reference, setReference }: Props) {
       >
         <span
           className={cn(
-            "relative flex h-full w-full items-center justify-center overflow-hidden rounded-11 p-12",
+            "relative flex h-full min-h-100 w-full max-w-300 items-center justify-center overflow-hidden rounded-11 p-12",
             !imageFile &&
               !imageUrl &&
               "border-2 border-dashed border-coolGray-400",
@@ -74,7 +74,7 @@ function ImageRefInput({ type, disabled, reference, setReference }: Props) {
                 src={imageFile ? URL.createObjectURL(imageFile) : imageUrl!}
                 alt={`${type} 미리보기 이미지`}
                 fill
-                className="object-cover"
+                className="h-full w-full object-cover"
                 unoptimized
               />
               <button
@@ -87,10 +87,8 @@ function ImageRefInput({ type, disabled, reference, setReference }: Props) {
             </>
           ) : (
             <>
-              <RefImageIcon width={24} height={24} className="shrink-0" />
-              <span className="ml-8 shrink-0 text-Type-12-regular">
-                클릭해서 레퍼런스 추가하세요
-              </span>
+              <ImagePlus width={20} height={20} />
+              <span className="ml-8 text-Type-14-regular">이미지 선택하기</span>
             </>
           )}
         </span>

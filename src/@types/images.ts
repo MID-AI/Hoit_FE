@@ -14,6 +14,8 @@ export interface ImageType {
   taskId?: string | null;
   index?: number | null;
   isShared: boolean | null;
+  prevCursor?: string;
+  nextCursor?: string;
 }
 
 export interface ReferenceType {

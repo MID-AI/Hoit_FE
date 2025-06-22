@@ -7,7 +7,6 @@ import CardInfo from "./CardInfo";
 import cn from "@/utils/cn";
 
 interface Props {
-  id: number;
   url: string;
   nickname?: string;
   likeCount: number;
@@ -51,7 +50,7 @@ function ImageCard({
       )}
       <Image
         src={url}
-        alt="test"
+        alt={`${nickname}의 이미지`}
         width={600}
         height={600}
         className={`h-auto w-full transition-opacity duration-300 ${isLoading ? "opacity-0" : "opacity-100"}`}

@@ -1,7 +1,7 @@
 "use client";
 
 import NoItems from "@/components/common/card/NoItems";
-import { IMAGE_LIST_BREAKPOINTS } from "@/constants/image-list-breakpoints";
+import { MODAL_IMAGE_LIST_BREAKPOINTS } from "@/constants/image-list-breakpoints";
 import useGetMyImageList from "@/hooks/user/project/all/useGetMyImageList";
 
 import Image from "next/image";
@@ -44,8 +44,8 @@ function NavigationImageListContainer({
   return (
     <>
       <Masonry
-        breakpointCols={IMAGE_LIST_BREAKPOINTS}
-        className="flex h-390 w-980 justify-start gap-10 overflow-y-auto"
+        breakpointCols={MODAL_IMAGE_LIST_BREAKPOINTS}
+        className="flex h-390 w-full max-w-980 justify-start gap-10 overflow-y-auto"
       >
         {data?.pages.map((page: any) =>
           page.content.map((img: any) => (
@@ -56,7 +56,7 @@ function NavigationImageListContainer({
               src={img.url}
               width={155}
               height={205}
-              className={`mb-9 h-205 w-150 cursor-pointer rounded-20 ${
+              className={`mb-9 cursor-pointer rounded-20 ${
                 selectedUrl === img.url ? "border-2 border-primary" : ""
               }`}
               onClick={() => onClick(img.url)}

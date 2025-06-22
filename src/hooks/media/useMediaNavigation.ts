@@ -32,12 +32,12 @@ export default function useMediaNavigation(
   const showNext = () => {
     if (mediaIndex === undefined) return;
     const next = images[mediaIndex + 1];
-    if (next) router.push(`?mediaView=${next.id}`);
+    if (next) router.push(`?mediaView=${next.id}`, { scroll: false });
   };
   const showPrev = () => {
     if (mediaIndex === undefined) return;
     const prev = images[mediaIndex - 1];
-    if (prev) router.push(`?mediaView=${prev.id}`);
+    if (prev) router.push(`?mediaView=${prev.id}`, { scroll: false });
   };
 
   return {
@@ -46,6 +46,6 @@ export default function useMediaNavigation(
     showPrev,
     hasNext,
     hasPrev,
-    closeModal: () => router.push(basePath),
+    closeModal: () => router.push(basePath, { scroll: false }),
   };
 }

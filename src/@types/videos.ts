@@ -1,3 +1,6 @@
 export interface VideoReferenceType {
-  image: string;
+  timestamp: string;
+  statusCode: number;
+  message: string;
+  data: string;
 }

@@ -8,13 +8,13 @@ import PAGE_ROUTES from "@/constants/page-routes";
 function HeroMain() {
   return (
     <header className="relative mb-30 h-266 w-full">
-      <div className="absolute z-10 flex h-full w-full flex-col justify-between gap-14 pb-32 pl-40 pt-28 text-40 font-semibold text-coolGray-800">
+      <div className="absolute z-10 flex h-full w-full flex-col justify-between gap-14 px-40 pb-32 pt-28 text-28 font-semibold text-coolGray-800 md:text-40">
         <div>
           <p className="flex items-center gap-14">
             상상을 현실로, AI 애니메이션{" "}
             <LogoBlack className="hidden lg:block" />
           </p>
-          <p className="mt-6 text-Type-20-medium">
+          <p className="mt-6 text-Type-14-medium md:text-Type-20-medium">
             고품질 무료 AI이미지와 영상을 제작해보세요!
           </p>
         </div>

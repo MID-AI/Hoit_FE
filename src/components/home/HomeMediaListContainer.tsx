@@ -1,26 +1,19 @@
 "use client";
 
-import Masonry from "react-masonry-css";
+import useGetImageList from "@/hooks/home/useGetImageList";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
+import Masonry from "react-masonry-css";
 import { IMAGE_LIST_BREAKPOINTS } from "@/constants/image-list-breakpoints";
-import { useRouter } from "next/navigation";
-import ImageCard from "@/components/common/card/ImageCard";
+import HomeMediaCard from "./HomeMediaCard";
 
-interface Props {
-  data: any;
-  isLoading: boolean;
-  fetchNextPage: () => void;
-  hasNextPage: boolean;
-}
+function HomeMediaListContainer({ nextCursor }: { nextCursor?: string }) {
+  const { data, isLoading, fetchNextPage, hasNextPage } = useGetImageList(
+    nextCursor ? { cursor: nextCursor } : {},
+  );
 
-function ImageList({ data, isLoading, fetchNextPage, hasNextPage }: Props) {
   const { ref, inView } = useInView();
   const isAllEmpty = data?.pages[0].content.length === 0;
-  const router = useRouter();
-  const handleImageClick = (id: number) => {
-    router.push(`?mediaView=${id}`, { scroll: false });
-  };
 
   useEffect(() => {
     if (inView && hasNextPage) {
@@ -49,13 +42,13 @@ function ImageList({ data, isLoading, fetchNextPage, hasNextPage }: Props) {
           >
             {data?.pages.map((page: any) =>
               page.content.map((img: any) => (
-                <ImageCard
+                <HomeMediaCard
                   key={img.id}
+                  id={img.id}
                   url={img.url}
                   nickname={img.member.nickname}
                   likeCount={img.likeCount}
                   isLiked={img?.isLiked}
-                  onClick={() => handleImageClick(img.id)}
                 />
               )),
             )}
@@ -73,4 +66,4 @@ function ImageList({ data, isLoading, fetchNextPage, hasNextPage }: Props) {
   );
 }
 
-export default ImageList;
+export default HomeMediaListContainer;

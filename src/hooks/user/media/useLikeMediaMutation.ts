@@ -24,6 +24,16 @@ function useLikeMediaMutation() {
     onMutate: async ({ imageId, isLiked }) => {
       const prevCache: Record<string, unknown> = {};
 
+      const updateImage = (old: ImageType) => {
+        if (!old) return old;
+
+        return {
+          ...old,
+          likeCount: old.likeCount + (isLiked ? -1 : 1),
+          isLiked: !old.isLiked,
+        };
+      };
+
       const updateImageList = (old: any) => {
         if (!old || !("pages" in old)) return old;
         return {
@@ -71,6 +81,7 @@ function useLikeMediaMutation() {
        * 좋아요 취소 - 캐시 업데이트
        * 업데이트 페이지: 내 활동(좋아요, 포스트) 내 프로젝트(전체, 폴더 내 이미지), 홈
        */
+
       updateIfExists({
         queryClient,
         key: QUERY_KEY.MY.ACTIVITY_LIKES,
@@ -97,6 +108,13 @@ function useLikeMediaMutation() {
         prevCache,
       });
 
+      updateIfExists({
+        queryClient,
+        key: QUERY_KEY.IMAGE.DETAIL(imageId),
+        updater: updateImage,
+        prevCache,
+      });
+
       const recentFolders = getRecentFolderIds(queryClient, 10);
       recentFolders.forEach((folderId) => {
         updateIfExists({
@@ -106,18 +124,6 @@ function useLikeMediaMutation() {
           prevCache,
         });
       });
-
-      /**
-       * 수정 작업
-       * 이미지 상세 페이지에서 캐시 업데이트 추가
-       */
-      // updateIfExists(["image-detail", imageId], (old: any) => ({
-      //   ...old,
-      //   like: {
-      //     likeStatus: old.like.likeStatus === 1 ? 0 : 1,
-      //     likes: old.like.likes + (old.like.likeStatus === 1 ? -1 : 1),
-      //   },
-      // }));
 
       return { prevCache };
     },

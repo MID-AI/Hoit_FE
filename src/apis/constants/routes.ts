@@ -55,7 +55,7 @@ const API_ROUTES = {
   // 이미지
   IMAGE: {
     SHARED: "api/shared-images",
-    DETAIL: (imageId: number) => `api/images/${imageId}`,
+    DETAIL: (imageId: number) => `api/shared-images/${imageId}`,
 
     LIKE: (imageId: number) => `api/${imageId}/like`,
     POSTING: (imageId: number) => `api/shared-images/${imageId}`,

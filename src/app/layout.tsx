@@ -21,13 +21,6 @@ const notoSansKr = Noto_Sans_KR({
   weight: ["300", "400", "500", "700"],
 });
 
-// if (typeof window === "undefined") {
-//   (async () => {
-//     const { server } = await import("@/mocks/server");
-//     server.listen();
-//   })();
-// }
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -36,14 +29,14 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body
-        className={`${notoSansKr.className} flex overflow-x-hidden bg-default`}
+        className={`${notoSansKr.className} flex overflow-y-scroll bg-default`}
       >
         <MswComponent />
         <Provider>
           <QueryProviders>
             <JotaiProvider>
               <SidebarContainer />
-              <main className="ml-64 flex h-screen w-full items-start justify-center overflow-y-scroll lg:ml-140">
+              <main className="mt-64 flex h-full w-full items-start justify-center md:ml-64 md:mt-0 lg:ml-140">
                 {children}
                 <div id="modal-root"></div>
                 <ErrorDialog />

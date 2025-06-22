@@ -5,14 +5,15 @@ import DisplayImage from "@/components/create/display/DisplayImage";
 
 function ImageCreationInteractive() {
   return (
-    <>
-      <div className="flex h-full w-full justify-between">
+    <section className="flex h-screen w-full flex-col items-center justify-between gap-24 p-6 md:p-24">
+      <div className="flex h-full w-full flex-col justify-between gap-24 md:flex-row">
         <ImageCreateNavigation />
         <DisplayImage />
         <ImageList />
       </div>
+
       <CreateImagePrompt />
-    </>
+    </section>
   );
 }
 
