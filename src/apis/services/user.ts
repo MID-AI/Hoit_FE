@@ -11,3 +11,11 @@ export async function logout() {
     skipTokenVerification: true,
   });
 }
+
+export async function putProfile(formData: FormData) {
+  return await apiClient.put(API_ROUTES.USER.EDIT_PROFILE, formData);
+}
+
+export async function deleteAccount() {
+  return await apiClient.delete<UserType>(API_ROUTES.USER.DELETE_ACCOUNT);
+}
