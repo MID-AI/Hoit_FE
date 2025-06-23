@@ -38,6 +38,10 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
+        hostname: "image.hoit.my",
+      },
+      {
+        protocol: "https",
         hostname: "cdn.midjourney.com",
       },
       {

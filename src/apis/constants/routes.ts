@@ -11,8 +11,8 @@ const API_ROUTES = {
   // 유저
   USER: {
     PROFILE: "api/user/profile",
-    EDIT_NICKNAME: "api/user/nickname",
-    DELETE_ACCOUNT: "",
+    EDIT_PROFILE: "api/user/profile",
+    DELETE_ACCOUNT: "api/user",
     SSE: (memberId: number) => `/sse/${memberId}`,
   },
 

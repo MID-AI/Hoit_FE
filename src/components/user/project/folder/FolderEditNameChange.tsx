@@ -6,6 +6,7 @@ import FolderNameInputDialogContent from "./FolderNameInputDialogContent";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useQueryClient } from "@tanstack/react-query";
 import useEditFolderName from "@/hooks/user/project/folder/useEditFolderName";
+import { FOLDER_NAME_MAX_LENGTH } from "@/constants/input-limits";
 
 interface Props {
   folderId: number;
@@ -23,12 +24,11 @@ function FolderEditNameChange({
   const [newFolderName, setNewFolderName] = useState(folderName);
   const queryClient = useQueryClient();
   const editMutation = useEditFolderName();
-  const maxLength = 22;
 
   const handleInputChange = (e: React.FormEvent<HTMLInputElement>) => {
     const target = e.currentTarget;
-    if (target.value.length > maxLength) {
-      target.value = target.value.slice(0, maxLength);
+    if (target.value.length > FOLDER_NAME_MAX_LENGTH) {
+      target.value = target.value.slice(0, FOLDER_NAME_MAX_LENGTH);
     }
     setNewFolderName(target.value);
   };

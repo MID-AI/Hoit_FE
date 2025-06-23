@@ -4,26 +4,27 @@ import useGetUser from "@/hooks/user/auth/useGetUser";
 import SidebarAlert from "./SidebarAlert";
 import SidebarCredit from "./SidebarCredit";
 import SidebarNickname from "./SidebarNickname";
-import useLogout from "@/hooks/user/auth/useLogout";
+import SidebarLogin from "./SidebarLogin";
 
 export default function SidebarUser() {
   const { data, isLoading } = useGetUser();
-  const { mutate: logout } = useLogout();
 
   if (isLoading) return null;
   return (
     <div>
-      {data && <button onClick={() => logout()}>로그아웃</button>}
-      {data && (
+      {data ? (
         <>
           <SidebarAlert />
           <SidebarCredit credit={String(data?.credit)} />
+          <SidebarNickname
+            nickname={data?.nickname}
+            profileImage={data?.profileImage}
+            credit={data?.credit}
+          />
         </>
+      ) : (
+        <SidebarLogin />
       )}
-      <SidebarNickname
-        nickname={data?.nickname}
-        profileImage={data?.profileImage}
-      />
     </div>
   );
 }

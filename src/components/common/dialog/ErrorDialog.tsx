@@ -25,12 +25,14 @@ function ErrorDialog() {
 
   return (
     <Dialog open={error.isOpen} onOpenChange={() => setError(null)}>
-      <DialogContent className="px-38 py-44">
+      <DialogContent className="flex w-full max-w-550 flex-col gap-12 px-38 py-44">
         <DialogTitle>{error.heading}</DialogTitle>
-        <DialogDescription className="flex gap-95">
+        <DialogDescription className="flex py-12">
           {error.body}
         </DialogDescription>
-        <Button onClick={handleClose}>{error.button}</Button>
+        <div className="flex w-full items-end justify-end">
+          <Button onClick={handleClose}>{error.button}</Button>
+        </div>
       </DialogContent>
     </Dialog>
   );
