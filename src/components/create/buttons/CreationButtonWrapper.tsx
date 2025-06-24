@@ -20,7 +20,7 @@ function CreationButtonWrapper({
         <TooltipTrigger
           asChild
           onClick={onClick}
-          className="box-border h-24 w-24 cursor-pointer rounded-6 border border-coolGray-300 bg-coolGray-300 p-2 opacity-90 hover:bg-white"
+          className="box-border h-24 w-24 cursor-pointer rounded-6 border border-coolGray-300 bg-coolGray-200 p-2 opacity-90 hover:bg-white"
         >
           {icon}
         </TooltipTrigger>
