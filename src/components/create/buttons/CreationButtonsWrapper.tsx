@@ -1,5 +1,5 @@
 import DownloadButton from "./DownloadButton";
-import ImageToVideo from "./ImageToVideo";
+// import ImageToVideo from "./ImageToVideo";
 import UpscaleButton from "./UpscaleButton";
 
 function CreationButtonsWrapper({
@@ -14,8 +14,8 @@ function CreationButtonsWrapper({
   index: number | null;
 }) {
   return (
-    <div className="absolute bottom-12 right-12 flex items-center gap-4">
-      <ImageToVideo image={image} />
+    <div className="absolute right-12 top-12 flex items-center gap-4">
+      {/* <ImageToVideo image={image} /> */}
       {isUpscaled || <UpscaleButton taskId={taskId} index={index} />}
       <DownloadButton image={image} />
     </div>
