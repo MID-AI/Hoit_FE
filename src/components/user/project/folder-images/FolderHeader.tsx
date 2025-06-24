@@ -11,16 +11,15 @@ function FolderHeader({
   isEmpty?: boolean;
 }) {
   return (
-    <Link
-      href={PAGE_ROUTES.MY_PROJECT_FOLDER}
-      className="mb-39 mt-30 flex w-full items-center justify-between"
-    >
-      <div className="flex items-center gap-13">
-        <ArrowIcon />
-        <header className="text-Type-28-bold">{folderName}</header>
-      </div>
+    <div className="mb-39 mt-30 flex w-full flex-col">
+      <Link href={PAGE_ROUTES.MY_PROJECT_FOLDER}>
+        <div className="flex items-center gap-13">
+          <ArrowIcon />
+          <header className="text-Type-28-bold">{folderName}</header>
+        </div>
+      </Link>
       {!isEmpty && <FolderImagesToolbar />}
-    </Link>
+    </div>
   );
 }
 

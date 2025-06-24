@@ -1,5 +1,4 @@
 import ToolbarEditButton from "../../toolbar/ToolbarEditButton";
-import DeleteIcon from "@/assets/my/delete_folder.svg";
 import {
   Dialog,
   DialogClose,
@@ -10,6 +9,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import useDeleteImages from "@/hooks/user/project/all/useDeleteImages";
+import { ImageMinus } from "lucide-react";
 
 interface Props {
   selectedCards: Set<number>;
@@ -29,7 +29,7 @@ function ToolbarImageDelete({ selectedCards, setSelectedCards }: Props) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <ToolbarEditButton icon={<DeleteIcon />} text="삭제하기" />
+        <ToolbarEditButton icon={<ImageMinus />} text="삭제하기" />
       </DialogTrigger>
       <DialogContent>
         <DialogTitle>이미지를 삭제하시겠습니까?</DialogTitle>

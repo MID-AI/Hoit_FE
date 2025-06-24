@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dialog";
 import ModalButtons from "@/components/common/modal/ModalButtons";
 import ToolbarFolderList from "./ToolbarFolderList";
+import { FolderInput } from "lucide-react";
 
 function ToolbarAddImageToFolder({
   selectedCards,
@@ -33,11 +34,6 @@ function ToolbarAddImageToFolder({
     document.getElementById("closeModal")?.click();
   };
 
-  /**
-   * 수정 작업
-   * 아이콘 수정필요
-   */
-
   return (
     <Dialog
       onOpenChange={(open) => {
@@ -45,7 +41,7 @@ function ToolbarAddImageToFolder({
       }}
     >
       <DialogTrigger asChild>
-        <ToolbarEditButton icon={<p>+</p>} text="폴더에 추가" />
+        <ToolbarEditButton icon={<FolderInput />} text="폴더에 추가" />
       </DialogTrigger>
       <DialogContent className="w-full">
         <DialogTitle className="mb-23 flex justify-center">

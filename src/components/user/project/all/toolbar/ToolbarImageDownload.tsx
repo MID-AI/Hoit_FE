@@ -6,9 +6,9 @@ import { selectedAllTabCardsAtom } from "@/stores/project-atom";
 import { type InfiniteData, useQueryClient } from "@tanstack/react-query";
 import { useAtomValue } from "jotai";
 import ToolbarEditButton from "../../toolbar/ToolbarEditButton";
-import DownLoadIcon from "@/assets/create/download.svg";
 import { downloadImage } from "@/utils/downloadImage";
 import { PageNation } from "@/@types/response";
+import { Download } from "lucide-react";
 
 function ToolbarImageDownload() {
   const selectedCards = useAtomValue(selectedAllTabCardsAtom);
@@ -29,7 +29,7 @@ function ToolbarImageDownload() {
 
   return (
     <ToolbarEditButton
-      icon={<DownLoadIcon className="h-26 w-26 text-coolGray-500" />}
+      icon={<Download className="text-coolGray-500" />}
       text="다운로드"
       onClick={handleClick}
     />

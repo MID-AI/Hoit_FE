@@ -5,7 +5,7 @@ import {
   selectedAllTabCardsAtom,
 } from "@/stores/project-atom";
 import { useAtom, useAtomValue } from "jotai";
-import { forwardRef, useCallback } from "react";
+import { useCallback } from "react";
 import ImageDate from "./ImageDate";
 import Masonry from "react-masonry-css";
 import { IMAGE_LIST_BREAKPOINTS } from "@/constants/image-list-breakpoints";
@@ -13,14 +13,7 @@ import EditImageWrapper from "../../edit/EditImageWrapper";
 import ImageCard from "@/components/common/card/ImageCard";
 import { useRouter } from "next/navigation";
 
-const TabAllImageList = forwardRef(function TabAllImageList(
-  {
-    date,
-    images,
-    hasNextPage,
-  }: { date: string; images: any[]; hasNextPage: boolean },
-  ref: React.Ref<HTMLDivElement>,
-) {
+function TabAllImageList({ date, images }: { date: string; images: any[] }) {
   const router = useRouter();
   const editMode = useAtomValue(editModeAllTabAtom);
   const [selectedAllTabCards, setSelectedAllTabCards] = useAtom(
@@ -93,17 +86,8 @@ const TabAllImageList = forwardRef(function TabAllImageList(
           );
         })}
       </Masonry>
-      {hasNextPage ? (
-        <div ref={ref} className="mt-8 text-center text-gray-400">
-          다음 페이지 불러오는 중...
-        </div>
-      ) : (
-        <div className="sr-only mt-8 text-center text-gray-400">
-          마지막 페이지입니다.
-        </div>
-      )}
     </section>
   );
-});
+}
 
 export default TabAllImageList;

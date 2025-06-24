@@ -2,7 +2,7 @@ import BellIcon from "@/assets/icon/bell.svg";
 
 function NoNotification() {
   return (
-    <div className="flex h-full w-full flex-col items-center justify-center text-coolGray-800">
+    <div className="flex h-350 w-full flex-1 flex-col items-center justify-center text-coolGray-800">
       <BellIcon className="mb-12 h-24 w-24" />
       <span className="mb-6 text-Type-18-medium">
         도착한 알림이 아직 없습니다.

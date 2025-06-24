@@ -50,7 +50,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "*.googleusercontent.com",
+        hostname: "lh3.googleusercontent.com",
       },
     ],
   },

@@ -14,7 +14,7 @@ function TabWrapper({
 }) {
   return (
     <Tabs value={activeTab} className="w-full">
-      <div className="mb-29 flex w-full justify-between">
+      <div className="mb-29 w-full">
         <TabsList className="h-44">
           <Link href={`${PAGE_ROUTES.MY_PROJECT_ALL}`}>
             <TabsTrigger value="all">전체</TabsTrigger>

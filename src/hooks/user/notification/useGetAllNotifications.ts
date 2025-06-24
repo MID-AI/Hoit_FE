@@ -1,12 +1,12 @@
-import { getUnreadNotifications } from "@/apis/services/notification";
+import { getNotifications } from "@/apis/services/notification";
 import { QUERY_KEY } from "@/constants/query-key";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
-export default function useGetUnreadNotifications(size?: number) {
+export default function useGetAllNotifications() {
   return useInfiniteQuery({
-    queryKey: QUERY_KEY.NOTIFICATION.UNREAD,
+    queryKey: QUERY_KEY.NOTIFICATION.ALL,
     queryFn: ({ pageParam }: { pageParam?: string | null }) =>
-      getUnreadNotifications({ cursor: pageParam, size }),
+      getNotifications({ cursor: pageParam }),
     initialPageParam: null,
     getNextPageParam: (lastPage) => lastPage.nextPageCursor ?? undefined,
     getPreviousPageParam: (firstPage) =>
