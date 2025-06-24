@@ -10,7 +10,7 @@ const PUBLIC_PATHS = [
 ];
 
 export const config = {
-  matcher: [],
+  matcher: ["/((?!_next|.*\\..*|api).*)"],
 };
 
 // 인증 여부 확인
