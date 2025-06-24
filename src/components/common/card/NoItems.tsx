@@ -1,7 +1,7 @@
 import ScreenStarIcon from "@/assets/create/screen_star.svg";
 import cn from "@/utils/cn";
 
-function NoItems({ text, className }: { text: string; className?: string }) {
+function NoItems({ text, className }: { text?: string; className?: string }) {
   return (
     <div
       className={cn(

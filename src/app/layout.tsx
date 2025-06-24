@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: "Hoit",
   description: "자유롭게 이미지를 생성하고 비디오를 만들어 보세요.",
   icons: {
-    icon: "/favicon.png",
+    icon: "/logo/favicon.png",
   },
 };
 
