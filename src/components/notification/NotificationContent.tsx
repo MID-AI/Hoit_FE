@@ -1,131 +1,80 @@
 "use client";
 
 import { PopoverContent } from "../ui/popover";
-import NoNotification from "./NoNotification";
-import NotificationAllDelete from "./NotificationAllDelete";
-import NotificationItem from "./NotificationItem";
+import { useState } from "react";
+import XIcon from "@/assets/icon/X.svg";
+import AllNotification from "./AllNotification";
+import useDeleteNotifications from "@/hooks/user/notification/useDeleteNotifications";
+import useGetAllNotifications from "@/hooks/user/notification/useGetAllNotifications";
+import dynamic from "next/dynamic";
+import { LoaderCircle } from "lucide-react";
 
-const alarmList = [
-  {
-    id: 0,
-    type: "image",
-    status: "string",
-    message: "이미지 생성이 완료되었습니다",
-    createdAt: "2025-06-11T08:21:20.611Z",
-    payload: {},
-    read: true,
-  },
-  {
-    id: 1,
-    type: "image",
-    status: "string",
-    message: "이미지 생성이 완료되었습니다",
-    createdAt: "2025-06-11T08:21:20.611Z",
-    payload: {},
-    read: true,
-  },
-  {
-    id: 2,
-    type: "image",
-    status: "string",
-    message: "이미지 생성이 완료되었습니다",
-    createdAt: "2025-06-11T08:21:20.611Z",
-    payload: {},
-    read: true,
-  },
-  {
-    id: 3,
-    type: "image",
-    status: "string",
-    message: "이미지 생성이 완료되었습니다",
-    createdAt: "2025-06-11T08:21:20.611Z",
-    payload: {},
-    read: true,
-  },
-  {
-    id: 4,
-    type: "image",
-    status: "string",
-    message: "이미지 생성이 완료되었습니다",
-    createdAt: "2025-06-11T08:21:20.611Z",
-    payload: {},
-    read: true,
-  },
-  {
-    id: 5,
-    type: "image",
-    status: "string",
-    message: "이미지 생성이 완료되었습니다",
-    createdAt: "2025-06-11T08:21:20.611Z",
-    payload: {},
-    read: true,
-  },
-  {
-    id: 6,
-    type: "image",
-    status: "string",
-    message: "이미지 생성이 완료되었습니다",
-    createdAt: "2025-06-11T08:21:20.611Z",
-    payload: {},
-    read: true,
-  },
-  {
-    id: 7,
-    type: "image",
-    status: "string",
-    message: "이미지 생성이 완료되었습니다",
-    createdAt: "2025-06-11T08:21:20.611Z",
-    payload: {},
-    read: true,
-  },
-  {
-    id: 8,
-    type: "image",
-    status: "string",
-    message: "이미지 생성이 완료되었습니다",
-    createdAt: "2025-06-11T08:21:20.611Z",
-    payload: {},
-    read: true,
-  },
-];
+const UnreadNotification = dynamic(() => import("./UnreadNotification"), {
+  ssr: false, // 클라이언트에서만 사용 시
+  loading: () => (
+    <div className="flex h-full w-full flex-1 items-center justify-center">
+      <LoaderCircle className="animate-spin text-coolGray-500" />
+    </div>
+  ),
+});
 
 function NotificationContent({
   setPopoverOpen,
 }: {
   setPopoverOpen: (open: boolean) => void;
 }) {
-  const isEmpty = alarmList.length === 0;
+  const [tab, setTab] = useState<"all" | "unread">("all");
+
+  const { data, hasNextPage, fetchNextPage } = useGetAllNotifications();
+  const deleteMutate = useDeleteNotifications();
+
+  const isEmpty = data?.pages[0].content.length === 0;
 
   return (
     <PopoverContent
       side="top"
       // sideOffset={10}
-      className="w-screen rounded-20 py-12 sm:block sm:h-502 sm:w-264 md:translate-x-60 md:translate-y-40 lg:translate-x-100"
+      className="h-screen w-screen rounded-20 py-12 sm:block sm:max-h-502 sm:w-264 sm:border md:translate-x-60 md:translate-y-40 lg:translate-x-100"
     >
-      <div className="flex items-start justify-between px-12">
+      <div className="flex items-start justify-between border-b px-12 pb-6 text-Type-20-bold">
         <div>알림</div>
-        <div onClick={() => setPopoverOpen(false)}>x</div>
+        <button onClick={() => setPopoverOpen(false)}>
+          <XIcon className="scale-[0.6] text-coolGray-600" />
+        </button>
       </div>
-
-      {isEmpty ? (
-        <NoNotification />
-      ) : (
-        <div className="flex h-full flex-col">
-          <div className="mb-12 mt-12 flex items-start justify-between px-12">
-            <div>전체</div>
-            <NotificationAllDelete />
-          </div>
-          <div className="flex max-h-404 flex-1 flex-col gap-12 overflow-y-scroll pl-12">
-            {alarmList.map((alarm) => (
-              <NotificationItem
-                key={alarm.id}
-                createdAt={alarm.createdAt}
-                text={alarm.message}
-                alarmId={alarm.id}
-              />
-            ))}
-          </div>
+      <div className="my-10 flex items-center justify-between px-12">
+        <div className="flex gap-12 text-Type-16-medium">
+          <button
+            onClick={() => setTab("all")}
+            className={`${tab === "all" ? "text-coolGray-800" : "text-coolGray-400"}`}
+          >
+            전체
+          </button>
+          <button
+            onClick={() => setTab("unread")}
+            className={`${tab === "unread" ? "text-coolGray-800" : "text-coolGray-400"}`}
+          >
+            읽지 않음
+          </button>
         </div>
+        {!isEmpty && (
+          <button
+            onClick={() => deleteMutate.mutate()}
+            className="h-fit rounded-20 border border-coolGray-300 bg-coolGray-100 px-8 py-6 text-Type-14-regular"
+          >
+            전체삭제
+          </button>
+        )}
+      </div>
+      {tab === "all" ? (
+        <AllNotification
+          isEmpty={isEmpty}
+          data={data}
+          hasNextPage={hasNextPage}
+          fetchNextPage={fetchNextPage}
+        />
+      ) : (
+        <UnreadNotification />
       )}
     </PopoverContent>
   );

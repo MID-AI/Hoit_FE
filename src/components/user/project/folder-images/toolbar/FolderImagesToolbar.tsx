@@ -7,7 +7,7 @@ import {
   isFolderEmptyAtom,
   selectedFolderCardsAtom,
 } from "@/stores/project-atom";
-import ToolbarFolderMove from "./ToolbarFolderMove";
+// import ToolbarFolderMove from "./ToolbarFolderMove";
 import ToolbarDownload from "./ToolbarDownload";
 import ToolbarImagesDelete from "./ToolbarImagesDelete";
 import { useParams } from "next/navigation";
@@ -29,13 +29,13 @@ function FolderImagesToolbar() {
   };
 
   return (
-    <>
+    <div className="flex w-full justify-end">
       {editModeFolder ? (
         <ToolbarWrapper onClick={handleClickCancel}>
           <span className="mr-2 text-coolGray-500">
             {selectedFolderCards.size} 개 선택
           </span>
-          <ToolbarFolderMove />
+          {/* <ToolbarFolderMove /> */}
           <ToolbarDownload />
           <ToolbarImagesDelete
             folderId={Number(id)}
@@ -46,12 +46,12 @@ function FolderImagesToolbar() {
       ) : (
         <button
           onClick={() => setEditModeFolder((prev) => !prev)}
-          className="rounded-22 bg-coolGray-200 px-15 py-4 text-Type-20-bold text-coolGray-600"
+          className="w-fit rounded-22 bg-coolGray-200 px-15 py-4 text-Type-18-bold text-coolGray-600"
         >
           선택하기
         </button>
       )}
-    </>
+    </div>
   );
 }
 

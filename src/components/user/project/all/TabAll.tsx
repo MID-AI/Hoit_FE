@@ -2,7 +2,7 @@
 
 import { isAllEmptyAtom } from "@/stores/project-atom";
 import { useSetAtom } from "jotai";
-import { Suspense, useEffect } from "react";
+import { Suspense, useEffect, useMemo } from "react";
 import { useInView } from "react-intersection-observer";
 import NoItems from "@/components/common/card/NoItems";
 import useGetMyImageList from "@/hooks/user/project/all/useGetMyImageList";
@@ -20,7 +20,10 @@ function TabAll() {
   const setIsAllEmpty = useSetAtom(isAllEmptyAtom);
   const { ref, inView } = useInView();
 
-  const allImages = data?.pages.flatMap((page) => page.content) ?? [];
+  const allImages = useMemo(
+    () => data?.pages.flatMap((page) => page.content) ?? [],
+    [data],
+  );
   const isEmpty = data?.pages[0].content.length === 0;
 
   const grouped = useGroupedImages(allImages);
@@ -40,15 +43,18 @@ function TabAll() {
 
   return (
     <>
-      {Object.entries(grouped).map(([date, images]) => (
-        <TabAllImageList
-          key={date}
-          date={date}
-          images={images}
-          hasNextPage={hasNextPage}
-          ref={ref}
-        />
-      ))}
+      {Object.entries(grouped).map(([date, images]) => {
+        return <TabAllImageList key={date} date={date} images={images} />;
+      })}
+      {hasNextPage ? (
+        <div ref={ref} className="mt-8 text-center text-gray-400">
+          다음 페이지 불러오는 중...
+        </div>
+      ) : (
+        <div className="sr-only mt-8 text-center text-gray-400">
+          마지막 페이지입니다.
+        </div>
+      )}
       <Suspense fallback={null}>
         <Media images={allImages} pageRoute={PAGE_ROUTES.MY_PROJECT_ALL} />
       </Suspense>

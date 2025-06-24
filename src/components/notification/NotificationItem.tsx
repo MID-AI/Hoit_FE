@@ -8,10 +8,12 @@ function NotificationItem({
   createdAt,
   text,
   alarmId,
+  isRead,
 }: {
   createdAt: string;
   text: string;
   alarmId: number;
+  isRead: boolean;
 }) {
   const notificationMutate = useMarkNotificationAsRead();
 
@@ -26,10 +28,11 @@ function NotificationItem({
         <span className="mr-8">{date}</span>
         <span>{text}</span>
       </div>
-
-      <button onClick={handleClick}>
-        <RemoveIcon />
-      </button>
+      {!isRead && (
+        <button onClick={handleClick}>
+          <RemoveIcon />
+        </button>
+      )}
     </div>
   );
 }

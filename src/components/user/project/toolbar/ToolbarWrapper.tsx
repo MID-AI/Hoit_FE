@@ -6,11 +6,11 @@ interface Props {
 
 function ToolbarWrapper({ onClick, children }: Props) {
   return (
-    <div className="flex items-center text-Type-20-bold">
+    <div className="mt-12 flex items-center text-Type-18-bold md:mt-0">
       {children}
       <button
         onClick={onClick}
-        className="ml-26 rounded-22 bg-cBlue-400 px-13 py-4 text-white"
+        className="rounded-22 bg-cBlue-400 px-13 py-4 text-white"
       >
         취소
       </button>

@@ -16,7 +16,7 @@ function ToolbarEditButton({
     <button
       onClick={onClick}
       className={cn(
-        "ml-18 flex shrink items-center gap-12 text-coolGray-500",
+        "mr-18 flex shrink items-center gap-8 text-coolGray-500",
         className,
       )}
     >

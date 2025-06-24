@@ -26,7 +26,7 @@ function TabAllToolbar() {
   };
 
   return (
-    <>
+    <div className="flex w-full justify-end">
       {editModeAllTab ? (
         <ToolbarWrapper onClick={handleClickCancel}>
           {selectedAllTabCards.size > 0 && (
@@ -50,7 +50,7 @@ function TabAllToolbar() {
           선택하기
         </button>
       )}
-    </>
+    </div>
   );
 }
 
