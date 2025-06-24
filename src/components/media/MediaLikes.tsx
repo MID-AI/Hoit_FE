@@ -3,6 +3,7 @@ import HeartBlueIcon from "@/assets/icon/heart_blue.svg";
 import useLikeMediaMutation from "@/hooks/user/media/useLikeMediaMutation";
 import cn from "@/utils/cn";
 import throttle from "@/utils/throttle";
+import ElementLoginChecker from "../common/auth/ElementLoginChecker";
 
 function MediaLikes({
   imageId,
@@ -22,13 +23,15 @@ function MediaLikes({
   }, 1000);
 
   return (
-    <button
-      onClick={handleLikeClick}
-      className={cn("mr-21 flex items-center gap-7", className)}
-    >
-      {isLiked ? <HeartBlueIcon /> : <HeartIcon />}
-      {likeCount}
-    </button>
+    <ElementLoginChecker>
+      <button
+        onClick={handleLikeClick}
+        className={cn("mr-21 flex items-center gap-7", className)}
+      >
+        {isLiked ? <HeartBlueIcon /> : <HeartIcon />}
+        {likeCount}
+      </button>
+    </ElementLoginChecker>
   );
 }
 

@@ -12,8 +12,11 @@ async function LoginPage({
   const uri = redirect === "/" ? "" : `?redirect_uri=${CLIENT_URL}${redirect}`;
 
   return (
-    <div className="flex h-screen flex-col items-center justify-center gap-44">
-      <NoItems text="이미지와 영상을 생성해 보세요!" className="h-auto" />
+    <div className="flex h-screen flex-col items-center justify-center gap-44 p-24">
+      <NoItems
+        text="호잇에서 이미지와 영상을 생성해 보세요!"
+        className="h-auto"
+      />
       <a
         href={`${BASE_URL}/${API_ROUTES.AUTH.LOGIN}${uri}`}
         rel="noopener noreferrer"

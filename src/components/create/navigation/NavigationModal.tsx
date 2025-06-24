@@ -7,10 +7,15 @@ import {
 } from "@/components/ui/dialog";
 import SiteIcon from "@/assets/create/global.svg";
 import { modalTabVariant } from "@/style/button";
-import NavigationImageListContainer from "./NavigationImageListContainer";
 import ModalButtons from "@/components/common/modal/ModalButtons";
 import ImageToPC from "./ImageToPC";
 import { useState } from "react";
+import dynamic from "next/dynamic";
+
+const NavigationImageListContainer = dynamic(
+  () => import("./NavigationImageListContainer"),
+  { ssr: false },
+);
 
 function NavigationModal({
   type,

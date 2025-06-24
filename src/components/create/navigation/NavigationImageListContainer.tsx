@@ -3,6 +3,7 @@
 import NoItems from "@/components/common/card/NoItems";
 import { MODAL_IMAGE_LIST_BREAKPOINTS } from "@/constants/image-list-breakpoints";
 import useGetMyImageList from "@/hooks/user/project/all/useGetMyImageList";
+import { Loader } from "lucide-react";
 
 import Image from "next/image";
 import { useEffect } from "react";
@@ -64,14 +65,18 @@ function NavigationImageListContainer({
             />
           )),
         )}
+        {hasNextPage ? (
+          <span
+            ref={ref}
+            aria-label="다음 페이지를 불러오고 있습니다"
+            className="flex w-full justify-center"
+          >
+            <Loader className="animate-spin" />
+          </span>
+        ) : (
+          <span aria-label="마지막 페이지입니다" />
+        )}
       </Masonry>
-      {hasNextPage ? (
-        <span ref={ref} aria-label="다음 페이지를 불러오고 있습니다">
-          로딩중
-        </span>
-      ) : (
-        <span aria-label="마지막 페이지입니다" />
-      )}
     </>
   );
 }

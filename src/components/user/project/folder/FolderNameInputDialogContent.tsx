@@ -2,6 +2,7 @@ import FolderNameInput from "@/components/common/input/FolderNameInput";
 import { Button } from "@/components/ui/button";
 import {
   DialogClose,
+  DialogContent,
   DialogDescription,
   DialogTitle,
 } from "@/components/ui/dialog";
@@ -20,7 +21,7 @@ function FolderNameInputDialogContent({
   handleSubmit,
 }: Props) {
   return (
-    <>
+    <DialogContent className="w-full max-w-600">
       <DialogTitle className="mb-78">{modalTitle}</DialogTitle>
       <DialogDescription className="w-full">
         <FolderNameInput
@@ -34,7 +35,7 @@ function FolderNameInputDialogContent({
           <Button onClick={handleSubmit}>확인</Button>
         </span>
       </DialogDescription>
-    </>
+    </DialogContent>
   );
 }
 

@@ -4,7 +4,7 @@ import AlertIcon from "@/assets/create/alert.svg";
 import QuestionIcon from "@/assets/create/question.svg";
 import { HELP_TEXTS, WARNING_TEXTS } from "@/constants/notices";
 import ToolTip from "./tool-tip";
-import LoginChecker from "@/components/common/auth/LoginChecker";
+import ElementLoginChecker from "@/components/common/auth/ElementLoginChecker";
 
 interface Props {
   prompt: string;
@@ -27,16 +27,16 @@ function Prompt({ prompt, setPrompt, placeholder, onClick, isLoading }: Props) {
       <div className="flex items-center gap-12">
         <ToolTip icon={<AlertIcon />} content={WARNING_TEXTS} />
         <ToolTip icon={<QuestionIcon />} content={HELP_TEXTS} />
-        <LoginChecker>
+        <ElementLoginChecker>
           <Button
             onClick={onClick}
             disabled={!prompt || isLoading}
-            className="flex w-fit gap-13 rounded-24 bg-cBlue-400 px-13 py-12 text-coolGray-50 hover:border-cBlue-600 hover:bg-cBlue-500"
+            className="flex w-fit items-center justify-center gap-13 rounded-24 bg-cBlue-400 px-13 py-12 text-coolGray-50 hover:border-cBlue-600 hover:bg-cBlue-500"
           >
             생성하기
             <CreateIcon />
           </Button>
-        </LoginChecker>
+        </ElementLoginChecker>
       </div>
     </div>
   );
